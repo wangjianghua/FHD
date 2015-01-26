@@ -27,3 +27,13 @@
 *.i*86
 *.x86_64
 *.hex
+
+# 过滤文件夹 @华兄
+SI/
+Debug/
+Exe/
+List/
+Obj/
+Listing/
+Output/
+Doc/

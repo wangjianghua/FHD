@@ -1,0 +1,111 @@
+[DebugChecksum]
+Checksum=1583754738
+[DisAssemblyWindow]
+NumStates=_ 1
+State 1=_ 1
+[InstructionProfiling]
+Enabled=_ 0
+[CodeCoverage]
+Enabled=_ 0
+[Profiling]
+Enabled=0
+[StackPlugin]
+Enabled=1
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnHow=0
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[Interrupts]
+Enabled=1
+[MemoryMap]
+Enabled=0
+Base=0
+UseAuto=0
+TypeViolation=1
+UnspecRange=1
+ActionState=1
+[PowerLog]
+LogEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+Stripe=1 0 1000 2 1 0
+[InterruptLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+SumSortOrder=0
+[TraceHelper]
+Enabled=0
+ShowSource=1
+[Breakpoints]
+Bp0=_ "STD_CODE" "{D:\workspace\ZN\stm_src\src\main.c}.7.5@1" 1 0 0 0 "" 0 "" 0
+Count=1
+[Stack]
+FillEnabled=0
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnLogOnly=1
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[Exceptions]
+StopOnUncaught=_ 0
+StopOnThrow=_ 0
+[CallStack]
+ShowArgs=0
+[Disassembly]
+MixedMode=1
+[struct_types]
+Fmt0=GUI_CONTEXT-Color	4	0
+Fmt1=SYS_CONF-PowerDropCount	4	0
+Fmt2=SYS_CONF-PowerDropKeepTime	4	0
+Fmt3=SYS_CONF-SelfPowerTime	4	0
+Fmt4=SYS_CONF-SysRunStatus	4	0
+Fmt5=SYS_CONF-initStatusWord	4	0
+Fmt6=TIM_OCInitTypeDef-TIM_OCIdleState	4	0
+[array_types]
+Fmt0=unsigned long[4]	4	0
+[watch_formats]
+Fmt0={W}0:TIM_OCInitStruct	4	0
+Fmt1={W}0:exit_s	4	0
+Fmt2={W}0:nLen	3	0
+Fmt3={W}0:tmpccer	4	0
+Fmt4={W}0:tmpcr2	4	0
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[CallStackLog]
+Enabled=0
+[DriverProfiling]
+Enabled=0
+Mode=0
+Graph=0
+Symbiont=0
+Exclusions=
+[Disassemble mode]
+mode=0
+[Breakpoints2]
+Bp0=_ 0 "EMUL_DATA" "0x200023AC" 0 0 0 0 4294967295
+Bp1=_ 0 "EMUL_DATA" "0x200023AC" 0 0 0 0 4294967295
+Bp2=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\stm32f10x_it.c}.92.1" 0 0 1 "" 0 "" 0
+Bp3=_ 0 "EMUL_DATA" "0x20001FDA" 0 0 0 0 4294967295
+Bp4=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\app\E2PROM.c}.614.1" 0 0 1 "" 0 "" 0
+Bp5=_ 0 "EMUL_CODE" "0x00000C40" 0 0 1 "" 0 "" 0
+Bp6=_ 0 "EMUL_CODE" "0x000063B8" 0 0 1 "" 0 "" 0
+Bp7=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\app\Modbus.c}.222.2" 0 0 1 "" 0 "" 0
+Count=8
+[Aliases]
+Count=0
+SuppressDialog=0

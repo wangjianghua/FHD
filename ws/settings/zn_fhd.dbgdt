@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Project>
+  <Desktop>
+    <Static>
+      <Debug-Log>
+        
+        
+      <ColumnWidth0>16</ColumnWidth0><ColumnWidth1>1225</ColumnWidth1></Debug-Log>
+      <Build>
+        <ColumnWidth0>16</ColumnWidth0>
+        <ColumnWidth1>918</ColumnWidth1>
+        <ColumnWidth2>245</ColumnWidth2>
+        <ColumnWidth3>61</ColumnWidth3>
+      </Build>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>257</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+      <Disassembly>
+        
+        
+        
+      <MixedMode>1</MixedMode><CodeCovShow>1</CodeCovShow><InstrProfShow>1</InstrProfShow><col-names><item>Disassembly</item><item>_I0</item></col-names><col-widths><item>500</item><item>20</item></col-widths><DisasmHistory><item>0x23ec</item></DisasmHistory><PreferedWindows><Position>2</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>WATCH_1</Factory></Window><Window><Factory>Register</Factory></Window><Window><Factory>Register</Factory></Window></Windows></PreferedWindows><ShowCodeCoverage>0</ShowCodeCoverage><ShowInstrProfiling>0</ShowInstrProfiling></Disassembly>
+    <Register><PreferedWindows><Position>2</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>WATCH_1</Factory></Window><Window><Factory>Register</Factory></Window><Window><Factory>Disassembly</Factory></Window></Windows></PreferedWindows></Register><StaticWatch><expressions><item>ADC_RegularConvertedValueTab</item><item/></expressions><col-names><item>Expression</item><item>Location</item><item>Type</item><item>Value</item></col-names><col-widths><item>100</item><item>150</item><item>100</item><item>100</item></col-widths><PreferedWindows><Position>2</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows></StaticWatch><WATCH_1><expressions><item>g_sys_conf</item><item>E2PErrIndication</item><item>OW_RomID</item><item>i</item><item>SHAVM_MAC</item><item>pbuf</item><item>grp_val</item><item/></expressions><col-names><item>Expression</item><item>Location</item><item>Type</item><item>Value</item></col-names><col-widths><item>183</item><item>150</item><item>100</item><item>124</item></col-widths><PreferedWindows><Position>2</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Register</Factory></Window><Window><Factory>Disassembly</Factory></Window><Window><Factory>Register</Factory></Window></Windows></PreferedWindows></WATCH_1><CallStack><PreferedWindows><Position>1</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows><col-names><item>Frame</item><item>_I0</item></col-names><col-widths><item>400</item><item>20</item></col-widths></CallStack><Breakpoints><col-names><item>Breakpoint</item><item>_I0</item></col-names><col-widths><item>500</item><item>35</item></col-widths></Breakpoints><QuickWatch><col-names><item>Expression</item><item>Location</item><item>Type</item><item>Value</item></col-names><col-widths><item>100</item><item>150</item><item>100</item><item>100</item></col-widths><QWatchHistory><item>nLen</item></QWatchHistory></QuickWatch><Memory><FindDirection>1</FindDirection><FindAsHex>0</FindAsHex></Memory><Locals><col-names><item>Location</item><item>Type</item><item>Value</item><item>Variable</item></col-names><col-widths><item>150</item><item>100</item><item>179</item><item>100</item></col-widths></Locals></Static>
+    <Windows>
+      
+      
+      
+    <Wnd0>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-19038-25068</Identity>
+            <TabName>Debug Log</TabName>
+            <Factory>Debug-Log</Factory>
+            <Session/>
+          </Tab>
+          <Tab>
+            <Identity>TabID-29264-25081</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        <Tab><Identity>TabID-27375-4665</Identity><TabName>Breakpoints</TabName><Factory>Breakpoints</Factory></Tab><Tab><Identity>TabID-13599-13189</Identity><TabName>Memory</TabName><Factory>Memory</Factory><Session><ZoneNumber>0</ZoneNumber><SelectionAnchor>536871311</SelectionAnchor><SelectionEnd>536871311</SelectionEnd><UnitsPerGroup>1</UnitsPerGroup><EndianMode>0</EndianMode><DataCovEnabled>0</DataCovEnabled><DataCovShown>0</DataCovShown><AutoRefresh>0</AutoRefresh><HScroll>0</HScroll><VScroll>33554455</VScroll></Session></Tab></Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd0><Wnd1>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-29786-25071</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>zn_fhd</ExpandedNode><ExpandedNode>zn_fhd/APP</ExpandedNode><ExpandedNode>zn_fhd/APP/Modbus.c</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd1><Wnd3><Tabs><Tab><Identity>TabID-9147-8391</Identity><TabName>Register</TabName><Factory>Register</Factory><Session><State1>GPIOC_IDR</State1><REG1>0</REG1><REG2>0</REG2><Group>8</Group><States>1</States><State0>EXTI_PR</State0></Session></Tab><Tab><Identity>TabID-21873-18892</Identity><TabName>Watch 1</TabName><Factory>WATCH_1</Factory></Tab><Tab><Identity>TabID-9537-31976</Identity><TabName>Disassembly</TabName><Factory>Disassembly</Factory><Session/></Tab><Tab><Identity>TabID-6337-10417</Identity><TabName>Quick Watch</TabName><Factory>QuickWatch</Factory></Tab><Tab><Identity>TabID-21637-19016</Identity><TabName>Register</TabName><Factory>Register</Factory><Session><REG1>0</REG1><REG2>0</REG2><Group>9</Group><States>3</States><State0>GPIOA_ODR</State0><State1>GPIOD_CRL</State1><State2>GPIOD_ODR</State2></Session></Tab><Tab><Identity>TabID-1099-4985</Identity><TabName>Locals</TabName><Factory>Locals</Factory></Tab></Tabs><SelectedTab>1</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c</Filename><XPos>0</XPos><YPos>88</YPos><SelStart>2663</SelStart><SelEnd>2675</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_dma.c</Filename><XPos>0</XPos><YPos>439</YPos><SelStart>17138</SelStart><SelEnd>17138</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\uCOS-II\Source\ucos_ii.h</Filename><XPos>0</XPos><YPos>27</YPos><SelStart>1838</SelStart><SelEnd>1838</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\uCOS-II\Source\cpu.h</Filename><XPos>0</XPos><YPos>68</YPos><SelStart>3685</SelStart><SelEnd>3685</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\bsp\bsp_int.c</Filename><XPos>0</XPos><YPos>306</YPos><SelStart>1613</SelStart><SelEnd>1613</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\app_vect.c</Filename><XPos>0</XPos><YPos>350</YPos><SelStart>18097</SelStart><SelEnd>18097</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\iar\startup_stm32f10x_md.s</Filename><XPos>0</XPos><YPos>60</YPos><SelStart>3278</SelStart><SelEnd>3278</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_tim.c</Filename><XPos>0</XPos><YPos>321</YPos><SelStart>10115</SelStart><SelEnd>10131</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_exti.c</Filename><XPos>0</XPos><YPos>242</YPos><SelStart>6555</SelStart><SelEnd>6555</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\e2prom.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>415</SelStart><SelEnd>415</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\ziti.h</Filename><XPos>0</XPos><YPos>431</YPos><SelStart>10983</SelStart><SelEnd>10983</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\bsp.h</Filename><XPos>0</XPos><YPos>302</YPos><SelStart>19054</SelStart><SelEnd>19054</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\bsp\BSP.c</Filename><XPos>0</XPos><YPos>501</YPos><SelStart>18608</SelStart><SelEnd>18608</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\uCOS-II\Source\os_time.c</Filename><XPos>0</XPos><YPos>44</YPos><SelStart>2370</SelStart><SelEnd>2370</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\make_point.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\App_User.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\queue.c</Filename><XPos>0</XPos><YPos>58</YPos><SelStart>1443</SelStart><SelEnd>1443</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\RTC.c</Filename><XPos>0</XPos><YPos>375</YPos><SelStart>5117</SelStart><SelEnd>5117</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\ziti.c</Filename><XPos>0</XPos><YPos>1912</YPos><SelStart>27623</SelStart><SelEnd>27636</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_cpu_a.asm</Filename><XPos>0</XPos><YPos>83</YPos><SelStart>4270</SelStart><SelEnd>4270</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_iwdg.c</Filename><XPos>0</XPos><YPos>128</YPos><SelStart>3702</SelStart><SelEnd>3702</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\app_hooks.c</Filename><XPos>0</XPos><YPos>67</YPos><SelStart>2606</SelStart><SelEnd>2606</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\E2PROM.c</Filename><XPos>0</XPos><YPos>552</YPos><SelStart>6826</SelStart><SelEnd>6826</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\storage.c</Filename><XPos>0</XPos><YPos>12</YPos><SelStart>484</SelStart><SelEnd>484</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\DS28E01.c</Filename><XPos>0</XPos><YPos>1009</YPos><SelStart>30432</SelStart><SelEnd>30432</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\boot_word.c</Filename><XPos>0</XPos><YPos>60</YPos><SelStart>2361</SelStart><SelEnd>2361</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\modbus.h</Filename><XPos>0</XPos><YPos>38</YPos><SelStart>1411</SelStart><SelEnd>1416</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\END_UART.c</Filename><XPos>0</XPos><YPos>619</YPos><SelStart>15207</SelStart><SelEnd>15207</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\display_menu.c</Filename><XPos>0</XPos><YPos>427</YPos><SelStart>11179</SelStart><SelEnd>11179</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\includes.h</Filename><XPos>0</XPos><YPos>235</YPos><SelStart>7350</SelStart><SelEnd>7350</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\Lcd.c</Filename><XPos>0</XPos><YPos>80</YPos><SelStart>5995</SelStart><SelEnd>5995</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c</Filename><XPos>0</XPos><YPos>353</YPos><SelStart>10837</SelStart><SelEnd>10837</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\uCOS-II\Source\os_core.c</Filename><XPos>5</XPos><YPos>924</YPos><SelStart>40694</SelStart><SelEnd>40694</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\uCOS-II\Ports\ARM-Cortex-M3\Generic\IAR\os_cpu_c.c</Filename><XPos>0</XPos><YPos>360</YPos><SelStart>14571</SelStart><SelEnd>14571</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\Mod_Helpler.c</Filename><XPos>0</XPos><YPos>62</YPos><SelStart>3652</SelStart><SelEnd>3660</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\Modbus.c</Filename><XPos>0</XPos><YPos>484</YPos><SelStart>10775</SelStart><SelEnd>10775</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\main.c</Filename><XPos>0</XPos><YPos>693</YPos><SelStart>19294</SelStart><SelEnd>19294</SelEnd></Tab><ActiveTab>36</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\system_stm32f10x.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>1356</SelStart><SelEnd>1356</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\stm32f10x.h</Filename><XPos>0</XPos><YPos>7940</YPos><SelStart>598248</SelStart><SelEnd>598248</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Libraries\CMSIS\CM3\CoreSupport\core_cm3.h</Filename><XPos>0</XPos><YPos>1381</YPos><SelStart>63637</SelStart><SelEnd>63637</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Program Files\IAR Systems\Embedded Workbench 6.0\arm\inc\c\intrinsics.h</Filename><XPos>0</XPos><YPos>41</YPos><SelStart>1185</SelStart><SelEnd>1185</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\Register.c</Filename><XPos>0</XPos><YPos>63</YPos><SelStart>1642</SelStart><SelEnd>1642</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app\Reg_DVC.c</Filename><XPos>0</XPos><YPos>545</YPos><SelStart>10690</SelStart><SelEnd>10690</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\stm32f10x_it.c</Filename><XPos>0</XPos><YPos>283</YPos><SelStart>8236</SelStart><SelEnd>8236</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-005520b0><key>iaridepm.enu1</key></Toolbar-005520b0></Sizes></Row0><Row1><Sizes><Toolbar-0ce195b8><key>debuggergui.enu1</key></Toolbar-0ce195b8></Sizes></Row1></Top><Left><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>399</Bottom><Right>348</Right><x>-2</x><y>-2</y><xscreen>349</xscreen><yscreen>276</yscreen><sizeHorzCX>255490</sizeHorzCX><sizeHorzCY>397122</sizeHorzCY><sizeVertCX>256223</sizeVertCX><sizeVertCY>576978</sizeVertCY></Rect></Wnd1></Sizes></Row0></Left><Right><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>399</Bottom><Right>380</Right><x>-2</x><y>-2</y><xscreen>349</xscreen><yscreen>276</yscreen><sizeHorzCX>255490</sizeHorzCX><sizeHorzCY>397122</sizeHorzCY><sizeVertCX>279649</sizeVertCX><sizeVertCY>576978</sizeVertCY></Rect></Wnd3></Sizes></Row0></Right><Bottom><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>227</Bottom><Right>1368</Right><x>-2</x><y>-2</y><xscreen>1370</xscreen><yscreen>229</yscreen><sizeHorzCX>1002928</sizeHorzCX><sizeHorzCY>329496</sizeHorzCY><sizeVertCX>255490</sizeVertCX><sizeVertCY>397122</sizeVertCY></Rect></Wnd0></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Project>
+
+
