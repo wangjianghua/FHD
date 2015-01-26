@@ -28,7 +28,7 @@
 *.x86_64
 *.hex
 
-# 过滤文件夹 @华兄
+# 开放模式 @华兄
 SI/
 Debug/
 Exe/
@@ -37,3 +37,6 @@ Obj/
 Listing/
 Output/
 Doc/
+
+# 保守模式 @华兄
+!ProLibrary.a
