@@ -1139,6 +1139,9 @@ int  main(void)
     
     CPU_IntDis();
 
+    /* Set the Vector Table base location at APPLICATION_ADDRESS */ 
+    NVIC_SetVectorTable(NVIC_VectTab_FLASH, APPLICATION_ADDRESS & (~NVIC_VectTab_FLASH)); //ЛЊаж
+
     OSInit();                                                   /* Initialize "uC/OS-II, The Real-Time Kernel"              */
 
     OSTaskCreateExt( AppTaskStart,                              /* Create the start task                                    */

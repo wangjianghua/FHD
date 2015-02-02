@@ -74,6 +74,8 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 #define OK 0
 #define ERROR   0xff
 
+#define APPLICATION_ADDRESS   0x8003000
+
 #define LCD_DISP_BUF_SIZE   1024
 
 #define SYS_SAVE_TIME_LEN   8

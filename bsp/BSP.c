@@ -18,7 +18,7 @@ void BSP_NVIC_Configuration(void)
 
     USART_ITConfig(USART1, USART_IT_RXNE, DISABLE); 
 
-
+#if 0
     //#ifdef  VECT_TAB_RAM
 #if defined (VECT_TAB_RAM)
     /* Set the Vector Table base location at 0x20000000 */ 
@@ -29,6 +29,7 @@ void BSP_NVIC_Configuration(void)
     /* Set the Vector Table base location at 0x08000000 */ 
     NVIC_SetVectorTable(NVIC_VectTab_FLASH, 0x0);   
 #endif 
+#endif //ЛЊаж
 
     /* Configure the NVIC Preemption Priority Bits */  
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);

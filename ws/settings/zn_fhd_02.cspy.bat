@@ -10,6 +10,6 @@
 @REM 
 
 
-"D:\Program Files\IAR Systems\Embedded Workbench for ARM\common\bin\cspybat" "D:\Program Files\IAR Systems\Embedded Workbench for ARM\arm\bin\armproc.dll" "D:\Program Files\IAR Systems\Embedded Workbench for ARM\arm\bin\armjlink.dll"  %1 --plugin "D:\Program Files\IAR Systems\Embedded Workbench for ARM\arm\bin\armbat.dll" --backend -B "--endian=little" "--cpu=Cortex-M3" "--fpu=None" "-p" "D:\Program Files\IAR Systems\Embedded Workbench for ARM\arm\CONFIG\debugger\ST\iostm32f10xxB.ddf" "--semihosting" "--device=STM32F10xx8" "--drv_communication=USB0" "--jlink_speed=auto" "--jlink_initial_speed=32" "--jlink_reset_strategy=0,0" "--jlink_interface=SWD" "--drv_catch_exceptions=0x000" "--drv_swo_clock_setup=72000000,0,2000000" 
+"D:\Program Files\IAR Systems\Embedded Workbench for ARM 6.30\common\bin\cspybat" "D:\Program Files\IAR Systems\Embedded Workbench for ARM 6.30\arm\bin\armproc.dll" "D:\Program Files\IAR Systems\Embedded Workbench for ARM 6.30\arm\bin\armjlink.dll"  %1 --plugin "D:\Program Files\IAR Systems\Embedded Workbench for ARM 6.30\arm\bin\armbat.dll" --backend -B "--endian=little" "--cpu=Cortex-M3" "--fpu=None" "-p" "D:\Program Files\IAR Systems\Embedded Workbench for ARM 6.30\arm\CONFIG\debugger\ST\iostm32f10xxB.ddf" "--semihosting" "--device=STM32F10xx8" "--drv_communication=USB0" "--jlink_speed=auto" "--jlink_initial_speed=32" "--jlink_reset_strategy=0,0" "--jlink_interface=SWD" "--drv_catch_exceptions=0x000" "--drv_swo_clock_setup=72000000,0,2000000" 
 
 
