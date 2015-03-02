@@ -1,8 +1,9 @@
 
 #ifndef E2PPROM_H
 #define E2PPROM_H
-void E2promReadBuffer(  unsigned short nAddr,unsigned char *nContent, unsigned char nLen );
-void E2promWriteBuffer(unsigned short nAddr,unsigned char *nContent, unsigned char nLen);
+void E2promReadBuffer(  unsigned short nAddr,unsigned char *nContent, unsigned short nLen );
+void E2promWriteBuffer(unsigned short nAddr,unsigned char *nContent, unsigned short nLen);
+void E2prom_Test(void);
 
 unsigned char ReadChar_BcdToHex(unsigned short add);
 void _pcf8576_operation(unsigned char addr,unsigned char *Ldata,unsigned char len);
@@ -34,8 +35,9 @@ void _pcf8576_init(void);
 
 #define PORT_NUMBER 4
 
-#define PAGE_OF_AT24C16    8
+#define PAGE_SIZE_OF_AT24CXX    16 //AT24C08
 
+#define E2PROM_TEST_EN          1u
 
 #define CS_RIGHT    0x00
 #define CS_WRONG    0x04;//数据不可靠

@@ -507,6 +507,10 @@ static  void  AppTaskStart (void *p_arg)
     rtc_adjust_time(); //ЛЊаж
 #endif      
 
+#if (E2PROM_TEST_EN > 0u)
+    E2prom_Test();
+#endif
+
     //Mem_Init();                                                 /* Init mem mgmt module.                                    */
     MEM_Init();
 

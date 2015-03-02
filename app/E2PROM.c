@@ -268,8 +268,8 @@ unsigned char E2_ReadByte(unsigned short addr)
     unsigned char i;
     unsigned short j = 0;
 
-    E2PTemp0=0xA0;  //|((addr&0x700)>>7);
-    E2PTemp1=addr;
+    E2PTemp0 = 0xA0 | ((addr >> 7) & 0x0E);
+    E2PTemp1 = addr & 0xFF;
 
     do
     {
@@ -319,8 +319,8 @@ void E2_WriteByte(unsigned short addr,unsigned char nContent)
 
     E2P_WP_RST();
 
-    E2PTemp0= 0xA0;  //|((addr&0x700)>>7);
-    E2PTemp1=addr;  
+    E2PTemp0 = 0xA0 | ((addr >> 7) & 0x0E);
+    E2PTemp1 = addr & 0xFF;  
 
     do
     {
@@ -378,10 +378,10 @@ void E2promCheckEnd()
     E2promStop();
         
 }
-void E2promReadBuffer(unsigned short addr,unsigned char *data,unsigned char len)
+void E2promReadBuffer(unsigned short addr,unsigned char *data,unsigned short len)
 {
 
-    unsigned char i;
+    unsigned short i;
 
     unsigned short j = 0;
 
@@ -395,9 +395,8 @@ void E2promReadBuffer(unsigned short addr,unsigned char *data,unsigned char len)
 
 
 
-    E2PTemp0=0xA0;  //|((addr&0x700)>>7);
-
-    E2PTemp1=addr;
+    E2PTemp0 = 0xA0 | ((addr >> 7) & 0x0E);
+    E2PTemp1 = addr & 0xFF;
 
 
 
@@ -484,8 +483,8 @@ void E2promWrite_Page(unsigned short addr,unsigned char *data,unsigned char len)
 
     
 
-    E2PTemp0=0xA0; 
-    E2PTemp1=addr;  
+    E2PTemp0 = 0xA0 | ((addr >> 7) & 0x0E);
+    E2PTemp1 = addr & 0xFF;  
 
     do
     {
@@ -540,7 +539,7 @@ void E2promWrite_Page(unsigned short addr,unsigned char *data,unsigned char len)
 
 
 
-void E2promWriteBuffer(unsigned short nAddr,unsigned char *nContent, unsigned char nLen)
+void E2promWriteBuffer(unsigned short nAddr,unsigned char *nContent, unsigned short nLen)
 {
 
     unsigned char ii;  
@@ -551,10 +550,10 @@ void E2promWriteBuffer(unsigned short nAddr,unsigned char *nContent, unsigned ch
 
 #if 1
 
-    if( ( (unsigned char)(nAddr/PAGE_OF_AT24C16) ) !=  ((unsigned char)( (nAddr+nLen-1)/PAGE_OF_AT24C16))  )
+    if( ( (unsigned char)(nAddr/PAGE_SIZE_OF_AT24CXX) ) !=  ((unsigned char)( (nAddr+nLen-1)/PAGE_SIZE_OF_AT24CXX))  )
     {
 
-           ii=PAGE_OF_AT24C16 - (nAddr%PAGE_OF_AT24C16) ;
+           ii=PAGE_SIZE_OF_AT24CXX - (nAddr%PAGE_SIZE_OF_AT24CXX) ;
 
            E2promWrite_Page(nAddr ,nContent,ii);
 
@@ -567,10 +566,10 @@ void E2promWriteBuffer(unsigned short nAddr,unsigned char *nContent, unsigned ch
             while(nLen)
             {
 
-                if( nLen>=PAGE_OF_AT24C16)
+                if( nLen>=PAGE_SIZE_OF_AT24CXX)
                 {
 
-                    ii=PAGE_OF_AT24C16;
+                    ii=PAGE_SIZE_OF_AT24CXX;
 
                 }
 
@@ -613,9 +612,32 @@ void E2promWriteBuffer(unsigned short nAddr,unsigned char *nContent, unsigned ch
 
 }
 
+#if (E2PROM_TEST_EN > 0u)
+
+#define TEST_BUF_SIZE  1024
+
+u8 g_test_buf[TEST_BUF_SIZE];
+
+void E2prom_Test(void)
+{
+    u16 i;
 
 
+    for(i = 0; i < TEST_BUF_SIZE; i++)
+    {
+        g_test_buf[i] = i % 256; 
+    }
 
+    E2promWriteBuffer(0, g_test_buf, TEST_BUF_SIZE);
+
+    for(i = 0; i < TEST_BUF_SIZE; i++)
+    {
+        g_test_buf[i] = 0; 
+    }
+
+    E2promReadBuffer(0, g_test_buf, TEST_BUF_SIZE);
+}
+#endif
 
 #else
 
