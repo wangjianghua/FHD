@@ -37,7 +37,7 @@ void _pcf8576_init(void);
 
 #define PAGE_SIZE_OF_AT24CXX    16 //AT24C08
 
-#define E2PROM_TEST_EN          1u
+#define E2PROM_TEST_EN          0u
 
 #define CS_RIGHT    0x00
 #define CS_WRONG    0x04;//数据不可靠
