@@ -620,7 +620,8 @@ u8 g_test_buf[TEST_BUF_SIZE];
 
 void E2prom_Test(void)
 {
-    u16 i;
+    u8 count = 0;
+    u16 i = 0;
 
 
     for(i = 0; i < TEST_BUF_SIZE; i++)
@@ -636,6 +637,27 @@ void E2prom_Test(void)
     }
 
     E2promReadBuffer(0, g_test_buf, TEST_BUF_SIZE);
+
+    for(i = 0; i < TEST_BUF_SIZE; i++)
+    {
+        if(!(i % 256))
+        {
+            count++;
+        }
+            
+        g_test_buf[i] = count; 
+    }    
+
+    E2promWriteBuffer(0, g_test_buf, TEST_BUF_SIZE);
+
+    for(i = 0; i < TEST_BUF_SIZE; i++)
+    {
+        g_test_buf[i] = 0; 
+    }
+
+    E2promReadBuffer(0, g_test_buf, TEST_BUF_SIZE);   
+
+    count = 0;
 }
 #endif
 
