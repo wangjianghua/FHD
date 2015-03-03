@@ -578,7 +578,7 @@ static  void  AppTaskStart (void *p_arg)
     g_scount = 0;
 
 #if 1 //ЛЊаж
-    g_sys_conf.voltageFixCoe = 11000;
+    //g_sys_conf.voltageFixCoe = 11000;
 
     DEBUG_LED_OFF();
 #endif

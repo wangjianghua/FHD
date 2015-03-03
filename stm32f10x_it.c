@@ -344,7 +344,7 @@ void TIM2_IRQHandler(void)
         {
             if(g_sys_conf.SysRunStatus & SYS_RELAY_ON_FLAG)
             {
-                if((g_sys_conf.SysSwitch & (SYS_DROP_KEEP_MASK)) && //晃电保护开关打开
+                if((g_sys_conf.SysSwitch & SYS_DROP_KEEP_MASK) && //晃电保护开关打开
                    (FALSE == g_sys_conf.main_mos_broken) &&  //主MOS管正常
                    (RESET == MAIN_MOS_CHECK_JDQ_STAT())) //主电路继电器关闭
                 {

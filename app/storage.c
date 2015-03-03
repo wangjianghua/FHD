@@ -29,7 +29,7 @@ void MEM_para_init()
 #endif
 
     g_sys_conf.break_points = 2; //ЛЊаж
-    g_sys_conf.adc_diff = 120;
+    g_sys_conf.adc_diff = 250;
     
     g_sys_conf.SysSwitch = SYS_DROP_KEEP_MASK;
     g_sys_conf.selfPowerLimit = 90;
