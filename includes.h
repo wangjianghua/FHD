@@ -343,9 +343,8 @@ typedef struct
     unsigned long SysRunStatus;
     unsigned short PowerDropKeepTime;  //晃电保护时间
 
-#if 0
     unsigned short SelfPowerTime;  //0.1s
-#else
+
 #if (SELF_POWER_EN > 0u)
     unsigned char SelfPowerDeadlineHigh; //华兄
     unsigned char SelfPowerDeadlineLow;
@@ -353,7 +352,6 @@ typedef struct
     unsigned char SelfPowerActionTimeHigh; //华兄
     unsigned char SelfPowerActionTimeLow; 
 #endif    
-#endif
 
 #if (MULTI_MODE_EN > 0u)
     unsigned char mode; //华兄

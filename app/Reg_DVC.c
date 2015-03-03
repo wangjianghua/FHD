@@ -567,7 +567,7 @@ int32 reg_gpm650_conf_read(int32 reg_addr, int32 reg_num, uint8 resp[])
 	{		
 	    resp_num += mb_int_to_byte(presp_buf + resp_num, g_sys_conf.SysSwitch);
         resp_num += mb_short_to_byte(presp_buf + resp_num, g_sys_conf.PowerDropKeepTime);
-#if 0 
+#if 1 
         resp_num += mb_short_to_byte(presp_buf + resp_num, g_sys_conf.SelfPowerTime);
 #else  //ЛЊаж
 #if (SELF_POWER_EN > 0u)
@@ -700,7 +700,7 @@ int32 reg_gpm650_conf_write(int32 reg_addr, int32 reg_num, const uint8 req[])
 	{
 		req_num += mb_byte_to_int(preq_buf + req_num, &g_sys_conf.SysSwitch);
         req_num += mb_byte_to_short(preq_buf + req_num, &g_sys_conf.PowerDropKeepTime);
-#if 0        
+#if 1        
         req_num += mb_byte_to_short(preq_buf + req_num, &g_sys_conf.SelfPowerTime);	
 #else //ЛЊаж
 #if (SELF_POWER_EN > 0u)
