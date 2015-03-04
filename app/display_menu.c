@@ -19,9 +19,9 @@ const unsigned short days_per_month[] =
 
 const char monthDays[]= {31,28,31,30,31,30,31,31,30,31,30,31};
 
-const char SYS_HARDWARE_VER[] = {0x14, 0x05, 0x20, 0x06, 0x26};
+const char SYS_HARDWARE_VER[] = {0x15, 0x01, 0x01, 0x00, 0x00};
 
-const char SYS_SOFTWARE_VER[] = {0x14, 0x06, 0x01, 0x07, 0x09};
+const char SYS_SOFTWARE_VER[] = {0x15, 0x01, 0x01, 0x00, 0x00};
 
 const LCD_FORM form_list[MAX_FORM_NUM] =
 {

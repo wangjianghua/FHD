@@ -16,17 +16,15 @@ void MEM_para_init()
 
     g_sys_conf.initStatusWord = SYS_MAGIC_WORD;
     g_sys_conf.PowerDropKeepTime = DEFAULT_DROP_KEEP_TIME;
-    
-#if 0    
+        
     g_sys_conf.SelfPowerTime = DEFAULT_SELF_POWER_TIME;
-#else //ЛЊаж
+
 #if (SELF_POWER_EN > 0u)
     g_sys_conf.SelfPowerDeadlineHigh = DEFAULT_SELF_POWER_DEADLINE_HIGH;
     //g_sys_conf.SelfPowerDeadlineLow = DEFAULT_SELF_POWER_DEADLINE_LOW;
     g_sys_conf.SelfPowerActionTimeHigh = DEFAULT_SELF_POWER_ACTION_TIME_HIGH;
     //g_sys_conf.SelfPowerActionTimeLow = DEFAULT_SELF_POWER_ACTION_TIME_LOW;
 #endif    
-#endif
 
     g_sys_conf.break_points = 2; //ЛЊаж
     g_sys_conf.adc_diff = 250;
@@ -64,10 +62,10 @@ void MEM_Init()
     {
         
         MEM_para_init();
-        g_rtc_time[YEAR_POS] = 0x14;
-        g_rtc_time[MONTH_POS] = 0x08;
-        g_rtc_time[DATE_POS] = 0x25;
-        g_rtc_time[DAY_POS] = 0x01;
+        g_rtc_time[YEAR_POS] = 0x15;
+        g_rtc_time[MONTH_POS] = 0x01;
+        g_rtc_time[DATE_POS] = 0x01;
+        g_rtc_time[DAY_POS] = 0x04;
         g_rtc_time[HOUR_POS] = 0x00;
         g_rtc_time[MIN_POS] = 0x00;
         g_rtc_time[SEC_POS] = 0x00;                
