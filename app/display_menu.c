@@ -19,9 +19,9 @@ const unsigned short days_per_month[] =
 
 const char monthDays[]= {31,28,31,30,31,30,31,31,30,31,30,31};
 
-const char SYS_HARDWARE_VER[] = {0x15, 0x01, 0x01, 0x00, 0x00};
+const char SYS_HARDWARE_VER[] = {0x15, 0x01, 0x25, 0x20, 0x00};
 
-const char SYS_SOFTWARE_VER[] = {0x15, 0x01, 0x01, 0x00, 0x00};
+const char SYS_SOFTWARE_VER[] = {0x15, 0x03, 0x04, 0x20, 0x00};
 
 const LCD_FORM form_list[MAX_FORM_NUM] =
 {
@@ -491,14 +491,17 @@ int LCD_disp_about_form(unsigned int key_event, unsigned int form_msg)
         }
     }      
 
-    
     sprintf(Headline_disp_buf, "Soft:%02X%02X%02X-%02X%02X",  
                 SYS_SOFTWARE_VER[0],
                 SYS_SOFTWARE_VER[1],
                 SYS_SOFTWARE_VER[2],
                 SYS_SOFTWARE_VER[3],
                 SYS_SOFTWARE_VER[4]);
+
+    sprintf(&Headline_disp_buf[14], "%02x", AUTO_Getsar()); //ЛЊаж
+    
     GUI_DispStringAt(Headline_disp_buf, 0, 16); 
+    
     sprintf(Headline_disp_buf, "Hard:%02X%02X%02X-%02X%02X",  
                 SYS_HARDWARE_VER[0],
                 SYS_HARDWARE_VER[1],

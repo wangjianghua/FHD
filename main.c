@@ -253,8 +253,6 @@ static  void  AppTaskPoll (void *p_arg)
                 AUTO_Test();
         }
 
-        AUTO_Test(); //ЛЊаж
-
         if(AUTO_Getsar() != 0x03)
         {
             g_sys_conf.SysSwitch |= SYS_WARNING_MASK; //ЛЊаж
