@@ -30,8 +30,19 @@ void MEM_para_init()
     g_sys_conf.adc_diff = 250;
     
     g_sys_conf.SysSwitch = SYS_DROP_KEEP_MASK;
+
+#if 0    
     g_sys_conf.selfPowerLimit = 90;
+#else //ЛЊаж
+    g_sys_conf.selfPowerLimit = 0;
+#endif
+
+#if 0    
     g_sys_conf.SelfPowerValidTime = 3;
+#else //ЛЊаж
+    g_sys_conf.SelfPowerValidTime = 0;
+#endif
+
     g_sys_conf.voltageFixCoe = 11000;
     g_sys_conf.dev_addr[0] = 1;
 

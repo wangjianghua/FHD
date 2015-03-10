@@ -21,7 +21,7 @@ const char monthDays[]= {31,28,31,30,31,30,31,31,30,31,30,31};
 
 const char SYS_HARDWARE_VER[] = {0x15, 0x01, 0x25, 0x20, 0x00};
 
-const char SYS_SOFTWARE_VER[] = {0x15, 0x03, 0x04, 0x20, 0x00};
+const char SYS_SOFTWARE_VER[] = {0x15, 0x03, 0x10, 0x21, 0x00};
 
 const LCD_FORM form_list[MAX_FORM_NUM] =
 {
@@ -1673,7 +1673,7 @@ void LCD_Time_Refreash()
     
 
 #if 1
-    sprintf(Headline_disp_buf, "        %02X:%02X:%02X",  g_rtc_time[2],g_rtc_time[1],g_rtc_time[0]);
+    sprintf(Headline_disp_buf, "   %04d %02x:%02x:%02x", ac_rms, g_rtc_time[2], g_rtc_time[1], g_rtc_time[0]);
 #endif
 
 #if (SELF_POWER_EN > 0u)
@@ -1683,10 +1683,12 @@ void LCD_Time_Refreash()
     }
 #endif
 
+#if 0
     if(g_sys_conf.SysSwitch & SYS_WARNING_MASK)
     {
         Headline_disp_buf[2] = 'W';
     }
+#endif
 
 #if 1
     if(g_sys_conf.SysSwitch & SYS_DROP_KEEP_MASK)

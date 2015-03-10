@@ -108,7 +108,12 @@ void  Task_tick_proc (void *p_arg)
         //clear WDT       
         OSTimeDly(OS_TICKS_PER_SEC/50);
         if((g_power_state != SYS_DROPED) && (g_power_state != SYS_AUTH_ERROR))
-            End_tick_check();
+        {
+#ifndef DEBUG_LED
+            LED_3_OFF(); //ЛЊаж
+#endif            
+            End_tick_check();    
+        }
     }
 }
 
@@ -673,10 +678,6 @@ static  void  AppTaskStart (void *p_arg)
             g_sys_conf.SysRunStatus |= SYS_JDQ_ON_FLAG;
         else
             g_sys_conf.SysRunStatus &= (~SYS_JDQ_ON_FLAG);
-
-#ifndef DEBUG_LED
-        LED_3_OFF();
-#endif
 
         ac_rms = ADC_get_ac_rms();
 
