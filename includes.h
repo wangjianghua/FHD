@@ -334,16 +334,13 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 
 typedef struct 
 {
-    //密码
-    unsigned char password[SYS_PWD_LEN]; //华兄
-    
-    //配置类
+    /* 配置类 */
     unsigned long initStatusWord;
+    unsigned char password[SYS_PWD_LEN]; //华兄    
     unsigned long SysSwitch;    
     unsigned long SysRunStatus;
-    unsigned short PowerDropKeepTime;  //晃电保护时间
-
-    unsigned short SelfPowerTime;  //0.1s
+    unsigned short PowerDropKeepTime; //晃电保护时间
+    unsigned short SelfPowerTime;
 
 #if (SELF_POWER_EN > 0u)
     unsigned char SelfPowerDeadlineHigh; //华兄
@@ -358,14 +355,14 @@ typedef struct
 #endif
 
     unsigned char dev_addr[2];
-    unsigned short selfPowerLimit;  //%  再启动电压百分比
-    unsigned short SelfPowerValidTime;  //再启动最大允许时间
-    unsigned int voltageFixCoe;  //% 电压修正系数
+    unsigned short selfPowerLimit; //再启动电压百分比
+    unsigned short SelfPowerValidTime; //再启动最大允许时间
+    unsigned int voltageFixCoe; //电压修正系数
 
     unsigned char break_points; //华兄
     unsigned char adc_diff;
 
-    //记录类
+    /* 记录类 */
     unsigned long PowerDropCount;        
     unsigned long SelfPowerOnCount;
     unsigned char PowerDropTime[DROP_HISTORY_MAX_COUNT][SYS_SAVE_TIME_LEN];
@@ -376,12 +373,11 @@ typedef struct
     unsigned char main_mos_broken; //华兄
 
 #if 0
-    // 256 - 212 = 44;
-    //错误类    
-    //unsigned short error_count;
-    //unsigned short  error_sn;
-    //unsigned char error_time[MAX_ERROR_SN][4];
-    //unsigned long error_data[MAX_ERROR_SN];
+    /* 错误类 */     
+    unsigned short error_count;
+    unsigned short error_sn;
+    unsigned char error_time[MAX_ERROR_SN][4];
+    unsigned long error_data[MAX_ERROR_SN];
 #endif //华兄
 }SYS_CONF;
 

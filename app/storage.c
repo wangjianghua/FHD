@@ -1,11 +1,11 @@
 #include "includes.h"
 
 
-#define SYS_MAGIC_WORD  0x20111220
-
 void MEM_para_init()
 {
     memset(&g_sys_conf, 0, sizeof(SYS_CONF));
+
+    g_sys_conf.initStatusWord = SYS_MAGIC_WORD;
 
 #if 0
     for(u8 i = 0; i < SYS_PWD_LEN; i++)
@@ -13,8 +13,7 @@ void MEM_para_init()
         g_sys_conf.password[i] = 0;
     }
 #endif //ЛЊаж
-
-    g_sys_conf.initStatusWord = SYS_MAGIC_WORD;
+    
     g_sys_conf.PowerDropKeepTime = DEFAULT_DROP_KEEP_TIME;
         
     g_sys_conf.SelfPowerTime = DEFAULT_SELF_POWER_TIME;

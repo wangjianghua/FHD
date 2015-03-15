@@ -1,7 +1,8 @@
 #ifndef __STORAGE_H__
 #define __STORAGE_H__
 
-#define INIT_STATUS_WORD   0x20080207
+
+#define SYS_MAGIC_WORD     0x19890924
 #define DEFAULT_DROP_KEEP_TIME    800
 
 #if 0
@@ -23,9 +24,9 @@
 #define SYS_RELAY_ON_FLAG      0x0010   //接触器是否在闭合状态
 #define SYS_JDQ_ON_FLAG        0x0020   //继电器是否在闭合状态
 
-#define SYS_WARNING_MASK     0x0001 //系统告警，华兄
-#define SYS_DROP_KEEP_MASK   0x0002 //晃电保护开关
-#define SYS_SELF_POWER_MASK  0x0004 //再上电启动开关
+#define SYS_DROP_KEEP_MASK   0x0001 //晃电保护开关
+#define SYS_SELF_POWER_MASK  0x0002 //再上电启动开关
+#define SYS_WARNING_MASK     0x8000 //系统告警，华兄
 
 void MEM_Init();
 void MEM_SaveDropEvent(unsigned char ok_flag);
