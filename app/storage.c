@@ -7,12 +7,7 @@ void MEM_para_init()
 
     g_sys_conf.initStatusWord = SYS_MAGIC_WORD;
 
-#if 0
-    for(u8 i = 0; i < SYS_PWD_LEN; i++)
-    {
-        g_sys_conf.password[i] = 0;
-    }
-#endif //ЛЊаж
+    MEM_ClearPassword(); //ЛЊаж
     
     g_sys_conf.PowerDropKeepTime = DEFAULT_DROP_KEEP_TIME;
         
@@ -238,9 +233,9 @@ void MEM_SavePassword(void)
 
     g_sys_conf.password[6] = MEM_Cal_Pwd_Crc(&g_sys_conf.password[0]);
 
-    E2promWriteBuffer(OffsetOf(SYS_CONF, password[0]),
-                     (unsigned char *)&g_sys_conf.password[0],
-                      SYS_PWD_LEN);
+    E2promWriteBuffer( OffsetOf(SYS_CONF, password[0]),
+                      (unsigned char *)&g_sys_conf.password[0],
+                       SYS_PWD_LEN);
 }
 
 void MEM_RestorePassword(void)
@@ -248,9 +243,9 @@ void MEM_RestorePassword(void)
     u8 crc;
 
     
-    E2promReadBuffer(OffsetOf(SYS_CONF, password[0]),
-                    (unsigned char *)&g_sys_conf.password[0],
-                     SYS_PWD_LEN);
+    E2promReadBuffer( OffsetOf(SYS_CONF, password[0]),
+                     (unsigned char *)&g_sys_conf.password[0],
+                      SYS_PWD_LEN);
 
     crc = MEM_Cal_Pwd_Crc(&g_sys_conf.password[0]);
 
@@ -260,5 +255,16 @@ void MEM_RestorePassword(void)
     }
 
     memcpy(g_pwd, &g_sys_conf.password[0], 6);
+}
+
+void MEM_ClearPassword(void)
+{
+    memset(&g_sys_conf.password[0], 0, SYS_PWD_LEN);
+
+    g_sys_conf.password[6] = MEM_Cal_Pwd_Crc(&g_sys_conf.password[0]);
+
+    E2promWriteBuffer( OffsetOf(SYS_CONF, password[0]),
+                      (unsigned char *)&g_sys_conf.password[0],
+                       SYS_PWD_LEN);
 }
 

@@ -33,6 +33,7 @@ void MEM_SaveDropEvent(unsigned char ok_flag);
 void MEM_SaveDropTime();
 void MEM_SavePassword(void);
 void MEM_RestorePassword(void);
+void MEM_ClearPassword(void);
 void MEM_SaveSelfEvent(unsigned char ok_flag);
 
 
