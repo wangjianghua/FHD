@@ -2443,6 +2443,26 @@ GUI_FLASH  const static unsigned char acFontHZ_B6FB[32] = {
   ________,________,
 };
 
+/* char: 防   code:0xB7C0 */
+GUI_FLASH  const static unsigned char acFontHZ_B7C0[32] = { 
+  ________,________,
+  ________,________,
+  ________,_XX_____,
+  ____XXX_,__X_____,
+  __XXX___,________,
+  __X_X___,___XXXX_,
+  __X_X_XX,XXX_____,
+  __X_X___,_X______,
+  __XX____,X_XXX___,
+  __X_____,X___X___,
+  __X____X,___X____,
+  __X___X_,___X____,
+  __X__X__,___X____,
+  __X_____,XXX_____,
+  ________,_X______,
+  ________,________,
+};
+
 /* char: 复   code:0xB8B4 */
 GUI_FLASH  const static unsigned char acFontHZ_B8B4[32] = { 
   ________,________,
@@ -4483,7 +4503,7 @@ GUI_FLASH  const static unsigned char acFontHZ_DBDA[32] = {
   ________,________,
 };
 
-GUI_FLASH const static GUI_CHARINFO GUI_FontHZ_16x16_CharInfo[223] = {
+GUI_FLASH const static GUI_CHARINFO GUI_FontHZ_16x16_CharInfo[224] = {
   { 8, 8, 1, (void GUI_FLASH *)&acFontHZ_0020 }, /*0:  */
   { 8, 8, 1, (void GUI_FLASH *)&acFontHZ_0021 }, /*1: !*/
   { 8, 8, 1, (void GUI_FLASH *)&acFontHZ_0022 }, /*2: "*/
@@ -4605,913 +4625,922 @@ GUI_FLASH const static GUI_CHARINFO GUI_FontHZ_16x16_CharInfo[223] = {
   { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_B6AF }, /*118: 动*/
   { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_B6C8 }, /*119: 度*/
   { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_B6FB }, /*120: 尔*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_B8B4 }, /*121: 复*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_B8C4 }, /*122: 改*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_B8E6 }, /*123: 告*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_B8F4 }, /*124: 隔*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_B9A4 }, /*125: 工*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_B9A6 }, /*126: 功*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_B9AB }, /*127: 公*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_B9D8 }, /*128: 关*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BAC1 }, /*129: 毫*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BAC3 }, /*130: 好*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BACF }, /*131: 合*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BBA4 }, /*132: 护*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BBB0 }, /*133: 话*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BBB5 }, /*134: 坏*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BBCE }, /*135: 晃*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BCBC }, /*136: 技*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BCCA }, /*137: 际*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BCD9 }, /*138: 假*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BCE4 }, /*139: 间*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BCFE }, /*140: 件*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BDAB }, /*141: 将*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BDD8 }, /*142: 截*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BEAF }, /*143: 警*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BEC9 }, /*144: 旧*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BEDD }, /*145: 据*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BFAA }, /*146: 开*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BFAD }, /*147: 凯*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BFC6 }, /*148: 科*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C0FA }, /*149: 历*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C1AA }, /*150: 联*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C2EB }, /*151: 码*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C3BB }, /*152: 没*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C3DC }, /*153: 密*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C3EB }, /*154: 秒*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C3FC }, /*155: 命*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C4A3 }, /*156: 模*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C4CF }, /*157: 南*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C4EA }, /*158: 年*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C6DA }, /*159: 期*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C6F4 }, /*160: 启*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C6F7 }, /*161: 器*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C7B0 }, /*162: 前*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C7E5 }, /*163: 清*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C8A1 }, /*164: 取*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C8A8 }, /*165: 权*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C8B1 }, /*166: 缺*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C8B7 }, /*167: 确*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C8CF }, /*168: 认*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C8D5 }, /*169: 日*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C8ED }, /*170: 软*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C9C7 }, /*171: 汕*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C9CF }, /*172: 上*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C9E8 }, /*173: 设*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C9EE }, /*174: 深*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C9FA }, /*175: 生*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CAA1 }, /*176: 省*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CAA7 }, /*177: 失*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CAB1 }, /*178: 时*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CAB5 }, /*179: 实*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CAB7 }, /*180: 史*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CABD }, /*181: 式*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CAFD }, /*182: 数*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CBBE }, /*183: 司*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CBF9 }, /*184: 所*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CCAC }, /*185: 态*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CCE5 }, /*186: 体*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CDB3 }, /*187: 统*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CDB7 }, /*188: 头*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CDCB }, /*189: 退*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CEBB }, /*190: 位*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CEDE }, /*191: 无*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CEF3 }, /*192: 误*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CFB5 }, /*193: 系*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CFC2 }, /*194: 下*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CFDE }, /*195: 限*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CFFB }, /*196: 消*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D0A7 }, /*197: 效*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D0C2 }, /*198: 新*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D0D0 }, /*199: 行*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D0DE }, /*200: 修*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D3B2 }, /*201: 硬*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D3D0 }, /*202: 有*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D3D2 }, /*203: 右*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D4C2 }, /*204: 月*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D4CB }, /*205: 运*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D4D9 }, /*206: 再*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D5DF }, /*207: 者*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D5E6 }, /*208: 真*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D6B5 }, /*209: 值*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D6B7 }, /*210: 址*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D6B9 }, /*211: 止*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D6C2 }, /*212: 致*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D6C3 }, /*213: 置*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D6D0 }, /*214: 中*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D6DC }, /*215: 周*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D7A2 }, /*216: 注*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D7B4 }, /*217: 状*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D7D4 }, /*218: 自*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D7D6 }, /*219: 字*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D7F3 }, /*220: 左*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D7F7 }, /*221: 作*/
-  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_DBDA }, /*222: 圳*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_B7C0 }, /*121: 防*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_B8B4 }, /*122: 复*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_B8C4 }, /*123: 改*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_B8E6 }, /*124: 告*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_B8F4 }, /*125: 隔*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_B9A4 }, /*126: 工*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_B9A6 }, /*127: 功*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_B9AB }, /*128: 公*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_B9D8 }, /*129: 关*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BAC1 }, /*130: 毫*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BAC3 }, /*131: 好*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BACF }, /*132: 合*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BBA4 }, /*133: 护*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BBB0 }, /*134: 话*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BBB5 }, /*135: 坏*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BBCE }, /*136: 晃*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BCBC }, /*137: 技*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BCCA }, /*138: 际*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BCD9 }, /*139: 假*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BCE4 }, /*140: 间*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BCFE }, /*141: 件*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BDAB }, /*142: 将*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BDD8 }, /*143: 截*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BEAF }, /*144: 警*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BEC9 }, /*145: 旧*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BEDD }, /*146: 据*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BFAA }, /*147: 开*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BFAD }, /*148: 凯*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_BFC6 }, /*149: 科*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C0FA }, /*150: 历*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C1AA }, /*151: 联*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C2EB }, /*152: 码*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C3BB }, /*153: 没*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C3DC }, /*154: 密*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C3EB }, /*155: 秒*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C3FC }, /*156: 命*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C4A3 }, /*157: 模*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C4CF }, /*158: 南*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C4EA }, /*159: 年*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C6DA }, /*160: 期*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C6F4 }, /*161: 启*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C6F7 }, /*162: 器*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C7B0 }, /*163: 前*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C7E5 }, /*164: 清*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C8A1 }, /*165: 取*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C8A8 }, /*166: 权*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C8B1 }, /*167: 缺*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C8B7 }, /*168: 确*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C8CF }, /*169: 认*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C8D5 }, /*170: 日*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C8ED }, /*171: 软*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C9C7 }, /*172: 汕*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C9CF }, /*173: 上*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C9E8 }, /*174: 设*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C9EE }, /*175: 深*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_C9FA }, /*176: 生*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CAA1 }, /*177: 省*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CAA7 }, /*178: 失*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CAB1 }, /*179: 时*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CAB5 }, /*180: 实*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CAB7 }, /*181: 史*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CABD }, /*182: 式*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CAFD }, /*183: 数*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CBBE }, /*184: 司*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CBF9 }, /*185: 所*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CCAC }, /*186: 态*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CCE5 }, /*187: 体*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CDB3 }, /*188: 统*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CDB7 }, /*189: 头*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CDCB }, /*190: 退*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CEBB }, /*191: 位*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CEDE }, /*192: 无*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CEF3 }, /*193: 误*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CFB5 }, /*194: 系*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CFC2 }, /*195: 下*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CFDE }, /*196: 限*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_CFFB }, /*197: 消*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D0A7 }, /*198: 效*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D0C2 }, /*199: 新*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D0D0 }, /*200: 行*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D0DE }, /*201: 修*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D3B2 }, /*202: 硬*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D3D0 }, /*203: 有*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D3D2 }, /*204: 右*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D4C2 }, /*205: 月*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D4CB }, /*206: 运*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D4D9 }, /*207: 再*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D5DF }, /*208: 者*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D5E6 }, /*209: 真*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D6B5 }, /*210: 值*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D6B7 }, /*211: 址*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D6B9 }, /*212: 止*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D6C2 }, /*213: 致*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D6C3 }, /*214: 置*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D6D0 }, /*215: 中*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D6DC }, /*216: 周*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D7A2 }, /*217: 注*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D7B4 }, /*218: 状*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D7D4 }, /*219: 自*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D7D6 }, /*220: 字*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D7F3 }, /*221: 左*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_D7F7 }, /*222: 作*/
+  { 16, 16, 2, (void GUI_FLASH *)&acFontHZ_DBDA }, /*223: 圳*/
 };
 
-GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop127 = {
+GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop128 = {
   0xDBDA, /*start :圳*/
   0xDBDA, /*end   :圳,  len=1*/
-  &GUI_FontHZ_16x16_CharInfo[ 222 ],
+  &GUI_FontHZ_16x16_CharInfo[ 223 ],
   (void*)0
 };
 
 
-GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop126 = {
+GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop127 = {
   0xD7F7, /*start :作*/
   0xD7F7, /*end   :作,  len=1*/
+  &GUI_FontHZ_16x16_CharInfo[ 222 ],
+  &GUI_FontHZ_16x16_Prop128
+};
+
+
+GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop126 = {
+  0xD7F3, /*start :左*/
+  0xD7F3, /*end   :左,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 221 ],
   &GUI_FontHZ_16x16_Prop127
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop125 = {
-  0xD7F3, /*start :左*/
-  0xD7F3, /*end   :左,  len=1*/
+  0xD7D6, /*start :字*/
+  0xD7D6, /*end   :字,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 220 ],
   &GUI_FontHZ_16x16_Prop126
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop124 = {
-  0xD7D6, /*start :字*/
-  0xD7D6, /*end   :字,  len=1*/
+  0xD7D4, /*start :自*/
+  0xD7D4, /*end   :自,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 219 ],
   &GUI_FontHZ_16x16_Prop125
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop123 = {
-  0xD7D4, /*start :自*/
-  0xD7D4, /*end   :自,  len=1*/
+  0xD7B4, /*start :状*/
+  0xD7B4, /*end   :状,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 218 ],
   &GUI_FontHZ_16x16_Prop124
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop122 = {
-  0xD7B4, /*start :状*/
-  0xD7B4, /*end   :状,  len=1*/
+  0xD7A2, /*start :注*/
+  0xD7A2, /*end   :注,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 217 ],
   &GUI_FontHZ_16x16_Prop123
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop121 = {
-  0xD7A2, /*start :注*/
-  0xD7A2, /*end   :注,  len=1*/
+  0xD6DC, /*start :周*/
+  0xD6DC, /*end   :周,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 216 ],
   &GUI_FontHZ_16x16_Prop122
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop120 = {
-  0xD6DC, /*start :周*/
-  0xD6DC, /*end   :周,  len=1*/
+  0xD6D0, /*start :中*/
+  0xD6D0, /*end   :中,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 215 ],
   &GUI_FontHZ_16x16_Prop121
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop119 = {
-  0xD6D0, /*start :中*/
-  0xD6D0, /*end   :中,  len=1*/
-  &GUI_FontHZ_16x16_CharInfo[ 214 ],
+  0xD6C2, /*start :致*/
+  0xD6C3, /*end   :置,  len=2*/
+  &GUI_FontHZ_16x16_CharInfo[ 213 ],
   &GUI_FontHZ_16x16_Prop120
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop118 = {
-  0xD6C2, /*start :致*/
-  0xD6C3, /*end   :置,  len=2*/
+  0xD6B9, /*start :止*/
+  0xD6B9, /*end   :止,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 212 ],
   &GUI_FontHZ_16x16_Prop119
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop117 = {
-  0xD6B9, /*start :止*/
-  0xD6B9, /*end   :止,  len=1*/
+  0xD6B7, /*start :址*/
+  0xD6B7, /*end   :址,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 211 ],
   &GUI_FontHZ_16x16_Prop118
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop116 = {
-  0xD6B7, /*start :址*/
-  0xD6B7, /*end   :址,  len=1*/
+  0xD6B5, /*start :值*/
+  0xD6B5, /*end   :值,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 210 ],
   &GUI_FontHZ_16x16_Prop117
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop115 = {
-  0xD6B5, /*start :值*/
-  0xD6B5, /*end   :值,  len=1*/
+  0xD5E6, /*start :真*/
+  0xD5E6, /*end   :真,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 209 ],
   &GUI_FontHZ_16x16_Prop116
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop114 = {
-  0xD5E6, /*start :真*/
-  0xD5E6, /*end   :真,  len=1*/
+  0xD5DF, /*start :者*/
+  0xD5DF, /*end   :者,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 208 ],
   &GUI_FontHZ_16x16_Prop115
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop113 = {
-  0xD5DF, /*start :者*/
-  0xD5DF, /*end   :者,  len=1*/
+  0xD4D9, /*start :再*/
+  0xD4D9, /*end   :再,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 207 ],
   &GUI_FontHZ_16x16_Prop114
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop112 = {
-  0xD4D9, /*start :再*/
-  0xD4D9, /*end   :再,  len=1*/
+  0xD4CB, /*start :运*/
+  0xD4CB, /*end   :运,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 206 ],
   &GUI_FontHZ_16x16_Prop113
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop111 = {
-  0xD4CB, /*start :运*/
-  0xD4CB, /*end   :运,  len=1*/
+  0xD4C2, /*start :月*/
+  0xD4C2, /*end   :月,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 205 ],
   &GUI_FontHZ_16x16_Prop112
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop110 = {
-  0xD4C2, /*start :月*/
-  0xD4C2, /*end   :月,  len=1*/
+  0xD3D2, /*start :右*/
+  0xD3D2, /*end   :右,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 204 ],
   &GUI_FontHZ_16x16_Prop111
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop109 = {
-  0xD3D2, /*start :右*/
-  0xD3D2, /*end   :右,  len=1*/
+  0xD3D0, /*start :有*/
+  0xD3D0, /*end   :有,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 203 ],
   &GUI_FontHZ_16x16_Prop110
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop108 = {
-  0xD3D0, /*start :有*/
-  0xD3D0, /*end   :有,  len=1*/
+  0xD3B2, /*start :硬*/
+  0xD3B2, /*end   :硬,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 202 ],
   &GUI_FontHZ_16x16_Prop109
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop107 = {
-  0xD3B2, /*start :硬*/
-  0xD3B2, /*end   :硬,  len=1*/
+  0xD0DE, /*start :修*/
+  0xD0DE, /*end   :修,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 201 ],
   &GUI_FontHZ_16x16_Prop108
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop106 = {
-  0xD0DE, /*start :修*/
-  0xD0DE, /*end   :修,  len=1*/
+  0xD0D0, /*start :行*/
+  0xD0D0, /*end   :行,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 200 ],
   &GUI_FontHZ_16x16_Prop107
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop105 = {
-  0xD0D0, /*start :行*/
-  0xD0D0, /*end   :行,  len=1*/
+  0xD0C2, /*start :新*/
+  0xD0C2, /*end   :新,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 199 ],
   &GUI_FontHZ_16x16_Prop106
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop104 = {
-  0xD0C2, /*start :新*/
-  0xD0C2, /*end   :新,  len=1*/
+  0xD0A7, /*start :效*/
+  0xD0A7, /*end   :效,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 198 ],
   &GUI_FontHZ_16x16_Prop105
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop103 = {
-  0xD0A7, /*start :效*/
-  0xD0A7, /*end   :效,  len=1*/
+  0xCFFB, /*start :消*/
+  0xCFFB, /*end   :消,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 197 ],
   &GUI_FontHZ_16x16_Prop104
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop102 = {
-  0xCFFB, /*start :消*/
-  0xCFFB, /*end   :消,  len=1*/
+  0xCFDE, /*start :限*/
+  0xCFDE, /*end   :限,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 196 ],
   &GUI_FontHZ_16x16_Prop103
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop101 = {
-  0xCFDE, /*start :限*/
-  0xCFDE, /*end   :限,  len=1*/
+  0xCFC2, /*start :下*/
+  0xCFC2, /*end   :下,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 195 ],
   &GUI_FontHZ_16x16_Prop102
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop100 = {
-  0xCFC2, /*start :下*/
-  0xCFC2, /*end   :下,  len=1*/
+  0xCFB5, /*start :系*/
+  0xCFB5, /*end   :系,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 194 ],
   &GUI_FontHZ_16x16_Prop101
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop99 = {
-  0xCFB5, /*start :系*/
-  0xCFB5, /*end   :系,  len=1*/
+  0xCEF3, /*start :误*/
+  0xCEF3, /*end   :误,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 193 ],
   &GUI_FontHZ_16x16_Prop100
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop98 = {
-  0xCEF3, /*start :误*/
-  0xCEF3, /*end   :误,  len=1*/
+  0xCEDE, /*start :无*/
+  0xCEDE, /*end   :无,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 192 ],
   &GUI_FontHZ_16x16_Prop99
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop97 = {
-  0xCEDE, /*start :无*/
-  0xCEDE, /*end   :无,  len=1*/
+  0xCEBB, /*start :位*/
+  0xCEBB, /*end   :位,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 191 ],
   &GUI_FontHZ_16x16_Prop98
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop96 = {
-  0xCEBB, /*start :位*/
-  0xCEBB, /*end   :位,  len=1*/
+  0xCDCB, /*start :退*/
+  0xCDCB, /*end   :退,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 190 ],
   &GUI_FontHZ_16x16_Prop97
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop95 = {
-  0xCDCB, /*start :退*/
-  0xCDCB, /*end   :退,  len=1*/
+  0xCDB7, /*start :头*/
+  0xCDB7, /*end   :头,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 189 ],
   &GUI_FontHZ_16x16_Prop96
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop94 = {
-  0xCDB7, /*start :头*/
-  0xCDB7, /*end   :头,  len=1*/
+  0xCDB3, /*start :统*/
+  0xCDB3, /*end   :统,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 188 ],
   &GUI_FontHZ_16x16_Prop95
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop93 = {
-  0xCDB3, /*start :统*/
-  0xCDB3, /*end   :统,  len=1*/
+  0xCCE5, /*start :体*/
+  0xCCE5, /*end   :体,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 187 ],
   &GUI_FontHZ_16x16_Prop94
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop92 = {
-  0xCCE5, /*start :体*/
-  0xCCE5, /*end   :体,  len=1*/
+  0xCCAC, /*start :态*/
+  0xCCAC, /*end   :态,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 186 ],
   &GUI_FontHZ_16x16_Prop93
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop91 = {
-  0xCCAC, /*start :态*/
-  0xCCAC, /*end   :态,  len=1*/
+  0xCBF9, /*start :所*/
+  0xCBF9, /*end   :所,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 185 ],
   &GUI_FontHZ_16x16_Prop92
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop90 = {
-  0xCBF9, /*start :所*/
-  0xCBF9, /*end   :所,  len=1*/
+  0xCBBE, /*start :司*/
+  0xCBBE, /*end   :司,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 184 ],
   &GUI_FontHZ_16x16_Prop91
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop89 = {
-  0xCBBE, /*start :司*/
-  0xCBBE, /*end   :司,  len=1*/
+  0xCAFD, /*start :数*/
+  0xCAFD, /*end   :数,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 183 ],
   &GUI_FontHZ_16x16_Prop90
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop88 = {
-  0xCAFD, /*start :数*/
-  0xCAFD, /*end   :数,  len=1*/
+  0xCABD, /*start :式*/
+  0xCABD, /*end   :式,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 182 ],
   &GUI_FontHZ_16x16_Prop89
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop87 = {
-  0xCABD, /*start :式*/
-  0xCABD, /*end   :式,  len=1*/
+  0xCAB7, /*start :史*/
+  0xCAB7, /*end   :史,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 181 ],
   &GUI_FontHZ_16x16_Prop88
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop86 = {
-  0xCAB7, /*start :史*/
-  0xCAB7, /*end   :史,  len=1*/
+  0xCAB5, /*start :实*/
+  0xCAB5, /*end   :实,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 180 ],
   &GUI_FontHZ_16x16_Prop87
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop85 = {
-  0xCAB5, /*start :实*/
-  0xCAB5, /*end   :实,  len=1*/
+  0xCAB1, /*start :时*/
+  0xCAB1, /*end   :时,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 179 ],
   &GUI_FontHZ_16x16_Prop86
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop84 = {
-  0xCAB1, /*start :时*/
-  0xCAB1, /*end   :时,  len=1*/
+  0xCAA7, /*start :失*/
+  0xCAA7, /*end   :失,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 178 ],
   &GUI_FontHZ_16x16_Prop85
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop83 = {
-  0xCAA7, /*start :失*/
-  0xCAA7, /*end   :失,  len=1*/
+  0xCAA1, /*start :省*/
+  0xCAA1, /*end   :省,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 177 ],
   &GUI_FontHZ_16x16_Prop84
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop82 = {
-  0xCAA1, /*start :省*/
-  0xCAA1, /*end   :省,  len=1*/
+  0xC9FA, /*start :生*/
+  0xC9FA, /*end   :生,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 176 ],
   &GUI_FontHZ_16x16_Prop83
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop81 = {
-  0xC9FA, /*start :生*/
-  0xC9FA, /*end   :生,  len=1*/
+  0xC9EE, /*start :深*/
+  0xC9EE, /*end   :深,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 175 ],
   &GUI_FontHZ_16x16_Prop82
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop80 = {
-  0xC9EE, /*start :深*/
-  0xC9EE, /*end   :深,  len=1*/
+  0xC9E8, /*start :设*/
+  0xC9E8, /*end   :设,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 174 ],
   &GUI_FontHZ_16x16_Prop81
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop79 = {
-  0xC9E8, /*start :设*/
-  0xC9E8, /*end   :设,  len=1*/
+  0xC9CF, /*start :上*/
+  0xC9CF, /*end   :上,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 173 ],
   &GUI_FontHZ_16x16_Prop80
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop78 = {
-  0xC9CF, /*start :上*/
-  0xC9CF, /*end   :上,  len=1*/
+  0xC9C7, /*start :汕*/
+  0xC9C7, /*end   :汕,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 172 ],
   &GUI_FontHZ_16x16_Prop79
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop77 = {
-  0xC9C7, /*start :汕*/
-  0xC9C7, /*end   :汕,  len=1*/
+  0xC8ED, /*start :软*/
+  0xC8ED, /*end   :软,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 171 ],
   &GUI_FontHZ_16x16_Prop78
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop76 = {
-  0xC8ED, /*start :软*/
-  0xC8ED, /*end   :软,  len=1*/
+  0xC8D5, /*start :日*/
+  0xC8D5, /*end   :日,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 170 ],
   &GUI_FontHZ_16x16_Prop77
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop75 = {
-  0xC8D5, /*start :日*/
-  0xC8D5, /*end   :日,  len=1*/
+  0xC8CF, /*start :认*/
+  0xC8CF, /*end   :认,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 169 ],
   &GUI_FontHZ_16x16_Prop76
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop74 = {
-  0xC8CF, /*start :认*/
-  0xC8CF, /*end   :认,  len=1*/
+  0xC8B7, /*start :确*/
+  0xC8B7, /*end   :确,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 168 ],
   &GUI_FontHZ_16x16_Prop75
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop73 = {
-  0xC8B7, /*start :确*/
-  0xC8B7, /*end   :确,  len=1*/
+  0xC8B1, /*start :缺*/
+  0xC8B1, /*end   :缺,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 167 ],
   &GUI_FontHZ_16x16_Prop74
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop72 = {
-  0xC8B1, /*start :缺*/
-  0xC8B1, /*end   :缺,  len=1*/
+  0xC8A8, /*start :权*/
+  0xC8A8, /*end   :权,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 166 ],
   &GUI_FontHZ_16x16_Prop73
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop71 = {
-  0xC8A8, /*start :权*/
-  0xC8A8, /*end   :权,  len=1*/
+  0xC8A1, /*start :取*/
+  0xC8A1, /*end   :取,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 165 ],
   &GUI_FontHZ_16x16_Prop72
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop70 = {
-  0xC8A1, /*start :取*/
-  0xC8A1, /*end   :取,  len=1*/
+  0xC7E5, /*start :清*/
+  0xC7E5, /*end   :清,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 164 ],
   &GUI_FontHZ_16x16_Prop71
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop69 = {
-  0xC7E5, /*start :清*/
-  0xC7E5, /*end   :清,  len=1*/
+  0xC7B0, /*start :前*/
+  0xC7B0, /*end   :前,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 163 ],
   &GUI_FontHZ_16x16_Prop70
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop68 = {
-  0xC7B0, /*start :前*/
-  0xC7B0, /*end   :前,  len=1*/
+  0xC6F7, /*start :器*/
+  0xC6F7, /*end   :器,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 162 ],
   &GUI_FontHZ_16x16_Prop69
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop67 = {
-  0xC6F7, /*start :器*/
-  0xC6F7, /*end   :器,  len=1*/
+  0xC6F4, /*start :启*/
+  0xC6F4, /*end   :启,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 161 ],
   &GUI_FontHZ_16x16_Prop68
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop66 = {
-  0xC6F4, /*start :启*/
-  0xC6F4, /*end   :启,  len=1*/
+  0xC6DA, /*start :期*/
+  0xC6DA, /*end   :期,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 160 ],
   &GUI_FontHZ_16x16_Prop67
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop65 = {
-  0xC6DA, /*start :期*/
-  0xC6DA, /*end   :期,  len=1*/
+  0xC4EA, /*start :年*/
+  0xC4EA, /*end   :年,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 159 ],
   &GUI_FontHZ_16x16_Prop66
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop64 = {
-  0xC4EA, /*start :年*/
-  0xC4EA, /*end   :年,  len=1*/
+  0xC4CF, /*start :南*/
+  0xC4CF, /*end   :南,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 158 ],
   &GUI_FontHZ_16x16_Prop65
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop63 = {
-  0xC4CF, /*start :南*/
-  0xC4CF, /*end   :南,  len=1*/
+  0xC4A3, /*start :模*/
+  0xC4A3, /*end   :模,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 157 ],
   &GUI_FontHZ_16x16_Prop64
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop62 = {
-  0xC4A3, /*start :模*/
-  0xC4A3, /*end   :模,  len=1*/
+  0xC3FC, /*start :命*/
+  0xC3FC, /*end   :命,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 156 ],
   &GUI_FontHZ_16x16_Prop63
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop61 = {
-  0xC3FC, /*start :命*/
-  0xC3FC, /*end   :命,  len=1*/
+  0xC3EB, /*start :秒*/
+  0xC3EB, /*end   :秒,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 155 ],
   &GUI_FontHZ_16x16_Prop62
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop60 = {
-  0xC3EB, /*start :秒*/
-  0xC3EB, /*end   :秒,  len=1*/
+  0xC3DC, /*start :密*/
+  0xC3DC, /*end   :密,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 154 ],
   &GUI_FontHZ_16x16_Prop61
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop59 = {
-  0xC3DC, /*start :密*/
-  0xC3DC, /*end   :密,  len=1*/
+  0xC3BB, /*start :没*/
+  0xC3BB, /*end   :没,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 153 ],
   &GUI_FontHZ_16x16_Prop60
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop58 = {
-  0xC3BB, /*start :没*/
-  0xC3BB, /*end   :没,  len=1*/
+  0xC2EB, /*start :码*/
+  0xC2EB, /*end   :码,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 152 ],
   &GUI_FontHZ_16x16_Prop59
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop57 = {
-  0xC2EB, /*start :码*/
-  0xC2EB, /*end   :码,  len=1*/
+  0xC1AA, /*start :联*/
+  0xC1AA, /*end   :联,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 151 ],
   &GUI_FontHZ_16x16_Prop58
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop56 = {
-  0xC1AA, /*start :联*/
-  0xC1AA, /*end   :联,  len=1*/
+  0xC0FA, /*start :历*/
+  0xC0FA, /*end   :历,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 150 ],
   &GUI_FontHZ_16x16_Prop57
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop55 = {
-  0xC0FA, /*start :历*/
-  0xC0FA, /*end   :历,  len=1*/
+  0xBFC6, /*start :科*/
+  0xBFC6, /*end   :科,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 149 ],
   &GUI_FontHZ_16x16_Prop56
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop54 = {
-  0xBFC6, /*start :科*/
-  0xBFC6, /*end   :科,  len=1*/
+  0xBFAD, /*start :凯*/
+  0xBFAD, /*end   :凯,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 148 ],
   &GUI_FontHZ_16x16_Prop55
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop53 = {
-  0xBFAD, /*start :凯*/
-  0xBFAD, /*end   :凯,  len=1*/
+  0xBFAA, /*start :开*/
+  0xBFAA, /*end   :开,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 147 ],
   &GUI_FontHZ_16x16_Prop54
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop52 = {
-  0xBFAA, /*start :开*/
-  0xBFAA, /*end   :开,  len=1*/
+  0xBEDD, /*start :据*/
+  0xBEDD, /*end   :据,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 146 ],
   &GUI_FontHZ_16x16_Prop53
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop51 = {
-  0xBEDD, /*start :据*/
-  0xBEDD, /*end   :据,  len=1*/
+  0xBEC9, /*start :旧*/
+  0xBEC9, /*end   :旧,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 145 ],
   &GUI_FontHZ_16x16_Prop52
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop50 = {
-  0xBEC9, /*start :旧*/
-  0xBEC9, /*end   :旧,  len=1*/
+  0xBEAF, /*start :警*/
+  0xBEAF, /*end   :警,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 144 ],
   &GUI_FontHZ_16x16_Prop51
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop49 = {
-  0xBEAF, /*start :警*/
-  0xBEAF, /*end   :警,  len=1*/
+  0xBDD8, /*start :截*/
+  0xBDD8, /*end   :截,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 143 ],
   &GUI_FontHZ_16x16_Prop50
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop48 = {
-  0xBDD8, /*start :截*/
-  0xBDD8, /*end   :截,  len=1*/
+  0xBDAB, /*start :将*/
+  0xBDAB, /*end   :将,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 142 ],
   &GUI_FontHZ_16x16_Prop49
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop47 = {
-  0xBDAB, /*start :将*/
-  0xBDAB, /*end   :将,  len=1*/
+  0xBCFE, /*start :件*/
+  0xBCFE, /*end   :件,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 141 ],
   &GUI_FontHZ_16x16_Prop48
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop46 = {
-  0xBCFE, /*start :件*/
-  0xBCFE, /*end   :件,  len=1*/
+  0xBCE4, /*start :间*/
+  0xBCE4, /*end   :间,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 140 ],
   &GUI_FontHZ_16x16_Prop47
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop45 = {
-  0xBCE4, /*start :间*/
-  0xBCE4, /*end   :间,  len=1*/
+  0xBCD9, /*start :假*/
+  0xBCD9, /*end   :假,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 139 ],
   &GUI_FontHZ_16x16_Prop46
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop44 = {
-  0xBCD9, /*start :假*/
-  0xBCD9, /*end   :假,  len=1*/
+  0xBCCA, /*start :际*/
+  0xBCCA, /*end   :际,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 138 ],
   &GUI_FontHZ_16x16_Prop45
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop43 = {
-  0xBCCA, /*start :际*/
-  0xBCCA, /*end   :际,  len=1*/
+  0xBCBC, /*start :技*/
+  0xBCBC, /*end   :技,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 137 ],
   &GUI_FontHZ_16x16_Prop44
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop42 = {
-  0xBCBC, /*start :技*/
-  0xBCBC, /*end   :技,  len=1*/
+  0xBBCE, /*start :晃*/
+  0xBBCE, /*end   :晃,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 136 ],
   &GUI_FontHZ_16x16_Prop43
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop41 = {
-  0xBBCE, /*start :晃*/
-  0xBBCE, /*end   :晃,  len=1*/
+  0xBBB5, /*start :坏*/
+  0xBBB5, /*end   :坏,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 135 ],
   &GUI_FontHZ_16x16_Prop42
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop40 = {
-  0xBBB5, /*start :坏*/
-  0xBBB5, /*end   :坏,  len=1*/
+  0xBBB0, /*start :话*/
+  0xBBB0, /*end   :话,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 134 ],
   &GUI_FontHZ_16x16_Prop41
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop39 = {
-  0xBBB0, /*start :话*/
-  0xBBB0, /*end   :话,  len=1*/
+  0xBBA4, /*start :护*/
+  0xBBA4, /*end   :护,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 133 ],
   &GUI_FontHZ_16x16_Prop40
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop38 = {
-  0xBBA4, /*start :护*/
-  0xBBA4, /*end   :护,  len=1*/
+  0xBACF, /*start :合*/
+  0xBACF, /*end   :合,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 132 ],
   &GUI_FontHZ_16x16_Prop39
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop37 = {
-  0xBACF, /*start :合*/
-  0xBACF, /*end   :合,  len=1*/
+  0xBAC3, /*start :好*/
+  0xBAC3, /*end   :好,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 131 ],
   &GUI_FontHZ_16x16_Prop38
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop36 = {
-  0xBAC3, /*start :好*/
-  0xBAC3, /*end   :好,  len=1*/
+  0xBAC1, /*start :毫*/
+  0xBAC1, /*end   :毫,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 130 ],
   &GUI_FontHZ_16x16_Prop37
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop35 = {
-  0xBAC1, /*start :毫*/
-  0xBAC1, /*end   :毫,  len=1*/
+  0xB9D8, /*start :关*/
+  0xB9D8, /*end   :关,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 129 ],
   &GUI_FontHZ_16x16_Prop36
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop34 = {
-  0xB9D8, /*start :关*/
-  0xB9D8, /*end   :关,  len=1*/
+  0xB9AB, /*start :公*/
+  0xB9AB, /*end   :公,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 128 ],
   &GUI_FontHZ_16x16_Prop35
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop33 = {
-  0xB9AB, /*start :公*/
-  0xB9AB, /*end   :公,  len=1*/
+  0xB9A6, /*start :功*/
+  0xB9A6, /*end   :功,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 127 ],
   &GUI_FontHZ_16x16_Prop34
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop32 = {
-  0xB9A6, /*start :功*/
-  0xB9A6, /*end   :功,  len=1*/
+  0xB9A4, /*start :工*/
+  0xB9A4, /*end   :工,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 126 ],
   &GUI_FontHZ_16x16_Prop33
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop31 = {
-  0xB9A4, /*start :工*/
-  0xB9A4, /*end   :工,  len=1*/
+  0xB8F4, /*start :隔*/
+  0xB8F4, /*end   :隔,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 125 ],
   &GUI_FontHZ_16x16_Prop32
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop30 = {
-  0xB8F4, /*start :隔*/
-  0xB8F4, /*end   :隔,  len=1*/
+  0xB8E6, /*start :告*/
+  0xB8E6, /*end   :告,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 124 ],
   &GUI_FontHZ_16x16_Prop31
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop29 = {
-  0xB8E6, /*start :告*/
-  0xB8E6, /*end   :告,  len=1*/
+  0xB8C4, /*start :改*/
+  0xB8C4, /*end   :改,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 123 ],
   &GUI_FontHZ_16x16_Prop30
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop28 = {
-  0xB8C4, /*start :改*/
-  0xB8C4, /*end   :改,  len=1*/
+  0xB8B4, /*start :复*/
+  0xB8B4, /*end   :复,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 122 ],
   &GUI_FontHZ_16x16_Prop29
 };
 
 
 GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop27 = {
-  0xB8B4, /*start :复*/
-  0xB8B4, /*end   :复,  len=1*/
+  0xB7C0, /*start :防*/
+  0xB7C0, /*end   :防,  len=1*/
   &GUI_FontHZ_16x16_CharInfo[ 121 ],
   &GUI_FontHZ_16x16_Prop28
 };
@@ -5725,16 +5754,6 @@ GUI_FLASH const static GUI_FONT_PROP GUI_FontHZ_16x16_Prop1 = {
 };
 
 
-GUI_FLASH const GUI_FONT GUI_FontHZ16x16 = {
-  GUI_FONTTYPE_PROP,
-  16,
-  16,
-  1,
-  1,
-  (void GUI_FLASH *)&GUI_FontHZ_16x16_Prop1
-};
-
-
 
 GUI_FLASH const GUI_FONT GUI_FontTable = {
   GUI_FONTTYPE_PROP,
@@ -5749,10 +5768,10 @@ GUI_FLASH const GUI_FONT GUI_FontTable = {
  /** 
   * @file     font.c
   * @brief    晃电字库(宽16、高16，水平居左、垂直居中，字体排序、自动加上ASCII码表，楷体、常规、小四) 
-  * @details  。！，：败版保被本闭长厂成出除次存错当地电定动度尔复改告隔功公关毫合护话晃技际假间件将警据开凯科历联没秒命南年期启器前清取权缺确认日软汕上设深生省失时实史数司所体统头退位无误系下限消效行修硬有右月运再者真值址致置中周注自字左作圳新旧密码截止工模式状态好坏
+  * @details  。！，：败版保被本闭长厂成出除次存错当地电定动度尔复改告隔功公关毫合护话晃技际假间件将警据开凯科历联没秒命南年期启器前清取权缺确认日软汕上设深生省失时实史数司所体统头退位无误系下限消效行修硬有右月运再者真值址致置中周注自字左作圳新旧密码截止工模式状态好坏防
   * @author   华兄
   * @email    591881218@qq.com
-  * @date     2014
+  * @date     2015
   * @version  vX.XX
   * @par Copyright (c):  
   *           深圳市合尔凯科技有限公司

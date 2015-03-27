@@ -611,12 +611,12 @@ void EXTI15_10_IRQHandler(void)
 }
 
 
-void USART_IRQProc(UART_CCB  *uccb, USART_TypeDef * USARx)
+void USART_IRQProc(UART_CCB  *uccb, USART_TypeDef * USARTx)
 {
-  if(USART_GetITStatus(USARx, USART_IT_RXNE) != RESET)
+  if(USART_GetITStatus(USARTx, USART_IT_RXNE) != RESET)
   {
     /* Read one byte from the receive data register */    
-    *(uccb->gpUartRxAddress) = USART_ReceiveData(USARx);
+    *(uccb->gpUartRxAddress) = USART_ReceiveData(USARTx);
     uccb->gpUartRxAddress++;
 
     if(uccb->gpUartRxAddress == uccb->gpUartRxEndAddress)
@@ -635,18 +635,18 @@ void USART_IRQProc(UART_CCB  *uccb, USART_TypeDef * USARx)
 #endif
   }
 
-  if(USART_GetITStatus(USARx, USART_IT_TXE) != RESET)
+  if(USART_GetITStatus(USARTx, USART_IT_TXE) != RESET)
   {   
     /* Write one byte to the transmit data register */
     if( uccb->gUartTxCnt > 0 )
     {
-        USART_SendData(USARx, *(uccb->gpUartTxAddress));
+        USART_SendData(USARTx, *(uccb->gpUartTxAddress));
     	uccb->gpUartTxAddress++;   	
     	uccb->gUartTxCnt--;
 	}
     else
     {        
-        USART_ITConfig(USARx, USART_IT_TXE, DISABLE);
+        USART_ITConfig(USARTx, USART_IT_TXE, DISABLE);
     }
 
 #ifndef DEBUG_LED
@@ -663,7 +663,7 @@ void USART_IRQProc(UART_CCB  *uccb, USART_TypeDef * USARx)
 void USART1_IRQHandler(void)
 {
     
-    USART_IRQProc(&g_uart_ccb[COM_PORT_485], USART1);
+    USART_IRQProc(&g_uart_ccb[RS485_COM_PORT], RS485_UART);
 
 }
 

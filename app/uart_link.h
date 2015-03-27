@@ -1,24 +1,23 @@
+#ifndef __UART_LINK__
+#define __UART_LINK__
 
-#ifndef _Uart_Link_
-#define _Uart_Link_
 
-#define COM_PORT_MAX   1
+#define RS485_COM_PORT            0       //主动通讯端口
+#define MAX_COM_PORT              1
 
-//#define COM_PORT_485            1       //主动通讯端口
+#define RS485_UART           USART1
 
-#define COM_PORT_485            0       //主动通讯端口
+#define END_TX_QUEUE_SIZE         5
 
-#define END_TX_QUEUE_SIZE        5
+#define MAX_MSG_SHORT             4 
+#define MAX_MSG_LONG              4
+#define MAX_MSG_LARGE             4
 
-#define END_EX_MSG_NUM     4 
+#define UART_RECEIVE_BUF_SIZE   256
 
-#define RS485_MSG_MAX_SIZE  256
+#define END_NON_MODULE_USED    0xff
 
-#define END_NON_MODULE_USED     0xff
-
-#define USART_RECEIVE_BUF_SIZE   RS485_MSG_MAX_SIZE
-
-#define GET_MAX_MSGITEM(type)        (END_EX_MSG_NUM)
+#define GET_MAX_MSG(type)        (MAX_MSG_SHORT)
 
 #define END_IDLE    1            /* idle status */
 #define END_READ    2            /* read mode */
@@ -28,9 +27,10 @@
 #define END_USERD   0xfe
 
 
-#define SENDED    2
-#define ALLOC    1
-#define FREE        0
+#define FREE                                  0
+#define ALLOC                                 1
+#define SENDING                               2
+#define SENDED                                3
 
 
 #define END_STATUS_IDLE         0
@@ -78,7 +78,7 @@ typedef enum
     MSG_SHORT = 0,
     MSG_LONG,
     MSG_LARGE,
-    MSG_BUTT
+    MAX_MSG_ITEM
 } MSG_TTYPE;
 
 
@@ -104,7 +104,7 @@ typedef struct _msg_header_
 typedef struct _msg_info_
 {
     MSG_HEADER msg_header;
-    unsigned char  msg_buffer[RS485_MSG_MAX_SIZE];
+    unsigned char  msg_buffer[UART_RECEIVE_BUF_SIZE];
 } MSG_INFO, *P_MSG_INFO;
 
 
@@ -138,7 +138,7 @@ typedef struct _end_object_
 
 } END_OBJ, *P_END_OBJ;
 
-extern UART_CCB g_uart_ccb[COM_PORT_MAX];
+extern UART_CCB g_uart_ccb[MAX_COM_PORT];
 
 P_END_OBJ End_get_end_obj(UCHAR end_id);
 void End_init(void);
@@ -158,8 +158,8 @@ unsigned short End_tick_check();
 U32 UART_ReceiveData(U8 end_id, UCHAR* rxbuf, USHORT rxnum );
 P_MSG_INFO alloc_send_buffer(unsigned char type);
 
-//extern U32 EndTxQueueMem[COM_PORT_MAX][END_TX_QUEUE_SIZE+2];
-//extern U32 EndRxQueueMem[COM_PORT_MAX][END_TX_QUEUE_SIZE+2];
+//extern U32 EndTxQueueMem[MAX_COM_PORT][END_TX_QUEUE_SIZE+2];
+//extern U32 EndRxQueueMem[MAX_COM_PORT][END_TX_QUEUE_SIZE+2];
 //extern unsigned char internet_msg_buf[RX_INTERNET_BUFFER_SIZE+sizeof(MSG_HEADER)];
 
 #endif

@@ -21,7 +21,7 @@ const char monthDays[]= {31,28,31,30,31,30,31,31,30,31,30,31};
 
 const char SYS_HARDWARE_VER[] = {0x15, 0x01, 0x25, 0x20, 0x00};
 
-const char SYS_SOFTWARE_VER[] = {0x15, 0x03, 0x15, 0x21, 0x00};
+const char SYS_SOFTWARE_VER[] = {0x15, 0x03, 0x27, 0x22, 0x00};
 
 const LCD_FORM form_list[MAX_FORM_NUM] =
 {
@@ -371,8 +371,6 @@ int LCD_disp_main_form(unsigned int key_event, unsigned int form_msg)
     
 }
 
-extern INT32U ac_rms;
-
 int LCD_disp_self_form(unsigned int key_event, unsigned int form_msg)
 {
     static unsigned char sn = 0;
@@ -571,9 +569,9 @@ int LCD_disp_keep_form(unsigned int key_event, unsigned int form_msg)
     if(res == OK)
     {        
         if((g_sys_conf.PowerDropTime[s_p][7]&0x01))
-            sprintf(Headline_disp_buf, "上%02d次晃电失效  ", (sn+1) );
+            sprintf(Headline_disp_buf, "上%02d次防晃电失效", (sn+1) );
         else
-            sprintf(Headline_disp_buf, "上%02d次晃电成功  ", (sn+1) );
+            sprintf(Headline_disp_buf, "上%02d次防晃电成功", (sn+1) );
 
         GUI_DispStringAt(Headline_disp_buf, 0, 16);
 
@@ -592,7 +590,7 @@ int LCD_disp_keep_form(unsigned int key_event, unsigned int form_msg)
     else
     {       
     
-        sprintf(Headline_disp_buf, "上%02d次晃电无      ", (sn+1) );
+        sprintf(Headline_disp_buf, "上%02d次防晃电无  ", (sn+1) );
 
 
         GUI_DispStringAt(Headline_disp_buf, 0, 16);

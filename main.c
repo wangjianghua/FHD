@@ -1,9 +1,9 @@
 #include "includes.h"
 
-static   OS_STK      AppTaskStartStk[APP_TASK_START_STK_SIZE];
-static   OS_STK      AppTaskPollStk[APP_CFG_TASK_LED_STK_SIZE];
-static   OS_STK      AppTaskTickStk[APP_CFG_TASK_TICK_STK_SIZE];
-static   OS_STK      AppTaskKeyStk[APP_CFG_TASK_KEY_STK_SIZE];
+static   OS_STK      App_TaskStartStk[APP_CFG_TASK_START_STK_SIZE];
+static   OS_STK      App_TaskPollStk[APP_CFG_TASK_POLL_STK_SIZE];
+static   OS_STK      App_TaskEndTickStk[APP_CFG_TASK_END_TICK_STK_SIZE];
+static   OS_STK      App_TaskKeyStk[APP_CFG_TASK_KEY_STK_SIZE];
 
 INT32U g_power_state;
 
@@ -100,7 +100,7 @@ unsigned char RTC_Test()
 }
 
 
-void  Task_tick_proc (void *p_arg)
+void  App_TaskEndTick (void *p_arg)
 {
     for (;;)
     {
@@ -131,14 +131,14 @@ U32 send_test_cmd(UCHAR * cmd_buf, USHORT cmd_len)
 
     p_Msg->msg_header.msg_len = cmd_len;/* */
 
-    p_Msg->msg_header.end_id = COM_PORT_485;
+    p_Msg->msg_header.end_id = RS485_COM_PORT;
 
     p_Msg->msg_header.need_buffer_free = OK;/* FALSE 标识end 负责buffer 释放*/
 
     return End_send(p_Msg);
 }
 
-static void Task_key_proc(void *parg)
+static void App_TaskKey(void *parg)
 {
     unsigned int key_val;
     while(1)
@@ -238,7 +238,7 @@ int App_Check_Self_Power(void)
 
 #endif
 
-static  void  AppTaskPoll (void *p_arg)
+static  void  App_TaskPoll (void *p_arg)
 {
     while(1)
     {        
@@ -313,7 +313,7 @@ static  void  AppTaskPoll (void *p_arg)
             else
                 LED_RUN_ON();
 #else //华兄
-            LED_RUN_Toggle();
+            LED_RUN_TOGGLE();
 #endif
 
             if(displayTimerCounter)
@@ -348,40 +348,37 @@ static  void  AppTaskPoll (void *p_arg)
 *********************************************************************************************************
 */
 
-static  void  AppTaskCreate (void)
+static  void  App_TaskCreate (void)
 {
-     OSTaskCreateExt(AppTaskPoll,                               /* Create the start task                                    */
+    OSTaskCreateExt( App_TaskPoll,                               
                     (void *)0,
-                    (OS_STK *)&AppTaskPollStk[APP_CFG_TASK_LED_STK_SIZE - 1],
-                    APP_TASK_POLL_PRIO,
-                    APP_TASK_POLL_PRIO,
-                    (OS_STK *)&AppTaskPollStk[0],
-                    APP_CFG_TASK_LED_STK_SIZE,
+                    (OS_STK *)&App_TaskPollStk[APP_CFG_TASK_POLL_STK_SIZE - 1],
+                     APP_CFG_TASK_POLL_PRIO,
+                     APP_CFG_TASK_POLL_PRIO,
+                    (OS_STK *)&App_TaskPollStk[0],
+                     APP_CFG_TASK_POLL_STK_SIZE,
                     (void *)0,
-                    OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR);
-#if 1
-     OSTaskCreateExt(Task_tick_proc,                               /* Create the start task                                    */
-                    (void *)0,
-                    (OS_STK *)&AppTaskTickStk[APP_CFG_TASK_TICK_STK_SIZE - 1],
-                    APP_CFG_TICK_PRIO,
-                    APP_CFG_TICK_PRIO,
-                    (OS_STK *)&AppTaskTickStk[0],
-                    APP_CFG_TASK_TICK_STK_SIZE,
-                    (void *)0,
-                    OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR);
+                     OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR);
 
-      OSTaskCreateExt(Task_key_proc,                               /* Create the start task                                    */
+    OSTaskCreateExt( App_TaskEndTick,                               
                     (void *)0,
-                    (OS_STK *)&AppTaskKeyStk[APP_CFG_TASK_KEY_STK_SIZE - 1],
-                    APP_CFG_KEY_PRIO,
-                    APP_CFG_KEY_PRIO,
-                    (OS_STK *)&AppTaskKeyStk[0],
-                    APP_CFG_TASK_KEY_STK_SIZE,
+                    (OS_STK *)&App_TaskEndTickStk[APP_CFG_TASK_END_TICK_STK_SIZE - 1],
+                     APP_CFG_TASK_END_TICK_PRIO,
+                     APP_CFG_TASK_END_TICK_PRIO,
+                    (OS_STK *)&App_TaskEndTickStk[0],
+                     APP_CFG_TASK_END_TICK_STK_SIZE,
                     (void *)0,
-                    OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR);
-#endif
-     
-     
+                     OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR);
+
+    OSTaskCreateExt( App_TaskKey,                               
+                    (void *)0,
+                    (OS_STK *)&App_TaskKeyStk[APP_CFG_TASK_KEY_STK_SIZE - 1],
+                     APP_CFG_TASK_KEY_PRIO,
+                     APP_CFG_TASK_KEY_PRIO,
+                    (OS_STK *)&App_TaskKeyStk[0],
+                     APP_CFG_TASK_KEY_STK_SIZE,
+                    (void *)0,
+                     OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR); 
 }
 
 
@@ -456,7 +453,7 @@ int ADC_get_ac_rms()
 * Description : This is an example of a startup task.  As mentioned in the book's text, you MUST
 *               initialize the ticker only once multitasking has started.
 *
-* Arguments   : p_arg   is the argument passed to 'AppTaskStart()' by 'OSTaskCreate()'.
+* Arguments   : p_arg   is the argument passed to 'App_TaskStart()' by 'OSTaskCreate()'.
 *
 * Returns     : none
 *
@@ -473,7 +470,7 @@ unsigned short g_break_pos = 3;
 
 unsigned char g_hard_v_f;
 
-static  void  AppTaskStart (void *p_arg)
+static  void  App_TaskStart (void *p_arg)
 {
     INT32U  hclk_freq;
     INT32U  cnts;
@@ -544,7 +541,7 @@ static  void  AppTaskStart (void *p_arg)
     OSStatInit();                                               /* Determine CPU capacity                                   */
 #endif
 
-    AppTaskCreate();                                            /* Create application tasks                                 */
+    App_TaskCreate();                                            /* Create application tasks                                 */
 
     Relay_Keep_Mode(RELAY_SWITCH_OFF);
     
@@ -1147,19 +1144,15 @@ int  main(void)
 
     OSInit();                                                   /* Initialize "uC/OS-II, The Real-Time Kernel"              */
 
-    OSTaskCreateExt( AppTaskStart,                              /* Create the start task                                    */
+    OSTaskCreateExt( App_TaskStart,                             /* Create the start task                                    */
                     (void *)0,
-                    (OS_STK *)&AppTaskStartStk[APP_TASK_START_STK_SIZE - 1],
-                     APP_TASK_START_PRIO,
-                     APP_TASK_START_PRIO,
-                    (OS_STK *)&AppTaskStartStk[0],
-                     APP_TASK_START_STK_SIZE,
+                    (OS_STK *)&App_TaskStartStk[APP_CFG_TASK_START_STK_SIZE - 1],
+                     APP_CFG_TASK_START_PRIO,
+                     APP_CFG_TASK_START_PRIO,
+                    (OS_STK *)&App_TaskStartStk[0],
+                     APP_CFG_TASK_START_STK_SIZE,
                     (void *)0,
                      OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR);
-
-#if (OS_TASK_NAME_EN > 0)
-    OSTaskNameSet(APP_TASK_START_PRIO, "AppStartTask", &err);
-#endif
 
     OSStart();         
 }

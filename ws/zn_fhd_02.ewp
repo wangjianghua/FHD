@@ -1837,9 +1837,6 @@
       <name>$PROJ_DIR$\..\app\E2PROM.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\app\END_UART.c</name>
-    </file>
-    <file>
       <name>$PROJ_DIR$\..\app\font.c</name>
     </file>
     <file>
@@ -1868,6 +1865,9 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\app\storage.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\app\uart_link.c</name>
     </file>
   </group>
   <group>

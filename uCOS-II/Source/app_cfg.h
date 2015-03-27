@@ -62,11 +62,11 @@
 *********************************************************************************************************
 */
 
-#define  APP_TASK_START_PRIO                              4
-#define  APP_CFG_TICK_PRIO                                5
-#define  APP_CFG_KEY_PRIO                                 6
-#define  APP_TASK_POLL_PRIO                               7
-#define  OS_TASK_TMR_PRIO                       (OS_LOWEST_PRIO - 2)
+#define  APP_CFG_TASK_START_PRIO                          4
+#define  APP_CFG_TASK_END_TICK_PRIO                       5
+#define  APP_CFG_TASK_KEY_PRIO                            6
+#define  APP_CFG_TASK_POLL_PRIO                           7
+#define  OS_TASK_TMR_PRIO                        (OS_LOWEST_PRIO - 2)
 
 
 /*
@@ -76,15 +76,12 @@
 *********************************************************************************************************
 */
 
-#define  APP_TASK_START_STK_SIZE                        128
-
-#define  APP_CFG_TASK_LED_STK_SIZE                      128
-
-#define  APP_CFG_TASK_TICK_STK_SIZE                     128
-
+#define  APP_CFG_TASK_START_STK_SIZE                    128
+#define  APP_CFG_TASK_POLL_STK_SIZE                     128
+#define  APP_CFG_TASK_END_TICK_STK_SIZE                 128
 #define  APP_CFG_TASK_KEY_STK_SIZE                      128
 
-#define  BUFF_SIZE                                      1000
+#define  BUFF_SIZE                                     1000
 
 /*
 *********************************************************************************************************

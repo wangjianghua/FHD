@@ -34,13 +34,13 @@
 
 
 
-END_OBJ g_EndObjectPool[COM_PORT_MAX] =
+END_OBJ g_EndObjectPool[MAX_COM_PORT] =
 {
-    {COM_PORT_485, END_STATUS_IDLE, 0, 0, 0, NULL, NULL, NULL, NULL},
+    {RS485_COM_PORT, END_STATUS_IDLE, 0, 0, 0, NULL, NULL, NULL, NULL},
 };
 
-queue* g_EndTxQueue[COM_PORT_MAX] = {NULL};
-queue* g_EndRxQueue[COM_PORT_MAX] = {NULL};
+queue* g_EndTxQueue[MAX_COM_PORT] = {NULL};
+queue* g_EndRxQueue[MAX_COM_PORT] = {NULL};
 
 unsigned char g_TxEndQueueBuf[((END_TX_QUEUE_SIZE+2) * 4)];
 unsigned char g_RxEndQueueBuf[((END_TX_QUEUE_SIZE+2) * 4)];
@@ -51,25 +51,25 @@ END层初始化< // 需要提供一个reset 接口供上层调用>
 ************************************************************/
 
 
-U32 EndTxQueueMem[COM_PORT_MAX][END_TX_QUEUE_SIZE+2];
+U32 EndTxQueueMem[MAX_COM_PORT][END_TX_QUEUE_SIZE+2];
 
 OS_EVENT  * e_sem_end;
 
-UCHAR 	FreeMSGCnt[MSG_BUTT] =
+UCHAR MAX_MSG_CNT[MAX_MSG_ITEM] =
 {
-    END_EX_MSG_NUM,
-    END_EX_MSG_NUM,
-    END_EX_MSG_NUM
+    MAX_MSG_SHORT,
+    MAX_MSG_LONG,
+    MAX_MSG_LARGE
 };
 
 
-UART_CCB g_uart_ccb[COM_PORT_MAX];
+UART_CCB g_uart_ccb[MAX_COM_PORT];
 
-U8 g_uart_rs485_rxBuf[RS485_MSG_MAX_SIZE];
+U8 g_uart_rs485_rxBuf[UART_RECEIVE_BUF_SIZE];
 
-MSG_INFO g_exmsg_Buf[END_EX_MSG_NUM];
+MSG_INFO g_exmsg_Buf[MAX_MSG_SHORT];
 
-P_MSG_INFO  pShortMsgPool[END_EX_MSG_NUM] = {NULL};
+P_MSG_INFO  pShortMsgPool[MAX_MSG_SHORT] = {NULL};
 
 
 /**********************************************************
@@ -162,7 +162,7 @@ P_MSG_INFO alloc_send_buffer(unsigned char type)
     pool = (P_MSG_INFO *)pShortMsgPool;
 
     /* 遍历所有空闲buffer , 找到一个可用空闲buffer */
-    for(i =0; i<GET_MAX_MSGITEM(type); i++)
+    for(i =0; i<GET_MAX_MSG(type); i++)
     {
         pmsg = (P_MSG_INFO)(*(pool + i));
 
@@ -178,22 +178,22 @@ P_MSG_INFO alloc_send_buffer(unsigned char type)
         OS_EXIT_CRITICAL();
     }
 
-    if( i >= GET_MAX_MSGITEM(type) )
+    if( i >= GET_MAX_MSG(type) )
         return NULL;
 
    
-    memset(pmsg->msg_buffer, 0xff, RS485_MSG_MAX_SIZE );
+    memset(pmsg->msg_buffer, 0xff, UART_RECEIVE_BUF_SIZE );
 
     /* 统计计数递减*/
     //FreeMSGTxCnt --;
 
     OS_ENTER_CRITICAL();
-    FreeMSGCnt[type] --;
+    MAX_MSG_CNT[type] --;
     OS_EXIT_CRITICAL();
 
 
     //if( FreeMSGTxCnt <= 3 )
-    if( FreeMSGCnt[type] == 0 )
+    if( MAX_MSG_CNT[type] == 0 )
     {
         //ALERT(" left msg number 递减到临界值 ");
         //Alert((type), ALERT_RESET_DEVICE, __FILE__, __LINE__);
@@ -228,7 +228,7 @@ unsigned char free_send_buffer(pvoid pmsg )
 
 
     /*-------------------------------------------*/
-    for( i = 0; i < GET_MAX_MSGITEM(type); i++)
+    for( i = 0; i < GET_MAX_MSG(type); i++)
     {
         OS_ENTER_CRITICAL();
         if( (  *(pool + i ) == pfree ) )
@@ -253,11 +253,11 @@ unsigned char free_send_buffer(pvoid pmsg )
 
     /* 统计计数递减*/
     OS_ENTER_CRITICAL();
-    FreeMSGCnt[type] ++;
+    MAX_MSG_CNT[type] ++;
     OS_EXIT_CRITICAL();
 
-    //if( FreeMSGTxCnt > GET_MAX_MSGITEM(type) )
-    if( FreeMSGCnt[type] > GET_MAX_MSGITEM(type) )
+    //if( FreeMSGTxCnt > GET_MAX_MSG(type) )
+    if( MAX_MSG_CNT[type] > GET_MAX_MSG(type) )
     {
         //ALERT(" mail queue 递增过界 ");
         //Alert(ALERT_NO_MEMORY, ALERT_RESET_DEVICE, __FILE__, __LINE__);
@@ -277,7 +277,7 @@ U32 UART_ReceiveData(U8 end_id, UCHAR* rxbuf, USHORT rxnum )
 #endif
     P_UART_CCB p_uc = &g_uart_ccb[end_id];
 
-    if( (rxnum < 1) || (end_id >= COM_PORT_MAX) )
+    if( (rxnum < 1) || (end_id >= MAX_COM_PORT) )
     {
         return ERROR;
     }
@@ -300,12 +300,12 @@ void End_init(void)
 
     unsigned char i;
 
-    mem_msg_buffer_init((MSG_INFO *)g_exmsg_Buf, (P_MSG_INFO * )pShortMsgPool, END_EX_MSG_NUM, sizeof(MSG_INFO));
+    mem_msg_buffer_init((MSG_INFO *)g_exmsg_Buf, (P_MSG_INFO * )pShortMsgPool, MAX_MSG_SHORT, sizeof(MSG_INFO));
 
     e_sem_end = OSSemCreate(0);
 
     //alan test  需要暂时注释掉, 不知为啥IIC Start 一调用, MCU 就飞啦.
-    for( i = COM_PORT_485; i < COM_PORT_MAX; i++)
+    for( i = RS485_COM_PORT; i < MAX_COM_PORT; i++)
     {
         // 找到当前End Object
         pEndObj = g_EndObjectPool + i;
@@ -321,7 +321,7 @@ void End_init(void)
 
         pEndObj->recv_timeout = 0;
 
-        UART_ReceiveData(i, pEndObj->end_recv_buffer, RS485_MSG_MAX_SIZE);
+        UART_ReceiveData(i, pEndObj->end_recv_buffer, UART_RECEIVE_BUF_SIZE);
 
         // 所有串口状态转到REVC STATUS
         pEndObj->end_send_status = END_STATUS_IDLE;
@@ -347,7 +347,7 @@ unsigned short End_tick_check()
 
     P_UART_CCB p_uc;
 
-    for(i = COM_PORT_485; i < COM_PORT_MAX; i++ )
+    for(i = RS485_COM_PORT; i < MAX_COM_PORT; i++ )
     {
         /////////////////////////////
         pEndObj = g_EndObjectPool + i;
@@ -364,6 +364,8 @@ unsigned short End_tick_check()
                 pEndObj->end_send_status = END_STATUS_IDLE;
 
                 pnewmsg = (P_MSG_INFO)pEndObj->pMsgInfo;
+
+                pnewmsg->msg_header.block_state = SENDED;
 
                 // alan dynamic sending buffer.
                 // 当前end sending 正常结束，可以直接释放sending buffer
@@ -439,7 +441,7 @@ unsigned short End_tick_check()
 P_END_OBJ End_get_end_obj(UCHAR end_id)
 {
     unsigned char i = 0;
-    while( i < COM_PORT_MAX)
+    while( i < MAX_COM_PORT)
     {
         if( g_EndObjectPool[i].end_id == end_id)
             return &g_EndObjectPool[i];
@@ -451,7 +453,7 @@ P_END_OBJ End_get_end_obj(UCHAR end_id)
 
 U32 End_uart_send(UCHAR end_id,  UCHAR* txbuf, USHORT    txnum )
 {
-    USART_TypeDef * USARx;
+    USART_TypeDef * USARTx;
     P_UART_CCB p_uc;
     UCHAR      send_byte=0;
 
@@ -462,8 +464,8 @@ U32 End_uart_send(UCHAR end_id,  UCHAR* txbuf, USHORT    txnum )
 
     switch(end_id)
     {    
-    case COM_PORT_485:      
-        USARx = USART1;
+    case RS485_COM_PORT:      
+        USARTx = RS485_UART;
         break;  
     default:
         return ERROR;
@@ -480,10 +482,10 @@ U32 End_uart_send(UCHAR end_id,  UCHAR* txbuf, USHORT    txnum )
     p_uc->gUartTxCnt--;
 
 
-    USART_SendData(USARx, send_byte);
+    USART_SendData(USARTx, send_byte);
 
     if(p_uc->gUartTxCnt)
-        USART_ITConfig(USARx, USART_IT_TXE, ENABLE);
+        USART_ITConfig(USARTx, USART_IT_TXE, ENABLE);
 
     return OK;
 };
@@ -530,7 +532,7 @@ unsigned short End_send( P_MSG_INFO pMsgInfo)
         // 底层状态迁移到SENDING
         pEndObj->end_send_status = END_STATUS_SENDING;
 
-        pMsgInfo->msg_header.block_state = SENDED;
+        pMsgInfo->msg_header.block_state = SENDING;
 
         pEndObj->endStatistics.txPacketCount++;
 
@@ -562,9 +564,9 @@ unsigned char End_check_recv(P_END_OBJ pEndObj)
     if(p_uc->gpUartRxReadAddress <= p_uc->gpUartRxAddress)
         pEndObj->receive_len = p_uc->gpUartRxAddress - p_uc->gpUartRxReadAddress;//gIic0RxCnt;
     else
-        pEndObj->receive_len = (USHORT)((ULONG)p_uc->gpUartRxAddress + USART_RECEIVE_BUF_SIZE - (ULONG)p_uc->gpUartRxReadAddress);
+        pEndObj->receive_len = (USHORT)((ULONG)p_uc->gpUartRxAddress + UART_RECEIVE_BUF_SIZE - (ULONG)p_uc->gpUartRxReadAddress);
 
-    if(pEndObj->receive_len > (220))//if(pEndObj->receive_len > (USART_RECEIVE_BUF_SIZE/2))
+    if(pEndObj->receive_len > (220))//if(pEndObj->receive_len > (UART_RECEIVE_BUF_SIZE/2))
     {
         pEndObj->recv_timeout = 0;
         return OK;
@@ -622,20 +624,21 @@ unsigned char End_check_send(UCHAR end_id)
 **************************************************************************************/
 unsigned char End_postProcess(unsigned char end_type,  pvoid h)
 {
-    P_MSG_INFO     pMsg = (P_MSG_INFO)h;
+    P_MSG_INFO pMsg = (P_MSG_INFO)h;
     USHORT iRet = ERROR;
+    
 
     switch(end_type)
     {
-    
-    case COM_PORT_485:
+    case RS485_COM_PORT:
         modbus_rtu_process(pMsg);
-        //free_send_buffer(pMsg);
+        break;
+
+    default:
         break;
     }
 
-
-
+    free_send_buffer(pMsg);
 
     return iRet;
 }

@@ -640,7 +640,7 @@ int32 modbus_rtu_process(P_MSG_INFO   pMsg)
 	// length must bigger than sizeof(MODBUS_RTU_HEADER)+crcLen=1+2
 	if(recv_len > 3)
 	{		
-	    if(recv_len > RS485_MSG_MAX_SIZE)
+	    if(recv_len > UART_RECEIVE_BUF_SIZE)
 	    {
 	        free_send_buffer(p_SendMsg);
 	        return 0;
@@ -688,7 +688,7 @@ int32 modbus_rtu_process(P_MSG_INFO   pMsg)
 
         p_SendMsg->msg_header.msg_len = send_len;/* */
 
-        p_SendMsg->msg_header.end_id = COM_PORT_485;
+        p_SendMsg->msg_header.end_id = RS485_COM_PORT;
 
         p_SendMsg->msg_header.need_buffer_free = OK;/* FALSE 标识end 负责buffer 释放*/
 

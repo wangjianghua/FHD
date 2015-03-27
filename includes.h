@@ -57,7 +57,7 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 #include "e2prom.h"
 #include <string.h>
 #include "display_menu.h"
-#include "end_uart.h"
+#include "uart_link.h"
 #include "queue.h"
 #include "storage.h"
 #include "ProLibrary.h"
@@ -207,7 +207,7 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 #define  LED_RUN_OFF()       GPIO_ResetBits(GPIOC, GPIO_Pin_0)
 #define  LED_RUN_ON()        GPIO_SetBits(GPIOC, GPIO_Pin_0)
 
-#define  LED_RUN_Toggle()    GPIO_ToggleBits(GPIOC, GPIO_Pin_0) //ЛЊаж
+#define  LED_RUN_TOGGLE()    GPIO_ToggleBits(GPIOC, GPIO_Pin_0) //ЛЊаж
 
 #define  LED_ALARM_STATUS()  GPIO_ReadOutputDataBit(GPIOC, GPIO_Pin_1)
 #define  LED_ALARM_OFF()     GPIO_ResetBits(GPIOC, GPIO_Pin_1)
