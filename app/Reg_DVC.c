@@ -721,13 +721,18 @@ int32 reg_gpm650_conf_write(int32 reg_addr, int32 reg_num, const uint8 req[])
 	} 
     else if((reg_addr == MODBUS_CONF4_ADDR) )
     {
-        INT32U g_verify_voltage, n_ac_rms;
+        INT32U i, g_verify_voltage = 0, n_ac_rms = 0;
+
+        
         req_num += mb_byte_to_float(preq_buf + req_num, &g_verify_voltage);	
-        n_ac_rms = ADC_get_ac_rms();
-        n_ac_rms += ADC_get_ac_rms();
-        n_ac_rms += ADC_get_ac_rms();
-        n_ac_rms += ADC_get_ac_rms();
-        n_ac_rms >>= 2;
+
+        for(i = 0; i < 32; i++)
+        {
+            n_ac_rms += ADC_get_ac_rms();
+        }
+
+        n_ac_rms >>= 5;
+        
         g_sys_conf.voltageFixCoe = (g_verify_voltage*1000)/n_ac_rms;
 
         E2promWriteBuffer(OffsetOf(SYS_CONF, voltageFixCoe), (unsigned char *)&g_sys_conf.voltageFixCoe, sizeof(g_sys_conf.voltageFixCoe));

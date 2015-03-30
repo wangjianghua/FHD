@@ -13,11 +13,11 @@
 #define MAX_MSG_LONG              4
 #define MAX_MSG_LARGE             4
 
-#define UART_RECEIVE_BUF_SIZE   256
+#define UART_RECEIVE_BUF_SIZE  256u
 
 #define END_NON_MODULE_USED    0xff
 
-#define GET_MAX_MSG(type)        (MAX_MSG_SHORT)
+#define GET_MAX_MSG(type)             (MAX_MSG_CNT[MSG_SHORT])
 
 #define END_IDLE    1            /* idle status */
 #define END_READ    2            /* read mode */
@@ -34,7 +34,7 @@
 
 
 #define END_STATUS_IDLE         0
-#define END_STATUS_SENDING         1
+#define END_STATUS_SENDING      1
 #define END_STATUS_RECEIVING    2
 
 //#define END_STATUS_MUX            2  //双工
@@ -54,9 +54,6 @@
 
 #define END_DEBUG                 1
 
-//alan test
-#define UART2_BUFFER_SIZE     256
-
 #define END_FAST_PROETCT_CYCLE    (unsigned char)1     /* 1 s */
 #define END_SLOW_PROETCT_CYCLE    (unsigned char)5     /* 4 s */
 #define END_SLOW_PROETCT_CYCLE2    (unsigned char)5     /* 5 s */
@@ -72,15 +69,13 @@ typedef void (* END_START_PTR)(void);
 typedef void (* END_STOP_PTR)(void);
 typedef void (* END_SWITCH_STATUE_PTR)(unsigned char new_status);
 
-
 typedef enum
 {
     MSG_SHORT = 0,
     MSG_LONG,
     MSG_LARGE,
     MAX_MSG_ITEM
-} MSG_TTYPE;
-
+} MSG_TYPE;
 
 //用来保存发送，接受消息的相关信息，内容待完善
 typedef struct _msg_header_
@@ -142,9 +137,7 @@ extern UART_CCB g_uart_ccb[MAX_COM_PORT];
 
 P_END_OBJ End_get_end_obj(UCHAR end_id);
 void End_init(void);
-//unsigned char End_OnTick(void* HANDLE);
 unsigned char End_OnTick(void* pTimerHandle, void* HANDLE);
-
 unsigned char End_set_expire(UCHAR end_id );
 unsigned char End_get_status(UCHAR end_id);
 unsigned char End_set_status(UCHAR end_id, unsigned char state );
@@ -152,16 +145,10 @@ unsigned short End_send(P_MSG_INFO pMsgInfo);
 unsigned char End_check_recv(P_END_OBJ pEndObj);
 unsigned char End_check_send(UCHAR end_id);
 unsigned char End_IsIdle(P_END_OBJ pEndObj);
-void  Task_end_proc (void *p_arg);
 unsigned char End_postProcess(unsigned char end_type,  pvoid h);
-unsigned short End_tick_check();
+unsigned short End_tick_check(void);
 U32 UART_ReceiveData(U8 end_id, UCHAR* rxbuf, USHORT rxnum );
 P_MSG_INFO alloc_send_buffer(unsigned char type);
 
-//extern U32 EndTxQueueMem[MAX_COM_PORT][END_TX_QUEUE_SIZE+2];
-//extern U32 EndRxQueueMem[MAX_COM_PORT][END_TX_QUEUE_SIZE+2];
-//extern unsigned char internet_msg_buf[RX_INTERNET_BUFFER_SIZE+sizeof(MSG_HEADER)];
 
 #endif
-
-

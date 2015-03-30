@@ -394,7 +394,7 @@ void TIM2_IRQHandler(void)
                 break_off_count = 0;
                 LCD_Off();
                 g_droping_timestamp = OSTime;//OSTimeGet();
-                LED_2_ON();
+                LED_HD_ON();
             }
         }   
     }
@@ -587,16 +587,7 @@ void EXTI15_10_IRQHandler(void)
             DEBUG_LED_OFF();
 
 #if 0            
-            if(LED_3_STATUS())
-            {
-                LED_3_OFF();
-                //TRIC1_OFF();
-            }
-            else
-            {
-                LED_3_ON();
-                //TRIC1_ON();
-            }
+            LED_UART_TOGGLE();
 #endif
 
             EXTI_ClearITPendingBit(exit_s);
@@ -631,7 +622,7 @@ void USART_IRQProc(UART_CCB  *uccb, USART_TypeDef * USARTx)
     } 
     
 #ifndef DEBUG_LED
-    LED_3_ON();
+    LED_UART_ON();
 #endif
   }
 
@@ -650,7 +641,7 @@ void USART_IRQProc(UART_CCB  *uccb, USART_TypeDef * USARTx)
     }
 
 #ifndef DEBUG_LED
-    LED_3_ON();
+    LED_UART_ON();
 #endif	
   }
 }

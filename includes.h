@@ -203,23 +203,20 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 #define  LED_3_ON()      GPIO_SetBits(GPIOA, GPIO_Pin_7)
 #else //华兄
 
-#define  LED_RUN_STATUS()    GPIO_ReadOutputDataBit(GPIOC, GPIO_Pin_0)
-#define  LED_RUN_OFF()       GPIO_ResetBits(GPIOC, GPIO_Pin_0)
-#define  LED_RUN_ON()        GPIO_SetBits(GPIOC, GPIO_Pin_0)
+#define LED_RUN_ON()        GPIO_SetBits(GPIOC, GPIO_Pin_0)
+#define LED_RUN_OFF()       GPIO_ResetBits(GPIOC, GPIO_Pin_0)
+#define LED_RUN_TOGGLE()    GPIO_ToggleBits(GPIOC, GPIO_Pin_0)
 
-#define  LED_RUN_TOGGLE()    GPIO_ToggleBits(GPIOC, GPIO_Pin_0) //华兄
+#define LED_PWR_ON()        GPIO_SetBits(GPIOC, GPIO_Pin_1)
+#define LED_PWR_OFF()       GPIO_ResetBits(GPIOC, GPIO_Pin_1)
 
-#define  LED_ALARM_STATUS()  GPIO_ReadOutputDataBit(GPIOC, GPIO_Pin_1)
-#define  LED_ALARM_OFF()     GPIO_ResetBits(GPIOC, GPIO_Pin_1)
-#define  LED_ALARM_ON()      GPIO_SetBits(GPIOC, GPIO_Pin_1)
+#define LED_HD_ON()         GPIO_SetBits(GPIOC, GPIO_Pin_2)
+#define LED_HD_OFF()        GPIO_ResetBits(GPIOC, GPIO_Pin_2)
+#define LED_HD_TOGGLE()     GPIO_ToggleBits(GPIOC, GPIO_Pin_2)
 
-#define  LED_2_STATUS()      GPIO_ReadOutputDataBit(GPIOC, GPIO_Pin_2)
-#define  LED_2_OFF()         GPIO_ResetBits(GPIOC, GPIO_Pin_2)
-#define  LED_2_ON()          GPIO_SetBits(GPIOC, GPIO_Pin_2)
-
-#define  LED_3_STATUS()      GPIO_ReadOutputDataBit(GPIOC, GPIO_Pin_3)
-#define  LED_3_OFF()         GPIO_ResetBits(GPIOC, GPIO_Pin_3)
-#define  LED_3_ON()          GPIO_SetBits(GPIOC, GPIO_Pin_3)
+#define LED_UART_ON()       GPIO_SetBits(GPIOC, GPIO_Pin_3)
+#define LED_UART_OFF()      GPIO_ResetBits(GPIOC, GPIO_Pin_3)
+#define LED_UART_TOGGLE()   GPIO_ToggleBits(GPIOC, GPIO_Pin_3)
 
 /* 华兄，"\"后面不要有空格 */
 #define MAIN_MOS_BROKEN_ALRAM_ON() { \
@@ -240,8 +237,8 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 //#define DEBUG_LED
 
 #ifdef DEBUG_LED
-#define DEBUG_LED_ON()       LED_3_ON()
-#define DEBUG_LED_OFF()      LED_3_OFF()
+#define DEBUG_LED_ON()       LED_UART_ON()
+#define DEBUG_LED_OFF()      LED_UART_OFF()
 #else
 #define DEBUG_LED_ON()       
 #define DEBUG_LED_OFF()      

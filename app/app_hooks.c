@@ -178,11 +178,11 @@ void  App_TimeTickHook (void)
     if(g_pow_count)
     {
         g_pow_count--;
-        //LED_2_OFF();
+        //LED_HD_OFF();
     }
     else
     {
-        //LED_2_ON();
+        //LED_HD_ON();
     }
 
 #if (SELF_POWER_EN > 0u)

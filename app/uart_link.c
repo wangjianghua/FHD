@@ -1,37 +1,4 @@
-/*
-*******************************************************************************
-**
-**  This device driver was created by Applilet2 for 78K0R/Kx3
-**  16-Bit Single-Chip Microcontrollers
-**
-**  Copyright(C) NEC Electronics Corporation 2002 - 2007
-**  All rights reserved by NEC Electronics Corporation.
-**
-**  This program should be used on your own responsibility.
-**  NEC Electronics Corporation assumes no responsibility for any losses
-**  incurred by customers or third parties arising from the use of this file.
-**
-**  Filename :    main.c
-**  Abstract :    This file implements main function.
-**  APIlib :    Applilet2 for 78K0R/Kx3 V2.10 [31 Jan. 2007]
-**
-**  Device :    uPD78F1166_A0
-**
-**  Compiler :    CC78K0R
-**
-**  Creation date:    2007-12-27
-**
-*******************************************************************************
-*/
-
-/*
-*******************************************************************************
-** Include files
-*******************************************************************************
-*/
-
 #include "includes.h"
-
 
 
 END_OBJ g_EndObjectPool[MAX_COM_PORT] =
@@ -39,37 +6,37 @@ END_OBJ g_EndObjectPool[MAX_COM_PORT] =
     {RS485_COM_PORT, END_STATUS_IDLE, 0, 0, 0, NULL, NULL, NULL, NULL},
 };
 
-queue* g_EndTxQueue[MAX_COM_PORT] = {NULL};
-queue* g_EndRxQueue[MAX_COM_PORT] = {NULL};
+queue *g_EndTxQueue[MAX_COM_PORT] = {NULL};
+queue *g_EndRxQueue[MAX_COM_PORT] = {NULL};
 
 unsigned char g_TxEndQueueBuf[((END_TX_QUEUE_SIZE+2) * 4)];
 unsigned char g_RxEndQueueBuf[((END_TX_QUEUE_SIZE+2) * 4)];
 
-
-/***********************************************************
-END层初始化< // 需要提供一个reset 接口供上层调用>
-************************************************************/
-
-
 U32 EndTxQueueMem[MAX_COM_PORT][END_TX_QUEUE_SIZE+2];
 
-OS_EVENT  * e_sem_end;
+OS_EVENT *g_sem_end;
 
-UCHAR MAX_MSG_CNT[MAX_MSG_ITEM] =
+const UCHAR MAX_MSG_CNT[MAX_MSG_ITEM] =
 {
     MAX_MSG_SHORT,
     MAX_MSG_LONG,
     MAX_MSG_LARGE
 };
 
+UCHAR FreeMsgCnt[MAX_MSG_ITEM] =
+{
+    MAX_MSG_SHORT,
+    MAX_MSG_LONG,
+    MAX_MSG_LARGE
+};
 
 UART_CCB g_uart_ccb[MAX_COM_PORT];
 
-U8 g_uart_rs485_rxBuf[UART_RECEIVE_BUF_SIZE];
+U8 g_UartRxBuf[UART_RECEIVE_BUF_SIZE];
 
-MSG_INFO g_exmsg_Buf[MAX_MSG_SHORT];
+MSG_INFO gShortMsgPool[MAX_MSG_SHORT];
 
-P_MSG_INFO  pShortMsgPool[MAX_MSG_SHORT] = {NULL};
+P_MSG_INFO pShortMsgPool[MAX_MSG_SHORT] = {NULL};
 
 
 /**********************************************************
@@ -188,12 +155,12 @@ P_MSG_INFO alloc_send_buffer(unsigned char type)
     //FreeMSGTxCnt --;
 
     OS_ENTER_CRITICAL();
-    MAX_MSG_CNT[type] --;
+    FreeMsgCnt[type] --;
     OS_EXIT_CRITICAL();
 
 
     //if( FreeMSGTxCnt <= 3 )
-    if( MAX_MSG_CNT[type] == 0 )
+    if( FreeMsgCnt[type] == 0 )
     {
         //ALERT(" left msg number 递减到临界值 ");
         //Alert((type), ALERT_RESET_DEVICE, __FILE__, __LINE__);
@@ -253,11 +220,11 @@ unsigned char free_send_buffer(pvoid pmsg )
 
     /* 统计计数递减*/
     OS_ENTER_CRITICAL();
-    MAX_MSG_CNT[type] ++;
+    FreeMsgCnt[type] ++;
     OS_EXIT_CRITICAL();
 
     //if( FreeMSGTxCnt > GET_MAX_MSG(type) )
-    if( MAX_MSG_CNT[type] > GET_MAX_MSG(type) )
+    if( FreeMsgCnt[type] > GET_MAX_MSG(type) )
     {
         //ALERT(" mail queue 递增过界 ");
         //Alert(ALERT_NO_MEMORY, ALERT_RESET_DEVICE, __FILE__, __LINE__);
@@ -300,9 +267,9 @@ void End_init(void)
 
     unsigned char i;
 
-    mem_msg_buffer_init((MSG_INFO *)g_exmsg_Buf, (P_MSG_INFO * )pShortMsgPool, MAX_MSG_SHORT, sizeof(MSG_INFO));
+    mem_msg_buffer_init((MSG_INFO *)gShortMsgPool, (P_MSG_INFO * )pShortMsgPool, MAX_MSG_SHORT, sizeof(MSG_INFO));
 
-    e_sem_end = OSSemCreate(0);
+    g_sem_end = OSSemCreate(0);
 
     //alan test  需要暂时注释掉, 不知为啥IIC Start 一调用, MCU 就飞啦.
     for( i = RS485_COM_PORT; i < MAX_COM_PORT; i++)
@@ -314,7 +281,7 @@ void End_init(void)
         g_EndTxQueue[i] = define_new_queue((queue *)g_TxEndQueueBuf, END_TX_QUEUE_SIZE);
         g_EndRxQueue[i] = define_new_queue((queue *)g_RxEndQueueBuf, END_TX_QUEUE_SIZE);
        
-        pEndObj->end_recv_buffer = (unsigned char *)g_uart_rs485_rxBuf;
+        pEndObj->end_recv_buffer = (unsigned char *)g_UartRxBuf;
 
         pEndObj->last_receive_len = 0;
         pEndObj->receive_len = 0;
@@ -334,7 +301,7 @@ void End_init(void)
 /***********************************************************
 Tick任务调用，检查每个END接口是否有新的frame收完
 ************************************************************/
-unsigned short End_tick_check()
+unsigned short End_tick_check(void)
 {
 #if OS_CRITICAL_METHOD == 3                                /* Allocate storage for CPU status register     */
     OS_CPU_SR  cpu_sr = 0;

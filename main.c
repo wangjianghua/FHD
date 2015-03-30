@@ -102,18 +102,20 @@ unsigned char RTC_Test()
 
 void  App_TaskEndTick (void *p_arg)
 {
+    (void)p_arg;
+    
     for (;;)
-    {
-        //OSTimeDlyHMSM(0, 0, 1, 0); /* Wait one second */
-        //clear WDT       
-        OSTimeDly(OS_TICKS_PER_SEC/50);
-        if((g_power_state != SYS_DROPED) && (g_power_state != SYS_AUTH_ERROR))
+    {     
+        if((SYS_DROPED != g_power_state) && (SYS_AUTH_ERROR != g_power_state))
         {
 #ifndef DEBUG_LED
-            LED_3_OFF(); //华兄
+            LED_UART_OFF(); //华兄
 #endif            
+
             End_tick_check();    
         }
+
+        OSTimeDly(OS_TICKS_PER_SEC / 50);
     }
 }
 
@@ -274,10 +276,7 @@ static  void  App_TaskPoll (void *p_arg)
                     g_power_state = SYS_AUTH_ERROR;
 
 #ifndef DEBUG_LED
-                    if(LED_3_STATUS())
-                        LED_3_OFF();
-                    else
-                        LED_3_ON();
+                    LED_UART_TOGGLE();
 #endif                    
 
                     AUTO_Test();
@@ -307,14 +306,7 @@ static  void  App_TaskPoll (void *p_arg)
 
             GUI_Sec_Refresh();
 
-#if 0
-            if(LED_RUN_STATUS())
-                LED_RUN_OFF();
-            else
-                LED_RUN_ON();
-#else //华兄
             LED_RUN_TOGGLE();
-#endif
 
             if(displayTimerCounter)
             {
@@ -597,11 +589,8 @@ static  void  App_TaskStart (void *p_arg)
                 //RTC_ReadTime(g_rtc_time);
 
                 g_power_state = SYS_AUTH_ERROR;
-                
-                if(LED_2_STATUS())
-                    LED_2_OFF();
-                else
-                    LED_2_ON();
+
+                LED_HD_TOGGLE();
 
                 //AUTO_Test();
 
@@ -698,14 +687,14 @@ static  void  App_TaskStart (void *p_arg)
 
             diff_num = ADC_get_diff_num();
                         
-            LED_ALARM_OFF();
+            LED_PWR_OFF();
             if((diff_num == 0) && ((g_sys_conf.voltageFixCoe*ac_rms) > AC_POWER_NORMAL_RMS))
             {
                 g_diff_num = 0;
                 g_diff_array = 0;
                 g_diff_pos = 0;
                 g_power_state = SYS_POWER_STEADY;                
-                LED_ALARM_ON();    
+                LED_PWR_ON();    
 
 #if (SELF_POWER_EN > 0u)                
                 if(g_sys_conf.SysSwitch & (SYS_SELF_POWER_MASK))
@@ -772,7 +761,7 @@ static  void  App_TaskStart (void *p_arg)
                             g_diff_array = 0;
                             g_diff_pos = 0;
                             g_power_state = SYS_POWER_STEADY;                
-                            LED_ALARM_ON();    
+                            LED_PWR_ON();    
             
 #if (SELF_POWER_EN > 0u)                
                             if(g_sys_conf.SysSwitch & (SYS_SELF_POWER_MASK))
@@ -983,7 +972,7 @@ static  void  App_TaskStart (void *p_arg)
                                     Relay_Keep_Mode(RELAY_SWITCH_OFF);
                                     g_sys_conf.SysRunStatus &= (~SYS_DROP_ACTION);
                                     g_power_state = SYS_POWER_ON;
-                                    LED_2_OFF();
+                                    LED_HD_OFF();
                                     MEM_SaveDropEvent(OK);
                                     break;
                                 }
@@ -998,7 +987,7 @@ static  void  App_TaskStart (void *p_arg)
                                     Relay_Keep_Mode(RELAY_SWITCH_OFF);
                                     g_sys_conf.SysRunStatus &= (~SYS_DROP_ACTION);
                                     g_power_state = SYS_POWER_ON;
-                                    LED_2_OFF();
+                                    LED_HD_OFF();
                                     MEM_SaveDropEvent(OK);
                                     break;
                                 }
@@ -1017,7 +1006,7 @@ static  void  App_TaskStart (void *p_arg)
                             //电源恢复正常
                             Relay_Keep_Mode(RELAY_SWITCH_OFF);
                             g_power_state = SYS_POWER_ON;
-                            LED_2_OFF();
+                            LED_HD_OFF();
                             
                             MEM_SaveDropTime();
                             g_dropping_msec = g_msec_count; //华兄
@@ -1033,7 +1022,7 @@ static  void  App_TaskStart (void *p_arg)
                         //电源恢复正常
                         Relay_Keep_Mode(RELAY_SWITCH_OFF);
                         g_power_state = SYS_POWER_ON;
-                        LED_2_OFF();
+                        LED_HD_OFF();
                         //MEM_SaveDropEvent(OK);
                         break;
                     }
@@ -1066,7 +1055,7 @@ TASK_DROPED_PROC:
                  }    
 
                  Relay_Keep_Mode(RELAY_SWITCH_OFF);
-                 LED_2_OFF();
+                 LED_HD_OFF();
                     
                  break;
             }
@@ -1108,9 +1097,9 @@ TASK_DROPED_PROC:
             else
             {
                 LED_RUN_OFF();
-                LED_2_OFF();
-                LED_ALARM_OFF();
-                //LED_3_OFF();
+                LED_PWR_OFF();
+                LED_HD_OFF();
+                LED_UART_OFF();
                 g_droping_power_on_time = 0;
             }
             
