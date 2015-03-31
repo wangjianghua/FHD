@@ -82,7 +82,7 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 
 #define SYS_PWD_LEN         7 //华兄
 
-#define REV_OPERATION_EN   0U //华兄
+#define REV_OPERATION_EN   0u //华兄
 
 #define SELF_POWER_EN      0u //华兄
 
@@ -209,6 +209,7 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 
 #define LED_PWR_ON()        GPIO_SetBits(GPIOC, GPIO_Pin_1)
 #define LED_PWR_OFF()       GPIO_ResetBits(GPIOC, GPIO_Pin_1)
+#define LED_PWR_TOGGLE()    GPIO_ToggleBits(GPIOC, GPIO_Pin_1)
 
 #define LED_HD_ON()         GPIO_SetBits(GPIOC, GPIO_Pin_2)
 #define LED_HD_OFF()        GPIO_ResetBits(GPIOC, GPIO_Pin_2)
@@ -218,7 +219,21 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 #define LED_UART_OFF()      GPIO_ResetBits(GPIOC, GPIO_Pin_3)
 #define LED_UART_TOGGLE()   GPIO_ToggleBits(GPIOC, GPIO_Pin_3)
 
-/* 华兄，"\"后面不要有空格 */
+/* "\"后面不要有空格 */
+#define LED_ON() { \
+    LED_RUN_ON();  \
+    LED_PWR_ON();  \
+    LED_HD_ON();   \
+    LED_UART_ON(); \
+}
+
+#define LED_OFF() { \
+    LED_RUN_OFF();  \
+    LED_PWR_OFF();  \
+    LED_HD_OFF();   \
+    LED_UART_OFF(); \
+}
+
 #define MAIN_MOS_BROKEN_ALRAM_ON() { \
     GPIO_SetBits(GPIOC, GPIO_Pin_0); \
     GPIO_SetBits(GPIOC, GPIO_Pin_1); \

@@ -19,7 +19,7 @@ void SomeNOP(void)
 
 {
 
-    unsigned char kk=20;  //10
+    unsigned char kk=50;  //10
 
     while(kk--);
 
@@ -29,7 +29,7 @@ void SomeNOP(void)
 void SomeNOP_Short(void)
 {
 
-    unsigned char kk=10;  //5
+    unsigned char kk=20;  //5
 
     while(kk--);
 

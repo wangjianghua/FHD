@@ -136,7 +136,7 @@ typedef struct _end_object_
 extern UART_CCB g_uart_ccb[MAX_COM_PORT];
 
 P_END_OBJ End_get_end_obj(UCHAR end_id);
-void End_init(void);
+void End_Init(void);
 unsigned char End_OnTick(void* pTimerHandle, void* HANDLE);
 unsigned char End_set_expire(UCHAR end_id );
 unsigned char End_get_status(UCHAR end_id);

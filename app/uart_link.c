@@ -260,8 +260,7 @@ U32 UART_ReceiveData(U8 end_id, UCHAR* rxbuf, USHORT rxnum )
 }
 
 
-void End_init(void)
-
+void End_Init(void)
 {
     P_END_OBJ pEndObj = NULL;
 

@@ -486,12 +486,12 @@ static  void  App_TaskStart (void *p_arg)
     //等待系统稳定
     //OSTimeDly(1000);
 
+    LED_ON(); //华兄
+
     GUI_Init();
     GUI_X_Init();  
 
-    MAIN_MOS_BROKEN_ALRAM_OFF(); //华兄
-
-    End_init();
+    End_Init();
 
     RTC_ReadTime(g_rtc_time);
 
@@ -612,8 +612,9 @@ static  void  App_TaskStart (void *p_arg)
     }
 #endif
 
+    LED_OFF(); //华兄
     LCD_Off();
-
+    
     while (DEF_TRUE) 
     {
 #if 0 //华兄        
@@ -688,12 +689,15 @@ static  void  App_TaskStart (void *p_arg)
             diff_num = ADC_get_diff_num();
                         
             LED_PWR_OFF();
+            LED_HD_OFF();
+            
             if((diff_num == 0) && ((g_sys_conf.voltageFixCoe*ac_rms) > AC_POWER_NORMAL_RMS))
             {
                 g_diff_num = 0;
                 g_diff_array = 0;
                 g_diff_pos = 0;
-                g_power_state = SYS_POWER_STEADY;                
+                g_power_state = SYS_POWER_STEADY;    
+                
                 LED_PWR_ON();    
 
 #if (SELF_POWER_EN > 0u)                
@@ -760,7 +764,8 @@ static  void  App_TaskStart (void *p_arg)
                             g_diff_num = 0;
                             g_diff_array = 0;
                             g_diff_pos = 0;
-                            g_power_state = SYS_POWER_STEADY;                
+                            g_power_state = SYS_POWER_STEADY;   
+                            
                             LED_PWR_ON();    
             
 #if (SELF_POWER_EN > 0u)                
@@ -801,6 +806,8 @@ static  void  App_TaskStart (void *p_arg)
             break;
             
         case SYS_POWER_STEADY:
+            LED_HD_OFF();
+            
             count = 0;
             g_rms_buf_index = 0;
 
@@ -1099,7 +1106,6 @@ TASK_DROPED_PROC:
                 LED_RUN_OFF();
                 LED_PWR_OFF();
                 LED_HD_OFF();
-                LED_UART_OFF();
                 g_droping_power_on_time = 0;
             }
             

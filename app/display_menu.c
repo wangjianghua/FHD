@@ -21,7 +21,7 @@ const char monthDays[]= {31,28,31,30,31,30,31,31,30,31,30,31};
 
 const char SYS_HARDWARE_VER[] = {0x15, 0x01, 0x25, 0x20, 0x00};
 
-const char SYS_SOFTWARE_VER[] = {0x15, 0x03, 0x30, 0x22, 0x00};
+const char SYS_SOFTWARE_VER[] = {0x15, 0x03, 0x31, 0x22, 0x00};
 
 const LCD_FORM form_list[MAX_FORM_NUM] =
 {

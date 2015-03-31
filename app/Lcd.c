@@ -392,7 +392,7 @@ void lcd_disp_map(unsigned char *pmap) //pmap是图片数据首地址
        
         lcd_write_cmd(0x10); //column
         
-#if (REV_OPERATION_EN > 0U)
+#if (REV_OPERATION_EN > 0u)
         lcd_write_cmd(0x04); //column
 #else
         lcd_write_cmd(0x00); //column
