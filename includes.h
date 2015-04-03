@@ -312,8 +312,8 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 #define LCD_BLED_SET()     GPIO_SetBits(GPIOA, GPIO_Pin_12)
 #define LCD_BLED_RESET()   GPIO_ResetBits(GPIOA, GPIO_Pin_12)
 
-#define LCD_POW_SET()      GPIO_SetBits(GPIOA, GPIO_Pin_11)
-#define LCD_POW_RESET()    GPIO_ResetBits(GPIOA, GPIO_Pin_11)
+#define LCD_PWR_SET()      GPIO_SetBits(GPIOA, GPIO_Pin_11)
+#define LCD_PWR_RESET()    GPIO_ResetBits(GPIOA, GPIO_Pin_11)
 
 #define LCD_SCLK_SET()     GPIO_SetBits(GPIOB, GPIO_Pin_13)
 #define LCD_SCLK_RESET()   GPIO_ResetBits(GPIOB, GPIO_Pin_13)
@@ -331,13 +331,13 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 #define LCD_RS_RESET()     GPIO_ResetBits(GPIOC, GPIO_Pin_9)
 
 #if 0
-#define LCM_CON_ON()       LCD_POW_SET()
-#define LCM_CON_OFF()      LCD_POW_RESET()
+#define LCM_CON_ON()       LCD_PWR_SET()
+#define LCM_CON_OFF()      LCD_PWR_RESET()
 #define BLCD_CON_ON()      LCD_BLED_RESET()
 #define BLCD_CON_OFF()     LCD_BLED_SET()
 #else //ЛЊаж
-#define LCM_POW_ON()       LCD_POW_SET()
-#define LCM_POW_OFF()      LCD_POW_RESET()
+#define LCM_PWR_ON()       LCD_PWR_SET()
+#define LCM_PWR_OFF()      LCD_PWR_RESET()
 #endif
 
 #endif

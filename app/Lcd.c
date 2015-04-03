@@ -368,7 +368,7 @@ void lcd_clr_scr(void)
        
         lcd_write_cmd(0x10); //column
         
-#if (REV_OPERATION_EN > 0U)
+#if (REV_OPERATION_EN > 0u)
         lcd_write_cmd(0x04); //column
 #else
         lcd_write_cmd(0x00); //column
@@ -409,7 +409,7 @@ void lcd_init(void)
 {
     lcd_port_init();
 
-    LCM_POW_ON();
+    LCM_PWR_ON();
     LCD_On();    
 
     lcd_delay(100);
@@ -432,7 +432,7 @@ void lcd_init(void)
     lcd_write_cmd(0x1a); /*微调对比度的值，可设置范围0x00～0x3f*/
     lcd_write_cmd(0xa3); /*1/7 偏压比（bias）*/
 
-#if (REV_OPERATION_EN > 0U)    
+#if (REV_OPERATION_EN > 0u)    
     lcd_write_cmd(0xc0); /*行扫描顺序：从下到上*/
     lcd_write_cmd(0xa1); /*列扫描顺序：从右到左*/
 #else

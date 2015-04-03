@@ -394,7 +394,7 @@ void RTC_ReadTime(unsigned char *time)
     time[DAY_POS] &= 0x07;
     time[DATE_POS] &= 0x3f;
     time[MONTH_POS] &= 0x1f;
-    //time[YEAR_POS] &= 0x7f;
+    time[YEAR_POS] &= 0x7f;
 
 }
 
@@ -413,7 +413,7 @@ void RTC_WriteTime(unsigned char *time)
     time[DAY_POS] &= 0x07;
     time[DATE_POS] &= 0x3f;
     time[MONTH_POS] &= 0x1f;
-    //time[YEAR_POS] &= 0x7f;
+    time[YEAR_POS] &= 0x7f;
 
     RTC_WriteBuffer(0, time, 7);
 

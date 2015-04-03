@@ -392,8 +392,9 @@ void TIM2_IRQHandler(void)
                 
                 g_power_state = SYS_DROPING;
                 break_off_count = 0;
+                g_droping_timestamp = OSTime;
+                
                 LCD_Off();
-                g_droping_timestamp = OSTime;//OSTimeGet();
                 LED_HD_ON();
             }
         }   

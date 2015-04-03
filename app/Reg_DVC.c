@@ -659,14 +659,16 @@ int32 reg_gpm650_conf_read(int32 reg_addr, int32 reg_num, uint8 resp[])
     }
     else if((reg_addr == MODBUS_CONF4_ADDR) && (reg_num == 2))
     {
-        	
-        INT32U g_verify_voltage, n_ac_rms;        
-        //req_num += mb_byte_to_float(preq_buf + req_num, &g_verify_voltage);	
-        n_ac_rms = ADC_get_ac_rms();
-        n_ac_rms += ADC_get_ac_rms();
-        n_ac_rms += ADC_get_ac_rms();
-        n_ac_rms += ADC_get_ac_rms();
-        n_ac_rms >>= 2;
+        INT32U i, g_verify_voltage = 0, n_ac_rms = 0;
+
+        
+        for(i = 0; i < 32; i++)
+        {
+            n_ac_rms += ADC_get_ac_rms();
+        }
+
+        n_ac_rms >>= 5;
+        
         g_verify_voltage = (g_sys_conf.voltageFixCoe * n_ac_rms)/1000;
         resp_num += mb_int_to_byte(presp_buf + resp_num, g_verify_voltage);
     }

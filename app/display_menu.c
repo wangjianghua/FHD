@@ -21,7 +21,7 @@ const char monthDays[]= {31,28,31,30,31,30,31,31,30,31,30,31};
 
 const char SYS_HARDWARE_VER[] = {0x15, 0x01, 0x25, 0x20, 0x00};
 
-const char SYS_SOFTWARE_VER[] = {0x15, 0x03, 0x31, 0x22, 0x00};
+const char SYS_SOFTWARE_VER[] = {0x15, 0x04, 0x03, 0x23, 0x00};
 
 const LCD_FORM form_list[MAX_FORM_NUM] =
 {
@@ -1662,16 +1662,32 @@ int LCD_disp_setting_form(unsigned int key_event, unsigned int form_msg)
     return FORM_MSG_NON;
 }
 
-
-
 void LCD_Time_Refreash()
 {   
-   
-    unsigned char Headline_disp_buf[18];
+    INT8U Headline_disp_buf[18];
+
+#if 0    
+    INT32U i, verify_voltage = 0, n_ac_rms = 0;
+
     
+    for(i = 0; i < 32; i++)
+    {
+        n_ac_rms += ADC_get_ac_rms();
+    }
+
+    n_ac_rms >>= 5;
+    
+    verify_voltage = (g_sys_conf.voltageFixCoe * n_ac_rms) / 1000 / 100;    
+
+    sprintf(Headline_disp_buf, "   %03dV %02x:%02x:%02x", verify_voltage, g_rtc_time[2], g_rtc_time[1], g_rtc_time[0]);
+#endif
+
+#if 0
+    sprintf(Headline_disp_buf, "   %04d %02x:%02x:%02x", ac_rms, g_rtc_time[2], g_rtc_time[1], g_rtc_time[0]);
+#endif
 
 #if 1
-    sprintf(Headline_disp_buf, "   %04d %02x:%02x:%02x", ac_rms, g_rtc_time[2], g_rtc_time[1], g_rtc_time[0]);
+    sprintf(Headline_disp_buf, "        %02x:%02x:%02x", g_rtc_time[2], g_rtc_time[1], g_rtc_time[0]);
 #endif
 
 #if (SELF_POWER_EN > 0u)

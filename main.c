@@ -1112,7 +1112,7 @@ TASK_DROPED_PROC:
             break;
         }
         case SYS_AUTH_ERROR:
-            LCM_POW_OFF();
+            LCM_PWR_OFF();
             LCD_Off();
             break;            
         }
