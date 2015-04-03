@@ -1666,7 +1666,7 @@ void LCD_Time_Refreash()
 {   
     INT8U Headline_disp_buf[18];
 
-#if 0    
+#if 1    
     INT32U i, verify_voltage = 0, n_ac_rms = 0;
 
     
@@ -1686,7 +1686,7 @@ void LCD_Time_Refreash()
     sprintf(Headline_disp_buf, "   %04d %02x:%02x:%02x", ac_rms, g_rtc_time[2], g_rtc_time[1], g_rtc_time[0]);
 #endif
 
-#if 1
+#if 0
     sprintf(Headline_disp_buf, "        %02x:%02x:%02x", g_rtc_time[2], g_rtc_time[1], g_rtc_time[0]);
 #endif
 
