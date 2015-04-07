@@ -7,7 +7,7 @@ static   OS_STK      App_TaskKeyStk[APP_CFG_TASK_KEY_STK_SIZE];
 
 INT32U g_power_state;
 
-INT32U g_pow_count;  //¼ì²â107
+INT32U g_ac_count;  //¼ì²â107
 //INT32U g_ac_sb1_count;  //¼ì²â101ÊÐµç
 
 INT32U mseconds;
@@ -506,7 +506,7 @@ static  void  App_TaskStart (void *p_arg)
     //Mem_Init();                                                 /* Init mem mgmt module.                                    */
     MEM_Init();
 
-    g_pow_count = 0;
+    g_ac_count = 0;
     //g_ac_sb1_count = 0;
     jdq_timer = 0;
 
@@ -525,9 +525,9 @@ static  void  App_TaskStart (void *p_arg)
     //display_map((unsigned char *)lcd_disp_buf);
 
     //while(1)
-    {
+    //{
     //    OSTimeDly(1);
-    }
+    //}
 
 #if (OS_TASK_STAT_EN > 0)
     OSStatInit();                                               /* Determine CPU capacity                                   */
@@ -569,11 +569,7 @@ static  void  App_TaskStart (void *p_arg)
 
     g_scount = 0;
 
-#if 1 //»ªÐÖ
-    //g_sys_conf.voltageFixCoe = 11000;
-
     DEBUG_LED_OFF();
-#endif
 
     AUTO_Test();
 
@@ -638,7 +634,7 @@ static  void  App_TaskStart (void *p_arg)
 
 #if 0
         /* ¼ì²â½Ó´¥Æ÷×´Ì¬ */
-        if(g_pow_count) //»ªÐÖ
+        if(g_ac_count) //»ªÐÖ
         {
             g_sys_conf.SysRunStatus |= SYS_RELAY_ON_FLAG;
         }
@@ -676,7 +672,7 @@ static  void  App_TaskStart (void *p_arg)
 
 #if 1
             /* ¼ì²â½Ó´¥Æ÷×´Ì¬ */
-            if(g_pow_count) //»ªÐÖ
+            if(g_ac_count) //»ªÐÖ
             {
                 g_sys_conf.SysRunStatus |= SYS_RELAY_ON_FLAG;
             }
@@ -813,7 +809,7 @@ static  void  App_TaskStart (void *p_arg)
 
 #if 1
             /* ¼ì²â½Ó´¥Æ÷×´Ì¬ */
-            if(g_pow_count) //»ªÐÖ
+            if(g_ac_count) //»ªÐÖ
             {
                 g_sys_conf.SysRunStatus |= SYS_RELAY_ON_FLAG;
 
@@ -867,7 +863,7 @@ static  void  App_TaskStart (void *p_arg)
                     {
                         g_main_mos_broken_test = FALSE;
                         
-                        if(0 == g_pow_count)
+                        if(0 == g_ac_count)
                         {
                             g_sys_conf.main_mos_broken = TRUE;
 
@@ -945,7 +941,7 @@ static  void  App_TaskStart (void *p_arg)
                     {
 #if 1
                         /* ¼ì²â½Ó´¥Æ÷×´Ì¬ */
-                        if(g_pow_count) //»ªÐÖ
+                        if(g_ac_count) //»ªÐÖ
                         {
                             g_sys_conf.SysRunStatus |= SYS_RELAY_ON_FLAG;
                         }
@@ -1050,7 +1046,7 @@ TASK_DROPED_PROC:
                  g_power_state = SYS_DROPED;
                  g_droping_power_on_time = 0;
                  //g_ac_sb1_count  = 0; //»ªÐÖ
-                 g_pow_count = 0; 
+                 g_ac_count = 0; 
 
                  if(g_sys_conf.SysRunStatus & SYS_DROP_ACTION)
                  {
@@ -1086,10 +1082,6 @@ TASK_DROPED_PROC:
             break;
         case SYS_DROPED:
         {
-#if 0 //»ªÐÖ            
-            if(g_ac_sb1_count)
-#endif
-
             if((g_sys_conf.voltageFixCoe * ac_rms) > AC_POWER_RECOVER_RMS)
             {
                 g_droping_power_on_time++;

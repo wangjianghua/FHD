@@ -463,20 +463,20 @@ void EXTI0_IRQHandler(void)
         {
             g_uptime_bak = g_last_uptime;
             g_last_uptime = OSTime;
-            //g_pow_count = 30;
+            //g_ac_count = 30;
         }
         else if(((OSTime - g_uptime_bak)%20) < 2)
         {
             //g_uptime_bak = g_last_uptime;
             g_last_uptime = OSTime;
-            //g_pow_count = 30;
+            //g_ac_count = 30;
         }
         else
         {
             g_uptime_bak = OSTime;
         }
 
-        g_pow_count = 30;
+        g_ac_count = 30;
 
         if(g_freq_count > 798)
         {

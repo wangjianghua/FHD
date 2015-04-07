@@ -175,14 +175,9 @@ void  App_TCBInitHook (OS_TCB *ptcb)
 #if OS_TIME_TICK_HOOK_EN > 0
 void  App_TimeTickHook (void)
 {
-    if(g_pow_count)
+    if(g_ac_count)
     {
-        g_pow_count--;
-        //LED_HD_OFF();
-    }
-    else
-    {
-        //LED_HD_ON();
+        g_ac_count--;
     }
 
 #if (SELF_POWER_EN > 0u)
@@ -202,9 +197,11 @@ void  App_TimeTickHook (void)
     g_msec_count++; //ЛЊаж
 #endif    
 
-#if 0 //ЛЊаж
+#if 0 /* ЛЊаж */
     if(g_ac_sb1_count)
+    {
         g_ac_sb1_count--;
+    }
 #endif
 
 #if (uC_PROBE_OS_PLUGIN > 0) && (OS_PROBE_HOOKS_EN > 0)

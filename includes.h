@@ -415,8 +415,8 @@ struct RTCCounterValue
 extern uint16_t ADC_RegularConvertedValueTab[2][AD_SAMPLE_TIMES_PER_PERIOD];
 extern const unsigned char lcd_disp_buf_welcome[LCD_DISP_BUF_SIZE];
 extern INT32U   g_last_uptime;
-extern INT32U g_pow_count;
-extern INT32U g_ac_sb1_count;
+extern INT32U g_ac_count;
+//extern INT32U g_ac_sb1_count;
 extern unsigned char g_rtc_time[7];
 extern unsigned char lcd_disp_buf[LCD_YSIZE / 8][LCD_XSIZE];
 extern INT32U g_droping_timestamp;
