@@ -108,7 +108,7 @@ void  App_TaskEndTick (void *p_arg)
     {     
         if((SYS_DROPED != g_power_state) && (SYS_AUTH_ERROR != g_power_state))
         {
-#ifndef DEBUG_LED
+#ifndef CFG_USE_DEBUG_LED
             LED_UART_OFF(); //华兄
 #endif            
 
@@ -275,7 +275,7 @@ static  void  App_TaskPoll (void *p_arg)
 
                     g_power_state = SYS_AUTH_ERROR;
 
-#ifndef DEBUG_LED
+#ifndef CFG_USE_DEBUG_LED
                     LED_UART_TOGGLE();
 #endif                    
 
@@ -569,8 +569,6 @@ static  void  App_TaskStart (void *p_arg)
 
     g_scount = 0;
 
-    DEBUG_LED_OFF();
-
     AUTO_Test();
 
 #if 0
@@ -650,9 +648,7 @@ static  void  App_TaskStart (void *p_arg)
         {            
             jdq_timer--;
             if(jdq_timer == 0)
-            {
-                //DEBUG_LED_OFF();
-                
+            {                
                 JDQ_OFF();
             }
         }
@@ -887,9 +883,7 @@ static  void  App_TaskStart (void *p_arg)
                     if(OK == App_Check_Self_Power()) //须校准时间日期，方有效
                     {
                         if(1) //华兄
-                        {   
-                            //DEBUG_LED_ON();
-                        
+                        {                           
                             JDQ_ON();
                             jdq_timer = JDO_ON_ACT_TIME;
                             MEM_SaveSelfEvent(0);
@@ -907,9 +901,7 @@ static  void  App_TaskStart (void *p_arg)
                         if(0 == g_power_check_count)
                         {
                             g_power_check_flag = FALSE;
-                            
-                            //DEBUG_LED_ON();
-                            
+                                                        
                             JDQ_ON();
                             jdq_timer = JDO_ON_ACT_TIME;
                             MEM_SaveSelfEvent(0);
@@ -968,9 +960,7 @@ static  void  App_TaskStart (void *p_arg)
                             if(RELAY_FORWARD_SWITCH_ON == g_relay_switch)
                             {
                                 if((hclk_freq > 0) && (hclk_freq <= 2))
-                                {
-                                    //DEBUG_LED_ON();
-                                    
+                                {                                    
                                     //电源恢复正常
                                     Relay_Keep_Mode(RELAY_SWITCH_OFF);
                                     g_sys_conf.SysRunStatus &= (~SYS_DROP_ACTION);
@@ -983,9 +973,7 @@ static  void  App_TaskStart (void *p_arg)
                             else
                             {
                                 if((hclk_freq > 10) && (hclk_freq <= 12))
-                                {
-                                    //DEBUG_LED_ON();
-                                    
+                                {                                    
                                     //电源恢复正常
                                     Relay_Keep_Mode(RELAY_SWITCH_OFF);
                                     g_sys_conf.SysRunStatus &= (~SYS_DROP_ACTION);
@@ -994,14 +982,7 @@ static  void  App_TaskStart (void *p_arg)
                                     MEM_SaveDropEvent(OK);
                                     break;
                                 }
-                            }
-
-#ifdef DEBUG_LED
-                            if(g_droping_power_on_time > 35) //华兄
-                            {
-                                //DEBUG_LED_ON();
-                            }
-#endif                            
+                            }          
                         }
                         else
                         {

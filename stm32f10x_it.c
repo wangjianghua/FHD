@@ -585,12 +585,6 @@ void EXTI15_10_IRQHandler(void)
 
             GUI_X_StoreKey(exit_s);
 
-            DEBUG_LED_OFF();
-
-#if 0            
-            LED_UART_TOGGLE();
-#endif
-
             EXTI_ClearITPendingBit(exit_s);
         }
     }
@@ -622,7 +616,7 @@ void USART_IRQProc(UART_CCB  *uccb, USART_TypeDef * USARTx)
         //可以考虑加错误统计
     } 
     
-#ifndef DEBUG_LED
+#ifndef CFG_USE_DEBUG_LED
     LED_UART_ON();
 #endif
   }
@@ -641,7 +635,7 @@ void USART_IRQProc(UART_CCB  *uccb, USART_TypeDef * USARTx)
         USART_ITConfig(USARTx, USART_IT_TXE, DISABLE);
     }
 
-#ifndef DEBUG_LED
+#ifndef CFG_USE_DEBUG_LED
     LED_UART_ON();
 #endif	
   }

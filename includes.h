@@ -249,14 +249,16 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 }
 
 /* ЛЊаж */
-//#define DEBUG_LED
+//#define CFG_USE_DEBUG_LED
 
-#ifdef DEBUG_LED
+#ifdef CFG_USE_DEBUG_LED
 #define DEBUG_LED_ON()       LED_UART_ON()
 #define DEBUG_LED_OFF()      LED_UART_OFF()
+#define DEBUG_LED_TOGGLE()   LED_UART_TOGGLE()
 #else
 #define DEBUG_LED_ON()       
-#define DEBUG_LED_OFF()      
+#define DEBUG_LED_OFF()  
+#define DEBUG_LED_TOGGLE()
 #endif
 
 #endif
