@@ -108,12 +108,12 @@ void  App_TaskEndTick (void *p_arg)
     {     
         if((SYS_DROPED != g_power_state) && (SYS_AUTH_ERROR != g_power_state))
         {
-#ifndef CFG_USE_DEBUG_LED
-            LED_UART_OFF(); //华兄
-#endif            
-
             End_tick_check();    
         }
+
+#ifndef CFG_USE_DEBUG_LED
+        LED_UART_OFF(); //华兄
+#endif
 
         OSTimeDly(OS_TICKS_PER_SEC / 50);
     }
@@ -140,16 +140,23 @@ U32 send_test_cmd(UCHAR * cmd_buf, USHORT cmd_len)
     return End_send(p_Msg);
 }
 
-static void App_TaskKey(void *parg)
+static void App_TaskKey(void *p_arg)
 {
     unsigned int key_val;
+    
+
+    (void)p_arg;
+    
     while(1)
     {
         key_val = GUI_X_WaitKey();
-        if((g_power_state != SYS_DROPED) && (SYS_AUTH_ERROR != g_power_state))
+        
+        if((SYS_DROPED != g_power_state) && (SYS_AUTH_ERROR != g_power_state))
         {
             displayTimerCounter = LCD_DISPLAY_TIME_SEC;
+            
             LCD_On(); 
+            
             GUI_Key_Proc(key_val);
         }
     }
@@ -242,10 +249,10 @@ int App_Check_Self_Power(void)
 
 static  void  App_TaskPoll (void *p_arg)
 {
+    (void)p_arg;
+    
     while(1)
     {        
-               
-        //LCD_Time_Refreash();
         OSTimeDlyHMSM(0,0,0,1000);
 
         RTC_ReadTime(g_rtc_time);
@@ -257,7 +264,9 @@ static  void  App_TaskPoll (void *p_arg)
         if((Bcd2HexChar(g_rtc_time[HOUR_POS])%8) == 0 )
         {
             if((g_rtc_time[MIN_POS] == 1) && (g_rtc_time[SEC_POS] == 0x17))
+            {
                 AUTO_Test();
+            }
         }
 
         if(AUTO_Getsar() != 0x03)
@@ -265,6 +274,7 @@ static  void  App_TaskPoll (void *p_arg)
             g_sys_conf.SysSwitch |= SYS_WARNING_MASK; //华兄
                 
             g_scount++;
+            
             if(g_scount > (3600 * 21))
             {
                 while(1)
@@ -273,11 +283,9 @@ static  void  App_TaskPoll (void *p_arg)
 
                     RTC_ReadTime(g_rtc_time);
 
-                    g_power_state = SYS_AUTH_ERROR;
+                    LED_RUN_TOGGLE(); //华兄
 
-#ifndef CFG_USE_DEBUG_LED
-                    LED_UART_TOGGLE();
-#endif                    
+                    g_power_state = SYS_AUTH_ERROR;                  
 
                     AUTO_Test();
 
@@ -285,9 +293,10 @@ static  void  App_TaskPoll (void *p_arg)
                     {
                         g_power_state = SYS_POWER_ON;
                         g_scount = 0;
+                        LED_RUN_OFF(); //华兄
                         CPU_IntDis();
                         while(1);
-                        break;
+                        //break;
                     }
                 }
             }
@@ -301,9 +310,6 @@ static  void  App_TaskPoll (void *p_arg)
 
         if(SYS_DROPED != g_power_state)
         {
-
-            //send_test_cmd("Hello world", 11);
-
             GUI_Sec_Refresh();
 
             LED_RUN_TOGGLE();
@@ -311,20 +317,13 @@ static  void  App_TaskPoll (void *p_arg)
             if(displayTimerCounter)
             {
                 displayTimerCounter--;
-                if(displayTimerCounter == 0)
+                
+                if(0 == displayTimerCounter)
                 {
                     LCD_Off();
                 }
             }
-
-            //if(g_rtc_time[YEAR_POS] >= 0x12)
-            {
-            //    while(1);
-            }
-            
         }
-
-        
     }
 }
 
@@ -584,7 +583,7 @@ static  void  App_TaskStart (void *p_arg)
 
                 g_power_state = SYS_AUTH_ERROR;
 
-                LED_HD_TOGGLE();
+                LED_RUN_TOGGLE();
 
                 //AUTO_Test();
 
@@ -1087,6 +1086,9 @@ TASK_DROPED_PROC:
         case SYS_AUTH_ERROR:
             LCM_PWR_OFF();
             LCD_Off();
+
+            LED_PWR_OFF(); //华兄
+            LED_HD_OFF();            
             break;            
         }
 
@@ -1102,9 +1104,6 @@ TASK_DROPED_PROC:
 
 int  main(void)
 {
-    CPU_INT08U  err;
-    
-    
     CPU_IntDis();
 
     /* Set the Vector Table base location at APPLICATION_ADDRESS */ 

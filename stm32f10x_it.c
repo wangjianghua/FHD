@@ -279,7 +279,7 @@ void TIM2_IRQHandler(void)
     }
 #endif
 
-    if(g_power_state == SYS_POWER_STEADY)
+    if(SYS_POWER_STEADY == g_power_state)
     {
         cnt  = (AD_SAMPLE_TIMES_PER_PERIOD*2 - DMA1_Channel1->CNDTR);
 
@@ -454,7 +454,7 @@ void EXTI0_IRQHandler(void)
     {
         /* Toggle LED1 */
 
-        if((g_power_state == SYS_POWER_ON) || (g_power_state == SYS_DROPED))
+        if((SYS_POWER_ON == g_power_state) || (SYS_DROPED == g_power_state))
         {
             g_uptime_bak = g_last_uptime;
             g_last_uptime = OSTime;
