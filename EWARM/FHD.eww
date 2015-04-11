@@ -2,7 +2,7 @@
 
 <workspace>
   <project>
-    <path>$WS_DIR$\zn_fhd_02.ewp</path>
+    <path>$WS_DIR$\FHD.ewp</path>
   </project>
   <batchBuild/>
 </workspace>
