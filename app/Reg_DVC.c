@@ -659,7 +659,7 @@ int32 reg_gpm650_conf_read(int32 reg_addr, int32 reg_num, uint8 resp[])
     }
     else if((reg_addr == MODBUS_CONF4_ADDR) && (reg_num == 2))
     {
-        INT32U i, g_verify_voltage = 0, n_ac_rms = 0;
+        INT32U g_verify_voltage = 0, n_ac_rms = 0;
 
         
         for(i = 0; i < 32; i++)
@@ -672,6 +672,18 @@ int32 reg_gpm650_conf_read(int32 reg_addr, int32 reg_num, uint8 resp[])
         g_verify_voltage = (g_sys_conf.voltageFixCoe * n_ac_rms)/1000;
         resp_num += mb_int_to_byte(presp_buf + resp_num, g_verify_voltage);
     }
+    else if((reg_addr == MODBUS_CONF5_ADDR) && (reg_num == 5)) //ЛЊаж
+    {
+        for(i = 0; i < SYS_VER_LEN; i++)
+        {
+            resp_num += mb_char_to_byte(presp_buf + resp_num, SYS_HARDWARE_VER[i]);
+        }
+
+        for(i = 0; i < SYS_VER_LEN; i++)
+        {
+            resp_num += mb_char_to_byte(presp_buf + resp_num, SYS_SOFTWARE_VER[i]);
+        }        
+    }    
     else
 	{
 		error_code = MODBUS_ADDR_ERR;
@@ -723,7 +735,7 @@ int32 reg_gpm650_conf_write(int32 reg_addr, int32 reg_num, const uint8 req[])
 	} 
     else if((reg_addr == MODBUS_CONF4_ADDR) )
     {
-        INT32U i, g_verify_voltage = 0, n_ac_rms = 0;
+        INT32U g_verify_voltage = 0, n_ac_rms = 0;
 
         
         req_num += mb_byte_to_float(preq_buf + req_num, &g_verify_voltage);	

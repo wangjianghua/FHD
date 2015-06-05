@@ -1,12 +1,11 @@
-
-
 #include "includes.h"
-
 #include "e2prom.h"
 
 
 #define   E2P_SDA_PORT   GPIOB //ЛЊаж
 #define   E2P_SDA_PIN    GPIO_Pin_11
+
+#define MAX_E2PROM_TIMEOUT     10
 
 
 #if 1
@@ -234,7 +233,7 @@ unsigned char E2promWriteByte(unsigned char data)
 
     while(GPIO_ReadInputDataBit(E2P_SDA_PORT, E2P_SDA_PIN))
     {
-        if(wait++ > 5000)
+        if(wait++ > MAX_E2PROM_TIMEOUT)
         {
             E2PErrIndication=1;
             break;
@@ -277,7 +276,7 @@ unsigned char E2_ReadByte(unsigned short addr)
         E2PErrIndication = 0;
         CLR_WatchDog();
 
-        if(j++ > 1000)
+        if(j++ > MAX_E2PROM_TIMEOUT)
         {
 
             E2PErrIndication = 1;
@@ -326,7 +325,7 @@ void E2_WriteByte(unsigned short addr,unsigned char nContent)
     {
         E2PErrIndication = 0;
         
-        if(j++ > 1000)
+        if(j++ > MAX_E2PROM_TIMEOUT)
         {
             E2PErrIndication = 1;
             E2P_WP_SET();
@@ -359,7 +358,7 @@ void E2promCheckEnd()
 
         //_clr_wdt();
 
-        if(j++ > 1000)
+        if(j++ > MAX_E2PROM_TIMEOUT)
 
         {
 
@@ -408,7 +407,7 @@ void E2promReadBuffer(unsigned short addr,unsigned char *data,unsigned short len
 
         CLR_WatchDog();
 
-        if(j++ > 1000)
+        if(j++ > MAX_E2PROM_TIMEOUT)
 
         {
 
@@ -493,7 +492,7 @@ void E2promWrite_Page(unsigned short addr,unsigned char *data,unsigned char len)
 
         //_clr_wdt();
 
-        if(j++ > 1000)
+        if(j++ > MAX_E2PROM_TIMEOUT)
 
         {
 

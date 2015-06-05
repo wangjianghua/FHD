@@ -753,10 +753,9 @@ extern const GUI_FONT GUI_FontTable;
  */
 extern unsigned char lcd_disp_buf[LCD_YSIZE / 8][LCD_XSIZE];
 
-void GUI_Init();
+void GUI_Init(void);
 void LCD_On(void);
 void LCD_Off(void);
-void LCD_FillRect(int x0, int y0, int x1, int y1);
 void GUI_DispStringAt(const char GUI_UNI_PTR *s, int x, int y);
 void GUI_DispRevStringAt(const char GUI_UNI_PTR *s, int x, int y);
 

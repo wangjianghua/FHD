@@ -536,7 +536,7 @@ static  void  App_TaskStart (void *p_arg)
 
     Relay_Keep_Mode(RELAY_SWITCH_OFF);
     
-#if 1 //华兄   
+#ifdef CFG_USE_MAIN_JDQ //华兄   
     MAIN_MOS_CHECK_JDQ_ON(); 
 
     MAIN_MOS_OFF();
@@ -812,7 +812,9 @@ static  void  App_TaskStart (void *p_arg)
 
                 if((0 == g_main_mos_check_jdq_on_time) && (g_main_mos_delay_on_time < 15)) //500ms
                 {
+#ifdef CFG_USE_MAIN_JDQ                    
                     MAIN_MOS_ON();
+#endif
 
                     g_main_mos_delay_on_time++;
 
@@ -820,7 +822,9 @@ static  void  App_TaskStart (void *p_arg)
                     {
                         if(FALSE == g_sys_conf.main_mos_broken) //主MOS管坏了，不断开主电路继电器。否则，会断开 
                         {
+#ifdef CFG_USE_MAIN_JDQ                            
                             MAIN_MOS_CHECK_JDQ_OFF();
+#endif
                         }
 
                         g_main_mos_broken_test = TRUE;
@@ -841,8 +845,10 @@ static  void  App_TaskStart (void *p_arg)
                     
                     if(100 == g_main_mos_delay_off_time)
                     {
+#ifdef CFG_USE_MAIN_JDQ                        
                         MAIN_MOS_CHECK_JDQ_ON();
                         MAIN_MOS_OFF();
+#endif                        
                     }
                 }
             }            

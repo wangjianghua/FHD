@@ -37,6 +37,7 @@
 #define		MODBUS_CONF2_ADDR		1000	    //場硉敵湔ん華硊
 #define		MODBUS_CONF3_ADDR		2000	    //場硉敵湔ん華硊
 #define		MODBUS_CONF4_ADDR		3000		//場硉敵湔ん華硊
+#define		MODBUS_CONF5_ADDR		3500		//場硉敵湔ん華硊
 #define		MODBUS_CONF_SIZE		4000
 
 

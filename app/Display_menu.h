@@ -44,6 +44,8 @@
 #define SELF_POWER_ON_TIME_LOW   9
 #endif
 
+#define SYS_VER_LEN              5
+
 typedef enum //ЛЊаж
 {
     enum_pwd_0,
@@ -121,6 +123,8 @@ typedef struct _disp_menu_item_
     FORM_PROC_PTR event_proc;
 } LCD_FORM, *P_LCD_FORM;
 
+extern const char SYS_HARDWARE_VER[];
+extern const char SYS_SOFTWARE_VER[];
 extern BOOL g_pwd_flag; //ЛЊаж
 extern enum_pwd_item g_new_pwd[7], g_pwd[6];
 

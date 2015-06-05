@@ -637,6 +637,22 @@ LCD_DRAWMODE LCD_SetDrawMode(LCD_DRAWMODE dm) {
 
 /*********************************************************************
 *
+*       LCD_FillRect
+*/
+void LCD_FillRect(int x0, int y0, int x1, int y1) {
+  /* Perform clipping and check if there is something to do */
+  CLIP_X();
+  if (x1<x0)
+    return;
+  CLIP_Y();
+  if (y1<y0)
+    return;
+  /* Call driver to draw */
+  LCD_L0_FillRect(x0,y0,x1,y1);
+}
+
+/*********************************************************************
+*
 *       LCD_DrawBitmap
 */
 void LCD_DrawBitmap(int x0, int y0, int xsize, int ysize, int xMul, int yMul,
@@ -747,22 +763,6 @@ void LCD_DrawBitmap(int x0, int y0, int xsize, int ysize, int xMul, int yMul,
       }
     }
   }
-}
-
-/*********************************************************************
-*
-*       LCD_FillRect
-*/
-void LCD_FillRect(int x0, int y0, int x1, int y1) {
-  /* Perform clipping and check if there is something to do */
-  CLIP_X();
-  if (x1<x0)
-    return;
-  CLIP_Y();
-  if (y1<y0)
-    return;
-  /* Call driver to draw */
-  LCD_L0_FillRect(x0,y0,x1,y1);
 }
 
 /*********************************************************************

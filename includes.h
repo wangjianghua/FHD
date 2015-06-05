@@ -82,6 +82,8 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 
 #define SYS_PWD_LEN         7 //华兄
 
+#define CFG_USE_MAIN_JDQ //华兄
+
 #define REV_OPERATION_EN   0u //华兄
 
 #define SELF_POWER_EN      0u //华兄

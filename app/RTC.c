@@ -1,5 +1,6 @@
 #include "includes.h"
 
+
 #define RTC_IIC_ADDR 0xD0
 
 #if 0
@@ -12,6 +13,7 @@
 
 #endif
 
+#define MAX_RTC_TIMEOUT  10
 
 void RTC_SomeNOP(void)
 {
@@ -192,7 +194,7 @@ unsigned char RTC_Write8Bit(unsigned char data)
 
     while(GPIO_ReadInputDataBit(RTC_SDA_PORT, RTC_SDA_PIN))
     {
-        if(wait++ > 5000)
+        if(wait++ > MAX_RTC_TIMEOUT)
         {
             ErrIndication=1;
             break;
@@ -225,7 +227,7 @@ unsigned char RTC_ReadByte(unsigned short addr)
     {
         CLR_WatchDog();
 
-        if(j++ > 1000)
+        if(j++ > MAX_RTC_TIMEOUT)
         {
             return ERROR;
 
@@ -264,7 +266,7 @@ void RTC_WriteByte(unsigned short addr,unsigned char nContent)
 
     do
     {
-        if(j++ > 1000)
+        if(j++ > MAX_RTC_TIMEOUT)
         {
             return;
         }
@@ -300,7 +302,7 @@ void RTC_ReadBuffer(unsigned short addr,unsigned char *data,unsigned char len)
 
         CLR_WatchDog();
 
-        if(j++ > 1000)
+        if(j++ > MAX_RTC_TIMEOUT)
         {
             return;
 
@@ -355,7 +357,7 @@ void RTC_WriteBuffer(unsigned short addr,unsigned char *data,unsigned char len)
    
     do
     {
-        if(j++ > 1000)
+        if(j++ > MAX_RTC_TIMEOUT)
         {
             //E2P_WP_SET();
             return;
