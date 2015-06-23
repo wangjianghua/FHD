@@ -274,7 +274,6 @@ unsigned char E2_ReadByte(unsigned short addr)
     {
 
         E2PErrIndication = 0;
-        CLR_WatchDog();
 
         if(j++ > MAX_E2PROM_TIMEOUT)
         {
@@ -404,8 +403,6 @@ void E2promReadBuffer(unsigned short addr,unsigned char *data,unsigned short len
     {
 
         E2PErrIndication = 0;
-
-        CLR_WatchDog();
 
         if(j++ > MAX_E2PROM_TIMEOUT)
 

@@ -115,6 +115,8 @@ void  App_TaskEndTick (void *p_arg)
         LED_UART_OFF(); //华兄
 #endif
 
+        clr_wdt(); //华兄
+
         OSTimeDly(OS_TICKS_PER_SEC / 50);
     }
 }
@@ -536,10 +538,12 @@ static  void  App_TaskStart (void *p_arg)
 
     Relay_Keep_Mode(RELAY_SWITCH_OFF);
     
-#ifdef CFG_USE_MAIN_JDQ //华兄   
-    MAIN_MOS_CHECK_JDQ_ON(); 
+#if (MAIN_JDQ_EN > 0u) //华兄   
+    MAIN_JDQ_ON(); 
 
     MAIN_MOS_OFF();
+#else
+    MAIN_JDQ_OFF();
 #endif
 
     //RTC_Test();
@@ -606,7 +610,10 @@ static  void  App_TaskStart (void *p_arg)
 #endif
 
     LED_OFF(); //华兄
-    LCD_Off();
+    
+    displayTimerCounter = LCD_CHECK_DISP_TIME;
+
+    LCD_On();
     
     while (DEF_TRUE) 
     {
@@ -812,7 +819,7 @@ static  void  App_TaskStart (void *p_arg)
 
                 if((0 == g_main_mos_check_jdq_on_time) && (g_main_mos_delay_on_time < 15)) //500ms
                 {
-#ifdef CFG_USE_MAIN_JDQ                    
+#if (MAIN_JDQ_EN > 0u) //华兄                    
                     MAIN_MOS_ON();
 #endif
 
@@ -822,13 +829,15 @@ static  void  App_TaskStart (void *p_arg)
                     {
                         if(FALSE == g_sys_conf.main_mos_broken) //主MOS管坏了，不断开主电路继电器。否则，会断开 
                         {
-#ifdef CFG_USE_MAIN_JDQ                            
-                            MAIN_MOS_CHECK_JDQ_OFF();
+#if (MAIN_JDQ_EN > 0u) //华兄                            
+                            MAIN_JDQ_OFF();
 #endif
                         }
 
+#if (MAIN_MOS_CHECK_EN > 0u) //华兄
                         g_main_mos_broken_test = TRUE;
                         g_main_mos_broken_test_time = 100; //100ms
+#endif                        
                     }
                 }
             }
@@ -845,14 +854,15 @@ static  void  App_TaskStart (void *p_arg)
                     
                     if(100 == g_main_mos_delay_off_time)
                     {
-#ifdef CFG_USE_MAIN_JDQ                        
-                        MAIN_MOS_CHECK_JDQ_ON();
+#if (MAIN_JDQ_EN > 0u) //华兄                        
+                        MAIN_JDQ_ON();
                         MAIN_MOS_OFF();
 #endif                        
                     }
                 }
             }            
 
+#if (MAIN_MOS_CHECK_EN > 0u) //华兄
             /* 测试主MOS管好坏 */
             if(TRUE == g_main_mos_broken_test)
             {
@@ -874,6 +884,8 @@ static  void  App_TaskStart (void *p_arg)
                     }
                 }
             }          
+#endif
+
 #endif
 
             //diff_num = ADC_get_diff_num();  
@@ -1098,12 +1110,14 @@ TASK_DROPED_PROC:
             break;            
         }
 
+#if (MAIN_MOS_CHECK_EN > 0u) //华兄
         /* 华兄 */
         if(TRUE == g_sys_conf.main_mos_broken)
         {
             MAIN_MOS_BROKEN_ALRAM_ON();
         }         
-              
+#endif
+
         OSTimeDly(1);
     }
 }
@@ -1111,9 +1125,6 @@ TASK_DROPED_PROC:
 int  main(void)
 {
     CPU_IntDis();
-
-    /* Set the Vector Table base location at APPLICATION_ADDRESS */ 
-    NVIC_SetVectorTable(NVIC_VectTab_FLASH, APPLICATION_ADDRESS & (~NVIC_VectTab_FLASH)); //华兄
 
     OSInit();                                                   /* Initialize "uC/OS-II, The Real-Time Kernel"              */
 

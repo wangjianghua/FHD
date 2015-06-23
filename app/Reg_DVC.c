@@ -674,14 +674,23 @@ int32 reg_gpm650_conf_read(int32 reg_addr, int32 reg_num, uint8 resp[])
     }
     else if((reg_addr == MODBUS_CONF5_ADDR) && (reg_num == 5)) //ЛЊаж
     {
+        INT8U sys_ver[SYS_VER_LEN];
+
+
+        memcpy(sys_ver, SYS_HARDWARE_VER, SYS_VER_LEN);
+        
         for(i = 0; i < SYS_VER_LEN; i++)
         {
-            resp_num += mb_char_to_byte(presp_buf + resp_num, SYS_HARDWARE_VER[i]);
+            resp_num += mb_char_to_byte(presp_buf + resp_num, sys_ver[i]);
         }
+
+        memcpy(sys_ver, SYS_SOFTWARE_VER, SYS_VER_LEN);
+
+        sys_ver[SYS_VER_LEN - 1] = get_ver_ftr();
 
         for(i = 0; i < SYS_VER_LEN; i++)
         {
-            resp_num += mb_char_to_byte(presp_buf + resp_num, SYS_SOFTWARE_VER[i]);
+            resp_num += mb_char_to_byte(presp_buf + resp_num, sys_ver[i]);
         }        
     }    
     else

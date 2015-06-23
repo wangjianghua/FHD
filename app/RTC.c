@@ -225,8 +225,6 @@ unsigned char RTC_ReadByte(unsigned short addr)
 
     do
     {
-        CLR_WatchDog();
-
         if(j++ > MAX_RTC_TIMEOUT)
         {
             return ERROR;
@@ -298,10 +296,6 @@ void RTC_ReadBuffer(unsigned short addr,unsigned char *data,unsigned char len)
     
     do
     {
-
-
-        CLR_WatchDog();
-
         if(j++ > MAX_RTC_TIMEOUT)
         {
             return;

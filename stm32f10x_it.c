@@ -344,13 +344,26 @@ void TIM2_IRQHandler(void)
         {
             if(g_sys_conf.SysRunStatus & SYS_RELAY_ON_FLAG)
             {
-#ifdef CFG_USE_MAIN_JDQ                
+#if (MAIN_JDQ_EN > 0u) //华兄  
+
+#if (MAIN_MOS_CHECK_EN > 0u) //华兄
                 if((g_sys_conf.SysSwitch & SYS_DROP_KEEP_MASK) && //晃电保护开关打开
                    (FALSE == g_sys_conf.main_mos_broken) && //主MOS管正常
-                   (RESET == MAIN_MOS_CHECK_JDQ_STAT())) //主电路继电器关闭
+                   (RESET == MAIN_JDQ_STAT())) //主电路继电器关闭
 #else
                 if((g_sys_conf.SysSwitch & SYS_DROP_KEEP_MASK) && //晃电保护开关打开
+                   (RESET == MAIN_JDQ_STAT())) //主电路继电器关闭
+#endif
+
+#else
+
+#if (MAIN_MOS_CHECK_EN > 0u) //华兄
+                if((g_sys_conf.SysSwitch & SYS_DROP_KEEP_MASK) && //晃电保护开关打开
                    (FALSE == g_sys_conf.main_mos_broken)) //主MOS管正常
+#else
+                if((g_sys_conf.SysSwitch & SYS_DROP_KEEP_MASK)) //晃电保护开关打开
+#endif
+
 #endif
                 {
                     //电容放电继电器吸合

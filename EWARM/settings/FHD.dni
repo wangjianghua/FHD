@@ -9,7 +9,7 @@ TriggerName=main
 LimitSize=0
 ByteLimit=50
 [DebugChecksum]
-Checksum=765290303
+Checksum=-197576873
 [JLinkDriver]
 CStepIntDis=_ 0
 [Exceptions]

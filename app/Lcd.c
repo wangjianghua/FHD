@@ -407,10 +407,12 @@ void lcd_disp_map(unsigned char *pmap) //pmap是图片数据首地址
 
 void lcd_init(void)
 {
+    clr_wdt(); //华兄
+    
     lcd_port_init();
 
     LCM_PWR_ON();
-    LCD_On();    
+    LCD_Off();    
 
     lcd_delay(100);
 
@@ -446,6 +448,8 @@ void lcd_init(void)
     lcd_delay(100);
 
     lcd_clr_scr();
+
+    clr_wdt(); //华兄
 }
 
 #endif

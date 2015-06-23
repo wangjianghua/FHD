@@ -21,7 +21,7 @@ const char monthDays[]= {31,28,31,30,31,30,31,31,30,31,30,31};
 
 const char SYS_HARDWARE_VER[] = {0x15, 0x01, 0x25, 0x20, 0x00};
 
-const char SYS_SOFTWARE_VER[] = {0x15, 0x06, 0x05, 0x25, 0x00};
+const char SYS_SOFTWARE_VER[] = {0x15, 0x06, 0x23, 0x26, 0x00};
 
 const LCD_FORM form_list[MAX_FORM_NUM] =
 {
@@ -458,9 +458,10 @@ int LCD_disp_self_form(unsigned int key_event, unsigned int form_msg)
 int LCD_disp_about_form(unsigned int key_event, unsigned int form_msg)
 {
     static unsigned char sn = 0;
-    
     unsigned char temp[8], Headline_disp_buf[18], res = OK;
     unsigned char s_p, crc, t_sn;
+    unsigned char ver_ftr;
+    
    
     if(form_msg == FORM_MSG_RERRESH)
     {        
@@ -496,7 +497,9 @@ int LCD_disp_about_form(unsigned int key_event, unsigned int form_msg)
                 SYS_SOFTWARE_VER[3],
                 SYS_SOFTWARE_VER[4]);
 
-    sprintf(&Headline_disp_buf[14], "%02x", AUTO_Getsar()); //ЛЊаж
+    ver_ftr = get_ver_ftr();
+
+    sprintf(&Headline_disp_buf[14], "%02x", ver_ftr); //ЛЊаж
     
     GUI_DispStringAt(Headline_disp_buf, 0, 16); 
     

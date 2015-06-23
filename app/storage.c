@@ -45,6 +45,8 @@ void MEM_para_init()
 #if (MULTI_MODE_EN > 0u)    
     g_sys_conf.mode = enum_mode_0; //ЛЊаж
 #endif    
+
+    g_sys_conf.ver_ftr = 0;
 }
 
 void MEM_Init()

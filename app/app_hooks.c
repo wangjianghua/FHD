@@ -71,9 +71,7 @@ void  App_TaskDelHook (OS_TCB *ptcb)
 
 #if OS_VERSION >= 251
 void  App_TaskIdleHook (void)
-{
-    IWDG_ReloadCounter();
-    
+{    
     if(SYS_DROPED != g_power_state)
         lcd_disp_map((unsigned char *)lcd_disp_buf);
 }

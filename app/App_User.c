@@ -3,12 +3,6 @@
 static  OS_EVENT  *KeySem;
 unsigned int KeyPressed;
 
-void CLR_WatchDog()
-{
-    WWDG_SetCounter(0xFF);
-    WWDG_ClearFlag();
-}
-
 #if 0
 void TRIC1_OFF()
 {
@@ -205,6 +199,19 @@ void  GUI_X_StoreKey (unsigned int k)
     OSSemPost(KeySem);
 }
 
+u8 get_ver_ftr(void)
+{
+    g_sys_conf.ver_ftr = (WDT_EN << VER_FTR_WDT) | (MAIN_JDQ_EN << VER_FTR_MAIN_JDQ) | (MAIN_MOS_CHECK_EN << VER_FTR_MAIN_MOS_CHECK);
 
+    if(0x03 == AUTO_Getsar())
+    {
+        g_sys_conf.ver_ftr |= 1 << VER_FTR_ENC;
+    }
+    else
+    {
+        g_sys_conf.ver_ftr &= ~(1 << VER_FTR_ENC);
+    }
 
+    return (g_sys_conf.ver_ftr);
+}
 

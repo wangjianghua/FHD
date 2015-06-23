@@ -74,15 +74,17 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 #define OK 0
 #define ERROR   0xff
 
-#define APPLICATION_ADDRESS   0x8003000
-
 #define LCD_DISP_BUF_SIZE   1024
 
 #define SYS_SAVE_TIME_LEN   8
 
 #define SYS_PWD_LEN         7 //华兄
 
-#define CFG_USE_MAIN_JDQ //华兄
+#define WDT_EN             1u //华兄
+
+#define MAIN_JDQ_EN        0u //华兄
+
+#define MAIN_MOS_CHECK_EN  0u //华兄
 
 #define REV_OPERATION_EN   0u //华兄
 
@@ -93,6 +95,12 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 #define RTC_CLK_SRC_LSI    0u //华兄
 #define RTC_CLK_SRC_LSE    0u
 #define RTC_CLK_SRC_HSE    1u
+
+#if (WDT_EN > 0u)
+#define clr_wdt()           IWDG_ReloadCounter() //华兄
+#else
+#define clr_wdt()
+#endif
 
 #define MAX_RMS_NUM         8 //华兄
 #define MAX_RMS_DISCRETE    4000u
@@ -113,6 +121,7 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 #define SYS_INIT                4
 #define SYS_AUTH_ERROR          5
 
+#define LCD_CHECK_DISP_TIME     30
 #define LCD_DISPLAY_TIME_SEC   300
 
 #if 0
@@ -280,9 +289,9 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 #define   JDQ_STA()    GPIO_ReadOutputDataBit(GPIOA, GPIO_Pin_0)
 
 /* 华兄 */
-#define MAIN_MOS_CHECK_JDQ_ON()    GPIO_SetBits(GPIOB, GPIO_Pin_5)
-#define MAIN_MOS_CHECK_JDQ_OFF()   GPIO_ResetBits(GPIOB, GPIO_Pin_5)
-#define MAIN_MOS_CHECK_JDQ_STAT()  GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_5)
+#define MAIN_JDQ_ON()    GPIO_SetBits(GPIOB, GPIO_Pin_5)
+#define MAIN_JDQ_OFF()   GPIO_ResetBits(GPIOB, GPIO_Pin_5)
+#define MAIN_JDQ_STAT()  GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_5)
 
 #define MAIN_MOS_ON()         TRIC2_ON()
 #define MAIN_MOS_OFF()        TRIC2_OFF()
@@ -346,6 +355,15 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 
 #endif
 
+typedef enum
+{
+    VER_FTR_ENC = 0,
+    VER_FTR_WDT,
+    VER_FTR_MAIN_JDQ,
+    VER_FTR_MAIN_MOS_CHECK, 
+    MAX_VER_FTR_ITEM = 8
+} VER_FTR;
+
 #define MAX_ERROR_SN       2
 
 typedef struct 
@@ -387,6 +405,8 @@ typedef struct
     unsigned char lastBreakTimeStamp[SYS_SAVE_TIME_LEN];
 
     unsigned char main_mos_broken; //华兄
+
+    unsigned char ver_ftr; //华兄
 
 #if 0
     /* 错误类 */     
@@ -478,5 +498,7 @@ void GUI_Key_Proc(unsigned int k);
 int LCD_disp_keep_form(unsigned int key_event, unsigned int form_msg);
 void aux_res_on(void);
 void aux_res_off(void);
+u8 get_ver_ftr(void);
+
 
 #endif
