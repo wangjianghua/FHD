@@ -430,14 +430,6 @@ void RTC_WriteTime(unsigned char *time)
  *   version: author, date, desc\n 
  */
 
-#if (DEBUG_INFO_PRINT_EN > 0U)
-#define DEBUG_WARN(s)         printf s
-#define DEBUG_PRINT(s)        printf s
-#else
-#define DEBUG_WARN(s)
-#define DEBUG_PRINT(s)           
-#endif
-
 /**
 * @brief  Configures the RTC.
 * @param  None
@@ -549,12 +541,12 @@ void rtc_config(void)
         /* Backup data register value is not correct or not yet programmed (when
            the first time the program is executed) */
            
-        DEBUG_WARN("\r\n\n RTC not yet configured....");
+        DEBUG_WARN(("\r\n\n RTC not yet configured...."));
 
         /* RTC Configuration */
         RTC_Configuration();
 
-        DEBUG_WARN("\r\n RTC configured....");
+        DEBUG_WARN(("\r\n RTC configured...."));
 
         /* Adjust time by values entered by the user on the hyperterminal */
         rtc_adjust_time();
@@ -566,15 +558,15 @@ void rtc_config(void)
         /* Check if the Power On Reset flag is set */
         if (RCC_GetFlagStatus(RCC_FLAG_PORRST) != RESET)
         {
-            DEBUG_WARN("\r\n\n Power On Reset occurred....");
+            DEBUG_WARN(("\r\n\n Power On Reset occurred...."));
         }
         /* Check if the Pin Reset flag is set */
         else if (RCC_GetFlagStatus(RCC_FLAG_PINRST) != RESET)
         {
-            DEBUG_WARN("\r\n\n External Reset occurred....");
+            DEBUG_WARN(("\r\n\n External Reset occurred...."));
         }
 
-        DEBUG_WARN("\r\n No need to configure RTC....");
+        DEBUG_WARN(("\r\n No need to configure RTC...."));
         /* Wait for RTC registers synchronization */
         RTC_WaitForSynchro();
 

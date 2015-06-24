@@ -111,7 +111,7 @@ void  App_TaskEndTick (void *p_arg)
             End_tick_check();    
         }
 
-#ifndef CFG_USE_DEBUG_LED
+#if (DEBUG_LED_EN == 0u)
         LED_UART_OFF(); //华兄
 #endif
 
@@ -484,9 +484,6 @@ static  void  App_TaskStart (void *p_arg)
     cnts  = hclk_freq / (CPU_INT32U)OS_TICKS_PER_SEC;           /* Determine nbr SysTick increments in OS_TICKS_PER_SEC.    */
     OS_CPU_SysTickInit(cnts);                                   /* Init uC/OS periodic time src (SysTick).                  */
 
-    //等待系统稳定
-    //OSTimeDly(1000);
-
     LED_ON(); //华兄
 
     GUI_Init();
@@ -513,23 +510,6 @@ static  void  App_TaskStart (void *p_arg)
 
     JDQ_OFF(); //华兄 
 
-#if 0 //华兄
-    lcd_init();
-#endif
-
-    //GUI_Context.DrawMode = LCD_DRAWMODE_REV;
-    //GUI_Context.Color = GUI_BLACK;
-
-    
-    //display_map((unsigned char *)lcd_disp_buf_welcome);
-    //GUI_DispStringAt("晃电次数: ABCDE", 0, 16);
-    //display_map((unsigned char *)lcd_disp_buf);
-
-    //while(1)
-    //{
-    //    OSTimeDly(1);
-    //}
-
 #if (OS_TASK_STAT_EN > 0)
     OSStatInit();                                               /* Determine CPU capacity                                   */
 #endif
@@ -553,7 +533,6 @@ static  void  App_TaskStart (void *p_arg)
    
     //TRIC1_OFF();
     EXTI15_10_Config();
-    //while(1)OSTimeDly(1);
 
     EXTI0_Config();
 
@@ -575,26 +554,17 @@ static  void  App_TaskStart (void *p_arg)
     AUTO_Test();
 
 #if 0
-    if(AUTO_Getsar() == 0x03)
+    if(0x03 == AUTO_Getsar())
     {
-        if((OK+2) <= (g_hard_v_f = magic_verify(OW_RomID)))
+        if((OK + 2) <= (g_hard_v_f = magic_verify(OW_RomID)))
         {
             while(1)
             {
-                OSTimeDlyHMSM(0,0,2,0);
-
-                //RTC_ReadTime(g_rtc_time);
-
                 g_power_state = SYS_AUTH_ERROR;
 
                 LED_RUN_TOGGLE();
-
-                //AUTO_Test();
-
-                g_power_state = SYS_DROPED;
-
-                //CPU_IntDis();
-                //while(1);              
+                
+                OSTimeDlyHMSM(0, 0, 2, 0);
             }
         }
     }
@@ -827,12 +797,20 @@ static  void  App_TaskStart (void *p_arg)
 
                     if(15 == g_main_mos_delay_on_time) //15ms
                     {
+#if (MAIN_MOS_CHECK_EN > 0u)                        
                         if(FALSE == g_sys_conf.main_mos_broken) //主MOS管坏了，不断开主电路继电器。否则，会断开 
                         {
 #if (MAIN_JDQ_EN > 0u) //华兄                            
                             MAIN_JDQ_OFF();
 #endif
                         }
+#else
+
+#if (MAIN_JDQ_EN > 0u) //华兄                            
+                        MAIN_JDQ_OFF();
+#endif
+
+#endif
 
 #if (MAIN_MOS_CHECK_EN > 0u) //华兄
                         g_main_mos_broken_test = TRUE;

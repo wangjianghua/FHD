@@ -21,7 +21,7 @@ const char monthDays[]= {31,28,31,30,31,30,31,31,30,31,30,31};
 
 const char SYS_HARDWARE_VER[] = {0x15, 0x01, 0x25, 0x20, 0x00};
 
-const char SYS_SOFTWARE_VER[] = {0x15, 0x06, 0x23, 0x26, 0x00};
+const char SYS_SOFTWARE_VER[] = {0x15, 0x06, 0x24, 0x26, 0x00};
 
 const LCD_FORM form_list[MAX_FORM_NUM] =
 {
@@ -1322,7 +1322,7 @@ int LCD_disp_setting_form(unsigned int key_event, unsigned int form_msg)
                 if(reset == TRUE) 
                 {
                     //OSSchedLock();
-                    MEM_para_init();
+                    MEM_Para_Init();
                     E2promWriteBuffer(0, (unsigned char *)&g_sys_conf, sizeof(SYS_CONF));
                     //OSSchedUnlock();                        
                 } 

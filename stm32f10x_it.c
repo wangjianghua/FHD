@@ -67,75 +67,66 @@ void NMI_Handler(void)
 
 #define E2PROM_ERROR_ADDR   248
 
-void hard_fault_handler_c(unsigned int * hardfault_args) 
+void hard_fault_handler_c(unsigned int *hardfault_args) 
 { 
+    unsigned int stacked_r0; 
+    unsigned int stacked_r1; 
+    unsigned int stacked_r2; 
+    unsigned int stacked_r3; 
+    unsigned int stacked_r12; 
+    unsigned int stacked_lr; 
+    unsigned int stacked_pc; 
+    unsigned int stacked_psr; 
+    
 
-unsigned int stacked_r0; 
-unsigned int stacked_r1; 
-unsigned int stacked_r2; 
-unsigned int stacked_r3; 
-unsigned int stacked_r12; 
-unsigned int stacked_lr; 
-unsigned int stacked_pc; 
-unsigned int stacked_psr; 
+    stacked_r0 = (unsigned long)hardfault_args[0]; 
+    stacked_r1 = (unsigned long)hardfault_args[1]; 
+    stacked_r2 = (unsigned long)hardfault_args[2]; 
+    stacked_r3 = (unsigned long)hardfault_args[3]; 
 
-stacked_r0 = ((unsigned long) hardfault_args[0]); 
-stacked_r1 = ((unsigned long) hardfault_args[1]); 
-stacked_r2 = ((unsigned long) hardfault_args[2]); 
-stacked_r3 = ((unsigned long) hardfault_args[3]); 
+    stacked_r12 = (unsigned long)hardfault_args[4]; 
+    stacked_lr = (unsigned long)hardfault_args[5]; 
+    stacked_pc = (unsigned long)hardfault_args[6]; 
+    stacked_psr = (unsigned long)hardfault_args[7]; 
 
-stacked_r12 = ((unsigned long) hardfault_args[4]); 
-stacked_lr = ((unsigned long) hardfault_args[5]); 
-stacked_pc = ((unsigned long) hardfault_args[6]); 
-stacked_psr = ((unsigned long) hardfault_args[7]); 
+    g_sys_conf.error_count++;
+    g_sys_conf.error_sn %= MAX_ERROR_SN;
+    g_sys_conf.error_time[g_sys_conf.error_sn][0] = g_rtc_time[MIN_POS];
+    g_sys_conf.error_time[g_sys_conf.error_sn][1] = g_rtc_time[HOUR_POS];
+    g_sys_conf.error_time[g_sys_conf.error_sn][2] = g_rtc_time[DATE_POS];
+    g_sys_conf.error_time[g_sys_conf.error_sn][3] = g_rtc_time[MONTH_POS];
+    g_sys_conf.error_data[g_sys_conf.error_sn] = stacked_pc;
+    g_sys_conf.error_sn++;
 
-#if 0
-g_sys_conf.error_count++;
-g_sys_conf.error_sn  %=  MAX_ERROR_SN;
-g_sys_conf.error_time[g_sys_conf.error_sn][0] = g_rtc_time[MIN_POS];
-g_sys_conf.error_time[g_sys_conf.error_sn][1] = g_rtc_time[HOUR_POS];
-g_sys_conf.error_time[g_sys_conf.error_sn][2] = g_rtc_time[DATE_POS];
-g_sys_conf.error_time[g_sys_conf.error_sn][3] = g_rtc_time[MONTH_POS];
-g_sys_conf.error_data[g_sys_conf.error_sn] = stacked_pc;
-g_sys_conf.error_sn++;
-#endif //华兄
+    //E2promWriteBuffer(OffsetOf(SYS_CONF, error_count), (unsigned char *)&g_sys_conf.error_count, 38);
 
-//E2promWriteBuffer(OffsetOf(SYS_CONF, error_count), (unsigned char *)&g_sys_conf.error_count, 38);
+    DEBUG_PRINT(("[Hard fault handler]\n")); 
+    DEBUG_PRINT(("R0 = %x\n", stacked_r0)); 
+    DEBUG_PRINT(("R1 = %x\n", stacked_r1)); 
+    DEBUG_PRINT(("R2 = %x\n", stacked_r2)); 
+    DEBUG_PRINT(("R3 = %x\n", stacked_r3)); 
+    DEBUG_PRINT(("R12 = %x\n", stacked_r12)); 
+    DEBUG_PRINT(("LR = %x\n", stacked_lr)); 
+    DEBUG_PRINT(("PC = %x\n", stacked_pc)); 
+    DEBUG_PRINT(("PSR = %x\n", stacked_psr)); 
+    DEBUG_PRINT(("BFAR = %x\n", *((volatile unsigned long *)(0xE000ED38)))); 
+    DEBUG_PRINT(("CFSR = %x\n", *((volatile unsigned long *)(0xE000ED28)))); 
+    DEBUG_PRINT(("HFSR = %x\n", *((volatile unsigned long *)(0xE000ED2C)))); 
+    DEBUG_PRINT(("DFSR = %x\n", *((volatile unsigned long *)(0xE000ED30)))); 
+    DEBUG_PRINT(("AFSR = %x\n", *((volatile unsigned long *)(0xE000ED3C)))); 
 
-#if 0
-printf ("[Hard fault handler]\n"); 
-printf ("R0 = %x\n", stacked_r0); 
-printf ("R1 = %x\n", stacked_r1); 
-printf ("R2 = %x\n", stacked_r2); 
-printf ("R3 = %x\n", stacked_r3); 
-printf ("R12 = %x\n", stacked_r12); 
-printf ("LR = %x\n", stacked_lr); 
-printf ("PC = %x\n", stacked_pc); 
-printf ("PSR = %x\n", stacked_psr); 
-printf ("BFAR = %x\n", (*((volatile unsigned long *)(0xE000ED38)))); 
-printf ("CFSR = %x\n", (*((volatile unsigned long *)(0xE000ED28)))); 
-printf ("HFSR = %x\n", (*((volatile unsigned long *)(0xE000ED2C)))); 
-printf ("DFSR = %x\n", (*((volatile unsigned long *)(0xE000ED30)))); 
-printf ("AFSR = %x\n", (*((volatile unsigned long *)(0xE000ED3C)))); 
-
-exit(0); // terminate 
-#endif
-
-while(1);
-
-
-return; 
+    while(1);
 } 
 
 void HardFault_Handler(void) 
 { 
     //IMPORT hard_fault_handler_c 
+    
     asm("TST LR, #4 \n" /* r2 = address of sFlag */
-    "ITE EQ \n" /* jump over constant */
-    "MRSEQ R0, MSP \n" /* address of sFlag */
-    "MRSNE R0, PSP \n" /* r3 = address of UART1_SR */
-    "B hard_fault_handler_c"); /* sFlag = r0 */
-
+        "ITE EQ \n" /* jump over constant */
+        "MRSEQ R0, MSP \n" /* address of sFlag */
+        "MRSNE R0, PSP \n" /* r3 = address of UART1_SR */
+        "B hard_fault_handler_c"); /* sFlag = r0 */
 } 
 
 #if 0
@@ -634,7 +625,7 @@ void USART_IRQProc(UART_CCB  *uccb, USART_TypeDef * USARTx)
         //可以考虑加错误统计
     } 
     
-#ifndef CFG_USE_DEBUG_LED
+#if (DEBUG_LED_EN == 0u)
     LED_UART_ON();
 #endif
   }
@@ -653,7 +644,7 @@ void USART_IRQProc(UART_CCB  *uccb, USART_TypeDef * USARTx)
         USART_ITConfig(USARTx, USART_IT_TXE, DISABLE);
     }
 
-#ifndef CFG_USE_DEBUG_LED
+#if (DEBUG_LED_EN == 0u)
     LED_UART_ON();
 #endif	
   }

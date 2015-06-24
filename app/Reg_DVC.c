@@ -228,7 +228,7 @@ int32 reg_gpm650_ctrl_operation(int32 reg_addr, int32 reg_val)
 		{
 			if(value == 0XFF00) {				
 				is_success = TRUE;
-                MEM_para_init();
+                MEM_Para_Init();
                 E2promWriteBuffer(0, (unsigned char *)&g_sys_conf, sizeof(SYS_CONF));
 			}
 		}        

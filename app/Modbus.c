@@ -640,7 +640,7 @@ int32 modbus_rtu_process(P_MSG_INFO   pMsg)
 	// length must bigger than sizeof(MODBUS_RTU_HEADER)+crcLen=1+2
 	if(recv_len > 3)
 	{		
-	    if(recv_len > UART_RECEIVE_BUF_SIZE)
+	    if(recv_len > UART_RECV_BUF_SIZE)
 	    {
 	        free_send_buffer(p_SendMsg);
 	        return 0;

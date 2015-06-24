@@ -32,7 +32,7 @@ UCHAR FreeMsgCnt[MAX_MSG_ITEM] =
 
 UART_CCB g_uart_ccb[MAX_COM_PORT];
 
-U8 g_UartRxBuf[UART_RECEIVE_BUF_SIZE];
+U8 g_UartRxBuf[UART_RECV_BUF_SIZE];
 
 MSG_INFO gShortMsgPool[MAX_MSG_SHORT];
 
@@ -149,7 +149,7 @@ P_MSG_INFO alloc_send_buffer(unsigned char type)
         return NULL;
 
    
-    memset(pmsg->msg_buffer, 0xff, UART_RECEIVE_BUF_SIZE );
+    memset(pmsg->msg_buffer, 0xff, UART_RECV_BUF_SIZE );
 
     /* 统计计数递减*/
     //FreeMSGTxCnt --;
@@ -287,7 +287,7 @@ void End_Init(void)
 
         pEndObj->recv_timeout = 0;
 
-        UART_ReceiveData(i, pEndObj->end_recv_buffer, UART_RECEIVE_BUF_SIZE);
+        UART_ReceiveData(i, pEndObj->end_recv_buffer, UART_RECV_BUF_SIZE);
 
         // 所有串口状态转到REVC STATUS
         pEndObj->end_send_status = END_STATUS_IDLE;
@@ -530,9 +530,9 @@ unsigned char End_check_recv(P_END_OBJ pEndObj)
     if(p_uc->gpUartRxReadAddress <= p_uc->gpUartRxAddress)
         pEndObj->receive_len = p_uc->gpUartRxAddress - p_uc->gpUartRxReadAddress;//gIic0RxCnt;
     else
-        pEndObj->receive_len = (USHORT)((ULONG)p_uc->gpUartRxAddress + UART_RECEIVE_BUF_SIZE - (ULONG)p_uc->gpUartRxReadAddress);
+        pEndObj->receive_len = (USHORT)((ULONG)p_uc->gpUartRxAddress + UART_RECV_BUF_SIZE - (ULONG)p_uc->gpUartRxReadAddress);
 
-    if(pEndObj->receive_len > (220))//if(pEndObj->receive_len > (UART_RECEIVE_BUF_SIZE/2))
+    if(pEndObj->receive_len > (220))//if(pEndObj->receive_len > (UART_RECV_BUF_SIZE/2))
     {
         pEndObj->recv_timeout = 0;
         return OK;

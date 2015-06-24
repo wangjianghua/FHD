@@ -260,9 +260,9 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 }
 
 /* 华兄 */
-//#define CFG_USE_DEBUG_LED
+#define DEBUG_LED_EN         0u
 
-#ifdef CFG_USE_DEBUG_LED
+#if (DEBUG_LED_EN > 0u)
 #define DEBUG_LED_ON()       LED_UART_ON()
 #define DEBUG_LED_OFF()      LED_UART_OFF()
 #define DEBUG_LED_TOGGLE()   LED_UART_TOGGLE()
@@ -272,6 +272,17 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 #define DEBUG_LED_TOGGLE()
 #endif
 
+#endif
+
+/* 华兄 */
+#define DEBUG_INFO_PRINT_EN   0u
+
+#if (DEBUG_INFO_PRINT_EN > 0u)
+#define DEBUG_WARN(s)         printf s
+#define DEBUG_PRINT(s)        printf s
+#else
+#define DEBUG_WARN(s)
+#define DEBUG_PRINT(s)           
 #endif
 
 #if 0
@@ -293,8 +304,8 @@ typedef double				fp64;				//double precision floating point variable (64bits)
 #define MAIN_JDQ_OFF()   GPIO_ResetBits(GPIOB, GPIO_Pin_5)
 #define MAIN_JDQ_STAT()  GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_5)
 
-#define MAIN_MOS_ON()         TRIC2_ON()
-#define MAIN_MOS_OFF()        TRIC2_OFF()
+#define MAIN_MOS_ON()    TRIC2_ON()
+#define MAIN_MOS_OFF()   TRIC2_OFF()
 
 #endif
 
@@ -366,7 +377,8 @@ typedef enum
 
 #define MAX_ERROR_SN       2
 
-typedef struct 
+
+typedef struct _sys_conf_
 {
     /* 配置类 */
     unsigned long initStatusWord;
@@ -404,19 +416,18 @@ typedef struct
     unsigned char SelfPowerOnTime[DROP_HISTORY_MAX_COUNT][SYS_SAVE_TIME_LEN];
     unsigned char lastBreakTimeStamp[SYS_SAVE_TIME_LEN];
 
+#if (MAIN_MOS_CHECK_EN > 0u)
     unsigned char main_mos_broken; //华兄
+#endif
 
     unsigned char ver_ftr; //华兄
 
-#if 0
     /* 错误类 */     
     unsigned short error_count;
     unsigned short error_sn;
     unsigned char error_time[MAX_ERROR_SN][4];
     unsigned long error_data[MAX_ERROR_SN];
-#endif //华兄
-}SYS_CONF;
-
+} SYS_CONF, *P_SYS_CONF;
 
 
 struct RTCCounterValue 

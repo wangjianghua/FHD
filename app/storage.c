@@ -1,7 +1,7 @@
 #include "includes.h"
 
 
-void MEM_para_init()
+void MEM_Para_Init()
 {
     memset(&g_sys_conf, 0, sizeof(SYS_CONF));
 
@@ -15,9 +15,9 @@ void MEM_para_init()
 
 #if (SELF_POWER_EN > 0u)
     g_sys_conf.SelfPowerDeadlineHigh = DEFAULT_SELF_POWER_DEADLINE_HIGH;
-    //g_sys_conf.SelfPowerDeadlineLow = DEFAULT_SELF_POWER_DEADLINE_LOW;
+    g_sys_conf.SelfPowerDeadlineLow = DEFAULT_SELF_POWER_DEADLINE_LOW;
     g_sys_conf.SelfPowerActionTimeHigh = DEFAULT_SELF_POWER_ACTION_TIME_HIGH;
-    //g_sys_conf.SelfPowerActionTimeLow = DEFAULT_SELF_POWER_ACTION_TIME_LOW;
+    g_sys_conf.SelfPowerActionTimeLow = DEFAULT_SELF_POWER_ACTION_TIME_LOW;
 #endif    
 
     g_sys_conf.break_points = 2; //华兄
@@ -40,21 +40,21 @@ void MEM_para_init()
     g_sys_conf.voltageFixCoe = 11000;
     g_sys_conf.dev_addr[0] = 1;
 
+#if (MAIN_MOS_CHECK_EN > 0u)
     g_sys_conf.main_mos_broken = FALSE; //华兄
+#endif    
 
 #if (MULTI_MODE_EN > 0u)    
     g_sys_conf.mode = enum_mode_0; //华兄
 #endif    
-
-    g_sys_conf.ver_ftr = 0;
 }
 
 void MEM_Init()
 {
-    int ii = 3;
+    int i = 3;
 
 
-    while(ii > 0)
+    while(i > 0)
     {    
         E2promReadBuffer(0, (unsigned char *)&g_sys_conf, sizeof(SYS_CONF));
         if(g_sys_conf.initStatusWord == SYS_MAGIC_WORD)
@@ -62,13 +62,14 @@ void MEM_Init()
             break;
         }
         OSTimeDly(500);
-        ii--;
+        i--;
+
+        clr_wdt(); //华兄
     }
 
-    if(ii == 0)
+    if(0 == i)
     {
-        
-        MEM_para_init();
+        MEM_Para_Init();
         g_rtc_time[YEAR_POS] = 0x15;
         g_rtc_time[MONTH_POS] = 0x01;
         g_rtc_time[DATE_POS] = 0x01;
@@ -83,11 +84,12 @@ void MEM_Init()
         E2promReadBuffer(0, (unsigned char *)&g_sys_conf, sizeof(SYS_CONF));
         if(g_sys_conf.initStatusWord != SYS_MAGIC_WORD)
         {
-            MEM_para_init();
+            MEM_Para_Init();
             g_sys_conf.SysRunStatus |= SYS_ERROR_EEPROM_RW;
         }
-    }
 
+        clr_wdt(); //华兄
+    }
 }
 
 unsigned char MEM_Cal_Time_Crc(unsigned char *timep)

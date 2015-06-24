@@ -13,7 +13,7 @@
 #define MAX_MSG_LONG              4
 #define MAX_MSG_LARGE             4
 
-#define UART_RECEIVE_BUF_SIZE  256u
+#define UART_RECV_BUF_SIZE     256u
 
 #define END_NON_MODULE_USED    0xff
 
@@ -99,7 +99,7 @@ typedef struct _msg_header_
 typedef struct _msg_info_
 {
     MSG_HEADER msg_header;
-    unsigned char  msg_buffer[UART_RECEIVE_BUF_SIZE];
+    unsigned char  msg_buffer[UART_RECV_BUF_SIZE];
 } MSG_INFO, *P_MSG_INFO;
 
 
