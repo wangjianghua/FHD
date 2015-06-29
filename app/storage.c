@@ -54,6 +54,8 @@ void MEM_Init()
     int i = 3;
 
 
+    clr_wdt(); //ЛЊаж
+    
     while(i > 0)
     {    
         E2promReadBuffer(0, (unsigned char *)&g_sys_conf, sizeof(SYS_CONF));
